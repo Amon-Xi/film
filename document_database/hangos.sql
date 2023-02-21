@@ -44,6 +44,7 @@ ENGINE = INNODB,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
+# Beolvasom az adatokat a táblákba
 LOAD DATA INFILE  './hangos/film.txt' INTO TABLE film;
 LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE feladat;
 LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE szemely;
