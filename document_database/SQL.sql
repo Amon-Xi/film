@@ -53,9 +53,36 @@ SELECT * FROM film ;
 SELECT * FROM feladat ;
 SELECT * FROM szemely ;
 
+# Kitörlöm a felesleges első sort
+DELETE film FROM film 
+WHERE  id = 0;
 
-# TEST #
-#legrégebbi gyártás
+DELETE feladat FROM feladat
+WHERE id = 0;
+
+DELETE szemely FROM szemely
+WHERE id = 0;
+
+# !! TESTS !! #
+
+# legrégebbi gyártás
 SELECT min(f.gyartas) legregebbi_gyartas FROM film f
-where f.gyartas > 0
 ;
+
+# Össz személy
+SELECT COUNT(s.id) ossz_szemely FROM szemely s;
+
+# inner join test
+
+SELECT DISTINCT f.cim cim, ff.megnevezes megnevezes, s.nev nev FROM film f
+INNER JOIN feladat ff ON ff.filmid = f.id
+INNER JOIN szemely s ON ff.szemelyid = s.id
+ORDER BY s.nev
+;
+
+
+
+# !! TESTS !! #
+
+
+
