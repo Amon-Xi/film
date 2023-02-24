@@ -45,8 +45,11 @@ CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
 # Beolvasom az adatokat a táblákba
+delete from film;
 LOAD DATA INFILE  './hangos/film.txt' INTO TABLE film;
+delete from feladat;
 LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE feladat;
+delete from szemely;
 LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE szemely;
 
 
