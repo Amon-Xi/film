@@ -14,3 +14,5 @@ delete from szemely;
 LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE szemely;
 ```
 
+
+

@@ -52,15 +52,15 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>30 px</X>
-              <Y>-20 px</Y>
+              <X>254 px</X>
+              <Y>48 px</Y>
             </Location>
             <Size>
               <Width>185 px</Width>
               <Height>144 px</Height>
             </Size>
             <DbOid>
-              <Path>hangos.feladat</Path>
+              <Path>hangos.tasks</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
@@ -75,15 +75,15 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>420 px</X>
-              <Y>-20 px</Y>
+              <X>570 px</X>
+              <Y>30 px</Y>
             </Location>
             <Size>
               <Width>168 px</Width>
               <Height>161 px</Height>
             </Size>
             <DbOid>
-              <Path>hangos.film</Path>
+              <Path>hangos.films</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
@@ -105,8 +105,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>186 px</X>
-                  <Y>52 px</Y>
+                  <X>183 px</X>
+                  <Y>56 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
@@ -117,8 +117,8 @@
               </Port>
               <Port>
                 <Location>
-                  <X>4 px</X>
-                  <Y>34 px</Y>
+                  <X>7 px</X>
+                  <Y>31 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -130,17 +130,17 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>250 px</X>
-                <Y>32 px</Y>
+                <X>459 px</X>
+                <Y>104 px</Y>
               </PointD>
               <PointD>
-                <X>250 px</X>
-                <Y>14 px</Y>
+                <X>459 px</X>
+                <Y>61 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>hangos.feladat.FK_feladat_film_id</Path>
+              <Path>hangos.tasks.FK_feladat_film_id</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -154,8 +154,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-120 px</X>
-                  <Y>18 px</Y>
+                  <X>-75.5 px</X>
+                  <Y>43 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
@@ -177,15 +177,15 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-260 px</X>
-              <Y>-10 px</Y>
+              <X>-20 px</X>
+              <Y>50 px</Y>
             </Location>
             <Size>
-              <Width>137 px</Width>
+              <Width>153 px</Width>
               <Height>110 px</Height>
             </Size>
             <DbOid>
-              <Path>hangos.szemely</Path>
+              <Path>hangos.persons</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
@@ -207,8 +207,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>5 px</X>
-                  <Y>71 px</Y>
+                  <X>4 px</X>
+                  <Y>75 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -219,30 +219,30 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>37 px</Y>
+                  <X>150 px</X>
+                  <Y>33 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
+                <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
                   <OID>12</OID>
-                  <PortType>FloatAnchor</PortType>
+                  <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>10 px</X>
-                <Y>51 px</Y>
+                <X>234 px</X>
+                <Y>123 px</Y>
               </PointD>
               <PointD>
-                <X>10 px</X>
-                <Y>27 px</Y>
+                <X>234 px</X>
+                <Y>83 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>hangos.feladat.FK_feladat_szemely_id</Path>
+              <Path>hangos.tasks.FK_feladat_szemely_id</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -256,8 +256,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>86.5 px</X>
-                  <Y>24 px</Y>
+                  <X>70.5 px</X>
+                  <Y>40 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -273,13 +273,36 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>14</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>20 px</X>
+              <Y>280 px</Y>
+            </Location>
+            <Size>
+              <Width>172 px</Width>
+              <Height>195 px</Height>
+            </Size>
+            <DbOid>
+              <Path>hangos.users</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
           <Scale>1</Scale>
           <Location>
-            <X>-498.5 px</X>
-            <Y>-266.5 px</Y>
+            <X>-386 px</X>
+            <Y>-90 px</Y>
           </Location>
         </ViewPort>
       </Model>
