@@ -2,7 +2,7 @@
 CHARACTER SET utf8
 COLLATE utf8_hungarian_ci;
 
-CREATE TABLE hangos.film (
+CREATE TABLE hangos.films (
   id int(11) NOT NULL,
   cim varchar(255) NOT NULL,
   gyartas int(11) NOT NULL,
@@ -15,7 +15,7 @@ ENGINE = INNODB,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
-CREATE TABLE hangos.feladat (
+CREATE TABLE hangos.tasks (
   id int(11) NOT NULL,
   filmid int(11) NOT NULL,
   szemelyid int(11) NOT NULL,
@@ -26,15 +26,15 @@ ENGINE = INNODB,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
-ALTER TABLE hangos.feladat
+ALTER TABLE hangos.tasks
 ADD CONSTRAINT FK_feladat_film_id FOREIGN KEY (filmid)
 REFERENCES hangos.film (id) ON UPDATE NO ACTION;
 
-ALTER TABLE hangos.feladat
+ALTER TABLE hangos.tasks
 ADD CONSTRAINT FK_feladat_szemely_id FOREIGN KEY (szemelyid)
 REFERENCES hangos.szemely (id) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-CREATE TABLE hangos.szemely (
+CREATE TABLE hangos.persons (
   id int(11) NOT NULL,
   nev varchar(255) DEFAULT NULL,
   nem varchar(255) DEFAULT NULL,
@@ -59,24 +59,6 @@ SELECT * FROM persons ;
 select * from users;
 
 
-# !! TESTS !! #
-
-# legrégebbi gyártás
-SELECT min(f.gyartas) legregebbi_gyartas FROM film f
-;
-
-# Össz személy
-SELECT COUNT(s.id) ossz_szemely FROM szemely s;
-
-# inner join test
-
-SELECT DISTINCT f.cim cim, ff.megnevezes megnevezes, s.nev nev FROM film f
-INNER JOIN feladat ff ON ff.filmid = f.id
-INNER JOIN szemely s ON ff.szemelyid = s.id
-ORDER BY s.nev
-;
-
-# !! TESTS !! #
 
 
 

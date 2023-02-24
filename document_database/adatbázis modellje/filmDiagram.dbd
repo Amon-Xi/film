@@ -2,12 +2,14 @@
 <!-- Devart (www.devart.com), the Database Diagram File -->
 <!-- Modifying this generated file will probably render it invalid -->
 <DevartDatabaseDiagram>
-  <SchemaVersion>1.2</SchemaVersion>
+  <SchemaVersion>1.3</SchemaVersion>
   <DatabaseProvider>59f90733-4d68-4fdf-82a7-f0fcbf5460aa</DatabaseProvider>
   <Connection>
-    <Name>localhost</Name>
-    <Category>00000000-0000-0000-0000-000000000000</Category>
-    <ConnectionString>User Id=root;Host=localhost;Character Set=utf8</ConnectionString>
+    <ConnectionModel>
+      <PropertyValue Name="Database">59f90733-4d68-4fdf-82a7-f0fcbf5460aa</PropertyValue>
+      <PropertyValue Name="ConnectionString" xml:space="preserve">Host=localhost;Character Set=utf8</PropertyValue>
+      <PropertyValue Name="ExecutionTimeout">0</PropertyValue>
+    </ConnectionModel>
   </Connection>
   <Settings>
     <DbDiagramOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -39,7 +41,7 @@
   <VirtualRelations>
     <RelationCount>0</RelationCount>
   </VirtualRelations>
-  <Diagram Version="1.22.1.0">
+  <Diagram Version="1.30.60.0">
     <DiagramModel>
       <Model xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="DDRootModel">
         <CustomProperties>
@@ -52,31 +54,8 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>254 px</X>
-              <Y>48 px</Y>
-            </Location>
-            <Size>
-              <Width>185 px</Width>
-              <Height>144 px</Height>
-            </Size>
-            <DbOid>
-              <Path>hangos.tasks</Path>
-              <TypeName>Table</TypeName>
-            </DbOid>
-            <Compartments>
-              <ConstraintsCollapsed>True</ConstraintsCollapsed>
-              <IndexesCollapsed>True</IndexesCollapsed>
-              <TriggersCollapsed>True</TriggersCollapsed>
-            </Compartments>
-          </Model>
-          <Model xsi:type="TableModel">
-            <CustomProperties>
-              <OID>2</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Location>
-              <X>570 px</X>
-              <Y>30 px</Y>
+              <X>730 px</X>
+              <Y>0 px</Y>
             </Location>
             <Size>
               <Width>168 px</Width>
@@ -92,93 +71,14 @@
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
           </Model>
-          <Model xsi:type="RelationLinkModel">
-            <CustomProperties>
-              <OID>3</OID>
-              <Comment>4</Comment>
-              <OutModel>1</OutModel>
-              <InModel>2</InModel>
-              <OutPort>5</OutPort>
-              <InPort>6</InPort>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port>
-                <Location>
-                  <X>183 px</X>
-                  <Y>56 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>5</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>7 px</X>
-                  <Y>31 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>6</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-              </Port>
-            </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>459 px</X>
-                <Y>104 px</Y>
-              </PointD>
-              <PointD>
-                <X>459 px</X>
-                <Y>61 px</Y>
-              </PointD>
-            </BendPoints>
-            <IsManuallyRouted>false</IsManuallyRouted>
-            <DbOid>
-              <Path>hangos.tasks.FK_feladat_film_id</Path>
-              <TypeName>ForeignKey</TypeName>
-            </DbOid>
-          </Model>
-          <Model xsi:type="RelationCommentModel">
-            <CustomProperties>
-              <OID>4</OID>
-              <HolderModel>3</HolderModel>
-              <Port>7</Port>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port xsi:type="LinkPort">
-                <Location>
-                  <X>-75.5 px</X>
-                  <Y>43 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>7</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-                <LinkPortAnchor>OutPoint</LinkPortAnchor>
-              </Port>
-            </PortAnchors>
-            <CommentOffset>
-              <X>22 px</X>
-              <Y>2 px</Y>
-            </CommentOffset>
-          </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>8</OID>
+              <OID>2</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-20 px</X>
-              <Y>50 px</Y>
+              <X>50 px</X>
+              <Y>0 px</Y>
             </Location>
             <Size>
               <Width>153 px</Width>
@@ -194,12 +94,114 @@
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
           </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>3</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>390 px</X>
+              <Y>40 px</Y>
+            </Location>
+            <Size>
+              <Width>193 px</Width>
+              <Height>144 px</Height>
+            </Size>
+            <DbOid>
+              <Path>hangos.tasks</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>4</OID>
+              <Comment>5</Comment>
+              <OutModel>3</OutModel>
+              <InModel>2</InModel>
+              <OutPort>6</OutPort>
+              <InPort>7</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>3.16662055670076 px</X>
+                  <Y>72.9661839346013 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>6</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>149.287298225991 px</X>
+                  <Y>30.7835562553796 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>7</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>370 px</X>
+                <Y>112.966183934601 px</Y>
+              </PointD>
+              <PointD>
+                <X>370 px</X>
+                <Y>30.7835562553796 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>hangos.tasks.FK_tasks_persons_id</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>5</OID>
+              <HolderModel>4</HolderModel>
+              <Port>8</Port>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>103.5 px</X>
+                  <Y>82.1826279501043 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>8</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>22 px</X>
+              <Y>2 px</Y>
+            </CommentOffset>
+          </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
               <OID>9</OID>
               <Comment>10</Comment>
-              <OutModel>1</OutModel>
-              <InModel>8</InModel>
+              <OutModel>3</OutModel>
+              <InModel>1</InModel>
               <OutPort>11</OutPort>
               <InPort>12</InPort>
               <Parent>0</Parent>
@@ -207,11 +209,11 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>4 px</X>
-                  <Y>75 px</Y>
+                  <X>190.336082173834 px</X>
+                  <Y>53.0309750049658 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>11</OID>
                   <PortType>FixedAnchor</PortType>
@@ -219,11 +221,11 @@
               </Port>
               <Port>
                 <Location>
-                  <X>150 px</X>
-                  <Y>33 px</Y>
+                  <X>9.97973128682975 px</X>
+                  <Y>36.5478830376651 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Right</Align>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>12</OID>
                   <PortType>FixedAnchor</PortType>
@@ -232,17 +234,17 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>234 px</X>
-                <Y>123 px</Y>
+                <X>603 px</X>
+                <Y>93.0309750049658 px</Y>
               </PointD>
               <PointD>
-                <X>234 px</X>
-                <Y>83 px</Y>
+                <X>603 px</X>
+                <Y>36.5478830376651 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>hangos.tasks.FK_feladat_szemely_id</Path>
+              <Path>hangos.tasks.FK_tasks_films_id</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -256,11 +258,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>70.5 px</X>
-                  <Y>40 px</Y>
+                  <X>-83.5 px</X>
+                  <Y>56.4830929248877 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>13</OID>
                   <PortType>FixedAnchor</PortType>
@@ -279,8 +281,8 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>20 px</X>
-              <Y>280 px</Y>
+              <X>100 px</X>
+              <Y>270 px</Y>
             </Location>
             <Size>
               <Width>172 px</Width>
@@ -299,10 +301,10 @@
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
-          <Scale>1</Scale>
+          <Scale>0.9029251</Scale>
           <Location>
-            <X>-386 px</X>
-            <Y>-90 px</Y>
+            <X>23.2577437512415 px</X>
+            <Y>-294.598086479147 px</Y>
           </Location>
         </ViewPort>
       </Model>
