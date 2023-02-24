@@ -81,8 +81,6 @@ INNER JOIN szemely s ON ff.szemelyid = s.id
 ORDER BY s.nev
 ;
 
-
-
 # !! TESTS !! #
 
 
