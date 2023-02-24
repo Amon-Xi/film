@@ -45,27 +45,19 @@ CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
 # Beolvasom az adatokat a táblákba
-delete from film;
-LOAD DATA INFILE  './hangos/film.txt' INTO TABLE film;
-delete from feladat;
-LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE feladat;
-delete from szemely;
-LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE szemely;
+delete from movies;
+LOAD DATA INFILE  './hangos/film.txt' INTO TABLE movies;
+delete from tasks;
+LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE tasks;
+delete from persons;
+LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE persons;
 
 
-SELECT * FROM film ;
-SELECT * FROM feladat ;
-SELECT * FROM szemely ;
+SELECT * FROM movies ;
+SELECT * FROM tasks ;
+SELECT * FROM persons ;
+select * from users;
 
-# Kitörlöm a felesleges első sort
-DELETE film FROM film 
-WHERE  id = 0;
-
-DELETE feladat FROM feladat
-WHERE id = 0;
-
-DELETE szemely FROM szemely
-WHERE id = 0;
 
 # !! TESTS !! #
 
