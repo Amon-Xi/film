@@ -45,8 +45,8 @@ CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
 # Beolvasom az adatokat a táblákba
-delete from movies;
-LOAD DATA INFILE  './hangos/film.txt' INTO TABLE movies;
+delete from film;
+LOAD DATA INFILE  './hangos/film.txt' INTO TABLE films;
 delete from tasks;
 LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE tasks;
 delete from persons;
