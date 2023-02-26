@@ -4,43 +4,46 @@ COLLATE utf8_hungarian_ci;
 
 CREATE TABLE hangos.films (
   id int(11) NOT NULL,
-  cim varchar(255) NOT NULL,
-  gyartas int(11) NOT NULL,
-  hossz int(11) DEFAULT NULL,
-  bemutato date DEFAULT NULL,
+  title varchar(255) DEFAULT NULL,
+  production int(11) DEFAULT NULL,
+  length int(11) DEFAULT NULL,
+  presentation date DEFAULT NULL,
   youtube tinyint(1) DEFAULT NULL,
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
+AVG_ROW_LENGTH = 181,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
 CREATE TABLE hangos.tasks (
   id int(11) NOT NULL,
   filmid int(11) NOT NULL,
-  szemelyid int(11) NOT NULL,
-  megnevezes varchar(255) NOT NULL,
+  personid int(11) NOT NULL,
+  denomination varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
+AVG_ROW_LENGTH = 50,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
 ALTER TABLE hangos.tasks
-ADD CONSTRAINT FK_feladat_film_id FOREIGN KEY (filmid)
-REFERENCES hangos.film (id) ON UPDATE NO ACTION;
+ADD CONSTRAINT FK_tasks_films_id FOREIGN KEY (filmid)
+REFERENCES hangos.films (id);
 
 ALTER TABLE hangos.tasks
-ADD CONSTRAINT FK_feladat_szemely_id FOREIGN KEY (szemelyid)
-REFERENCES hangos.szemely (id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT FK_tasks_persons_id FOREIGN KEY (personid)
+REFERENCES hangos.persons (id);
 
 CREATE TABLE hangos.persons (
   id int(11) NOT NULL,
-  nev varchar(255) DEFAULT NULL,
-  nem varchar(255) DEFAULT NULL,
+  name varchar(255) DEFAULT NULL,
+  gender varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
+AVG_ROW_LENGTH = 107,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
@@ -57,6 +60,17 @@ SELECT * FROM films ;
 SELECT * FROM tasks ;
 SELECT * FROM persons ;
 select * from users;
+
+
+# kép válogatáshoz
+SELECT DISTINCT p.name NEVEK, t.denomination BEOSZTAS FROM tasks t
+INNER JOIN persons p ON p.id = t.personid
+WHERE p.id = t.personid;
+
+
+
+
+
 
 
 
