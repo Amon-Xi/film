@@ -27,6 +27,7 @@ CREATE DATABASE IF NOT EXISTS hangos
 	CHARACTER SET utf8
 	COLLATE utf8_hungarian_ci;
 
+
 --
 -- Set default database
 --
