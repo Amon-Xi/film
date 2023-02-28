@@ -63,7 +63,7 @@ select * from users;
 
 
 # kép válogatáshoz
-SELECT DISTINCT p.name NEVEK, t.denomination BEOSZTAS FROM tasks t
+SELECT DISTINCT p.name NEVEK, t.denomination BEOSZTAS, p.gender NEME FROM tasks t
 INNER JOIN persons p ON p.id = t.personid
 WHERE p.id = t.personid;
 
