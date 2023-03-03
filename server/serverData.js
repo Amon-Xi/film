@@ -594,6 +594,77 @@ app.put("/trips/:id", (req, res) => {
 });
 //#endregion trips
 
+//#region films
+app.get("/films", (req, res) => {
+  let sql = `SELECT * FROM films`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, async function (error, results, fields) {
+      if (error) {
+        message = "Films sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGet(res, null, results);
+    });
+    connection.release();
+  });
+});
+
+//#end region films
+
+//#region tasks
+app.get("/tasks", (req, res) => {
+  let sql = `SELECT * FROM tasks`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, async function (error, results, fields) {
+      if (error) {
+        message = "Tasks sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGet(res, null, results);
+    });
+    connection.release();
+  });
+});
+
+//#end region tasks
+
+//#region perons
+app.get("/persons", (req, res) => {
+  let sql = `SELECT * FROM persons`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, async function (error, results, fields) {
+      if (error) {
+        message = "Persons sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGet(res, null, results);
+    });
+    connection.release();
+  });
+});
+
+//#end region persons
+
+
+
 function mySanitizeHtml(data) {
   return sanitizeHtml(data, {
     allowedTags: [],
