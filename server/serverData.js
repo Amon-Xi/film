@@ -640,7 +640,7 @@ app.get("/tasks", (req, res) => {
 
 //#end region tasks
 
-//#region perons
+//#region persons
 app.get("/persons", (req, res) => {
   let sql = `SELECT * FROM persons`;
 

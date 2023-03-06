@@ -177,14 +177,13 @@ Content-Type: application/json
 
 ### ---------------------------------- SAJÁT
 
-# get films
+### get films
 get http://localhost:3000/films
 
 
-#get tasks
+### get tasks
 get http://localhost:3000/tasks
 
 
-#get person
-
+### get person
 get http://localhost:3000/persons
