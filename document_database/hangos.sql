@@ -68,16 +68,35 @@ INNER JOIN persons p ON p.id = t.personid
 WHERE p.id = t.personid;
 
 
-# LEKÉRDEZÜK AZ ADATOKAT || LEÍRÁS
+# LEKÉRDEZZÜK AZ ADATOKAT || LEÍRÁS
 
-# get films || get http://localhost:3000/films
+### get films || get http://localhost:3000/films
   select * from films;
 
-# get films || get http://localhost:3000/tasks
+### get films || get http://localhost:3000/tasks
   select * from tasks;
 
-# get films || get http://localhost:3000/persons
+### get films || get http://localhost:3000/persons
   select * from persons;
+
+
+
+
+ ### get by id || get http://localhost:3000/films/420
+    SELECT * FROM films
+    WHERE id = 420;
+
+ ### get by id || get http://localhost:3000/tasks/69
+
+    SELECT * FROM tasks
+    WHERE id = 69;
+
+
+### get by id || get http://localhost:3000/persons/151
+    SELECT * FROM persons
+    WHERE id = 151;
+
+
 
 
 

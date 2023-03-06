@@ -594,7 +594,12 @@ app.put("/trips/:id", (req, res) => {
 });
 //#endregion trips
 
-//#region films
+//____________________SAJÁT__________________________
+
+//#region get-ek ---
+
+//#region films --- 
+
 app.get("/films", (req, res) => {
   let sql = `SELECT * FROM films`;
 
@@ -615,9 +620,10 @@ app.get("/films", (req, res) => {
   });
 });
 
-//#end region films
+//#endregion films
 
-//#region tasks
+//#region tasks ---
+
 app.get("/tasks", (req, res) => {
   let sql = `SELECT * FROM tasks`;
 
@@ -638,9 +644,10 @@ app.get("/tasks", (req, res) => {
   });
 });
 
-//#end region tasks
+//#endregion tasks
 
-//#region persons
+//#region persons ---
+
 app.get("/persons", (req, res) => {
   let sql = `SELECT * FROM persons`;
 
@@ -661,7 +668,113 @@ app.get("/persons", (req, res) => {
   });
 });
 
-//#end region persons
+//#endregion persons
+
+//#endregion getek
+
+
+//#region films get by id ---
+app.get("/films/:id", (req, res) => {
+  const id = req.params.id;
+  let sql = `
+    SELECT * FROM films
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], async function (error, results, fields) {
+      if (error) {
+        const message = "Films sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      if (results.length == 0) {
+        const message = `Not found id: ${id}`;
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGetById(res, null, results[0], id);
+    });
+    connection.release();
+  });
+});
+
+
+
+//#endregion get by id
+
+//#region tasks get by id ---
+app.get("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  let sql = `
+    SELECT * FROM tasks
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], async function (error, results, fields) {
+      if (error) {
+        const message = "Tasks sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      if (results.length == 0) {
+        const message = `Not found id: ${id}`;
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGetById(res, null, results[0], id);
+    });
+    connection.release();
+  });
+});
+
+
+//#region persons get by id ---
+app.get("/persons/:id", (req, res) => {
+  const id = req.params.id;
+  let sql = `
+    SELECT * FROM persons
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], async function (error, results, fields) {
+      if (error) {
+        const message = "Persons sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      if (results.length == 0) {
+        const message = `Not found id: ${id}`;
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGetById(res, null, results[0], id);
+    });
+    connection.release();
+  });
+});
+
+
+
+//#endregion get by id
+
+
+
+
+//#endregion get by id
+
+
 
 
 

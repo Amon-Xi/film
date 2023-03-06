@@ -69,6 +69,7 @@ delete http://localhost:3000/users/17
 ### #endregion users
 
 ### ---------------------------------------
+
 ### get cars
 get http://localhost:3000/cars
 
@@ -177,6 +178,8 @@ Content-Type: application/json
 
 ### ---------------------------------- SAJÁT
 
+# get 
+
 ### get films
 get http://localhost:3000/films
 
@@ -187,3 +190,17 @@ get http://localhost:3000/tasks
 
 ### get person
 get http://localhost:3000/persons
+
+
+#get by id
+
+### get by id films
+get http://localhost:3000/films/420
+
+### get by id tasks
+get http://localhost:3000/tasks/1339
+
+### get by id persons
+get http://localhost:3000/persons/151
+
+
