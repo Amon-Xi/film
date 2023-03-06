@@ -594,7 +594,7 @@ app.put("/trips/:id", (req, res) => {
 });
 //#endregion trips
 
-//____________________SAJÁT__________________________
+//------------------------- SAJÁT -------------------------
 
 //#region get-ek ---
 
@@ -673,6 +673,9 @@ app.get("/persons", (req, res) => {
 //#endregion getek
 
 
+
+//#region get by id ---
+
 //#region films get by id ---
 app.get("/films/:id", (req, res) => {
   const id = req.params.id;
@@ -701,10 +704,7 @@ app.get("/films/:id", (req, res) => {
     connection.release();
   });
 });
-
-
-
-//#endregion get by id
+//#endregion films get by id
 
 //#region tasks get by id ---
 app.get("/tasks/:id", (req, res) => {
@@ -734,7 +734,7 @@ app.get("/tasks/:id", (req, res) => {
     connection.release();
   });
 });
-
+//#endregion tasks get by id
 
 //#region persons get by id ---
 app.get("/persons/:id", (req, res) => {
@@ -764,15 +764,14 @@ app.get("/persons/:id", (req, res) => {
     connection.release();
   });
 });
-
-
-
-//#endregion get by id
-
-
+//#endregion persons get by id
 
 
 //#endregion get by id
+
+
+
+
 
 
 
