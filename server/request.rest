@@ -178,7 +178,7 @@ Content-Type: application/json
 
 ### ---------------------------------- SAJÁT
 
-# get 
+#--------------- get --------------- 
 
 ### get films
 get http://localhost:3000/films
@@ -192,7 +192,7 @@ get http://localhost:3000/tasks
 get http://localhost:3000/persons
 
 
-#get by id
+#--------------- get by id --------------
 
 ### get by id films
 get http://localhost:3000/films/420
