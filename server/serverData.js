@@ -673,7 +673,6 @@ app.get("/persons", (req, res) => {
 //#endregion getek
 
 
-
 //#region get by id ---
 
 //#region films get by id ---
@@ -766,13 +765,293 @@ app.get("/persons/:id", (req, res) => {
 });
 //#endregion persons get by id
 
-
 //#endregion get by id
 
 
+//#region delete ---
+
+//#region films delete
+
+app.delete("/films/:id", (req, res) => {
+  const id = req.params.id;
+
+  let sql = `
+    DELETE FROM films
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], function (error, result, fields) {
+      sendingDelete(res, error, result, id);
+    });
+    connection.release();
+  });
+});
+
+//#endregion films
+
+//#region tasks delete
+
+app.delete("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+
+  let sql = `
+    DELETE FROM tasks
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], function (error, result, fields) {
+      sendingDelete(res, error, result, id);
+    });
+    connection.release();
+  });
+});
+
+//#endregion tasks
+
+//#region persons  delete
+
+app.delete("/persons/:id", (req, res) => {
+  const id = req.params.id;
+
+  let sql = `
+    DELETE FROM persons
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], function (error, result, fields) {
+      sendingDelete(res, error, result, id);
+    });
+    connection.release();
+  });
+});
+
+//#endregion persons
+
+//#endregion delete
+
+
+//#region post ---
+
+//#region post films
+app.post("/films", (req, res) => {
+  const newR = {
+    title: sanitizeHtml(req.body.title),
+    production: sanitizeHtml(req.body.production),
+    length: +sanitizeHtml(req.body.length),
+    presentation: +sanitizeHtml(req.body.presentation),
+    youtube: +sanitizeHtml(req.body.youtube)
+  };
+  let sql = `
+  INSERT films 
+  (title, production, length, presentation, youtube)
+  VALUES
+  (?, ?, ?, ?, ?);
+    `;
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(
+      sql,
+      [newR.title, newR.production, newR.length, newR.presentation, newR.youtube],
+      function (error, result, fields) {
+        sendingPost(res, error, result, newR);
+      }
+    );
+    connection.release();
+  });
+});
+
+
+//#endregion films
+
+//#region post tasks
+app.post("/tasks", (req, res) => {
+  const newR = {
+    filmid: sanitizeHtml(req.body.filmid),
+    personid: sanitizeHtml(req.body.personid),
+    denomination: +sanitizeHtml(req.body.denomination)
+  };
+  let sql = `
+  INSERT tasks 
+  (filmid, personid, denomination)
+  VALUES
+  (?, ?, ?);
+    `;
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(
+      sql,
+      [newR.filmid, newR.personid, newR.denomination],
+      function (error, result, fields) {
+        sendingPost(res, error, result, newR);
+      }
+    );
+    connection.release();
+  });
+});
+
+//#endregion tasks
+
+//#region post persons
+app.post("/persons", (req, res) => {
+  const newR = {
+    name: sanitizeHtml(req.body.name),
+    gender: sanitizeHtml(req.body.gender)
+  };
+  let sql = `
+  INSERT persons 
+  (name, gender)
+  VALUES
+  (?, ?);
+    `;
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(
+      sql,
+      [newR.name, newR.gender],
+      function (error, result, fields) {
+        sendingPost(res, error, result, newR);
+      }
+    );
+    connection.release();
+  });
+});
+
+//#endregion persons
+
+
+//#endregion post
+
+
+//#region put ---
+
+//#region put films
+app.put("/films/:id", (req, res) => {
+  const id = req.params.id;
+  const newR = {
+    title: sanitizeHtml(req.body.title),
+    production: sanitizeHtml(req.body.production),
+    length: +sanitizeHtml(req.body.length),
+    presentation: +sanitizeHtml(req.body.presentation),
+    youtube: +sanitizeHtml(req.body.youtube)
+  };
+  let sql = `
+  UPDATE films SET
+  title = ?,
+  production = ?,
+  length = ?,
+  presentation = ?,
+  youtube = ?
+  WHERE id = ?
+      `;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(
+      sql,
+      [newR.title, newR.production, newR.length, newR.presentation, newR.youtube, id],
+      function (error, result, fields) {
+        sendingPut(res, error, result, id, newR);
+      }
+    );
+    connection.release();
+  });
+});
+
+//#endregion films
+
+//#region put tasks
+app.put("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  const newR = {
+    filmid: sanitizeHtml(req.body.filmid),
+    personid: sanitizeHtml(req.body.personid),
+    denomination: +sanitizeHtml(req.body.denomination)
+  };
+  let sql = `
+  UPDATE tasks SET
+    filmid = ?,
+    personid = ?,
+    denomination = ?
+    WHERE id = ?;
+      `;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(
+      sql,
+      [newR.filmid, newR.personid, newR.denomination, id],
+      function (error, result, fields) {
+        sendingPut(res, error, result, id, newR);
+      }
+    );
+    connection.release();
+  });
+});
+
+//#endregion tasks
+
+//#region put persons
+app.put("/persons/:id", (req, res) => {
+  const id = req.params.id;
+  const newR = {
+    name: sanitizeHtml(req.body.name),
+    gender: sanitizeHtml(req.body.gender)
+  };
+  let sql = `
+  UPDATE persons  SET
+  name = ?,
+  gender = ?
+  WHERE id = ?;
+      `;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(
+      sql,
+      [newR.name, newR.gender,  id],
+      function (error, result, fields) {
+        sendingPut(res, error, result, id, newR);
+      }
+    );
+    connection.release();
+  });
+});
+
+//#endregion persons
 
 
 
+//#endregion put
 
 
 

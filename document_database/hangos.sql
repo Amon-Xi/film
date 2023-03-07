@@ -68,33 +68,98 @@ INNER JOIN persons p ON p.id = t.personid
 WHERE p.id = t.personid;
 
 
-# LEKÉRDEZZÜK AZ ADATOKAT || LEÍRÁS
+#  LEÍRÁS
 
-### get films || get http://localhost:3000/films
+# ----- get -------
+### get films 
   select * from films;
 
-### get films || get http://localhost:3000/tasks
+### get tasks
   select * from tasks;
 
-### get films || get http://localhost:3000/persons
+### get persons
   select * from persons;
 
+#---- get by id -------
 
 
-
- ### get by id || get http://localhost:3000/films/420
+ ### get by id films
     SELECT * FROM films
     WHERE id = 420;
 
- ### get by id || get http://localhost:3000/tasks/69
+ ### get by id tasks
 
     SELECT * FROM tasks
     WHERE id = 69;
 
 
-### get by id || get http://localhost:3000/persons/151
+### get by id persons
     SELECT * FROM persons
     WHERE id = 151;
+
+#------- delete -------
+
+### delete films
+    DELETE FROM films
+    WHERE id = 2;
+
+### delete tasks
+    DELETE FROM tasks
+    WHERE id = 2;
+
+### delete persons
+    DELETE FROM persons
+    WHERE id = 2;
+
+
+#--------- post -----------
+
+### post films
+    INSERT films 
+    (title, production, length, presentation, youtube)
+    VALUES
+    (?, ?, ?, ?, ?);
+
+### post tasks
+    INSERT tasks 
+    (filmid, personid, denomination)
+    VALUES
+    (?, ?, ?);
+
+### post persons
+    INSERT persons 
+    (name, gender)
+    VALUES
+    (?, ?);
+
+
+
+#------ put --------
+
+### put films
+    UPDATE films SET
+    title = ?,
+    production = ?,
+    length = ?,
+    presentation = ?,
+    youtube = ?
+    WHERE id = ?;
+
+### put tasks
+    UPDATE tasks SET
+    filmid = ?,
+    personid = ?,
+    denomination = ?
+    WHERE id = ?;
+
+### put persons
+    UPDATE persons  SET
+    name = ?,
+    gender = ?
+    WHERE id = ?;
+
+
+
 
 
 
