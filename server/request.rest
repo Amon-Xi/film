@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "userName": "feri",
-    "password": "jozsi123"
+    "password": "123"
 }
 
 ### token kérés
@@ -33,7 +33,7 @@ get http://localhost:3000/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZmVyaSIsImlhdCI6MTY3Njc1NDcwOCwiZXhwIjoxNjc2NzU1NjA4fQ.KYhG-su5z7jQJJzq9MYJr2J3lBnnPw6oZIjWRT4X6cs
 
 ### Egy user
-get http://localhost:3000/users/15
+get http://localhost:3000/users/0
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsImZpcnN0TmFtZSI6IkLDqWxhIiwibGFzdE5hbWUiOiJOYWd5b24iLCJnZW5kZXIiOiJmw6lyZmkiLCJlbWFpbCI6Im5hZ3kuYmVsYUBnbWFpbC5jb20iLCJudW1iZXIiOjM0MzQzNTUzNH0sImlhdCI6MTY0NDMxNTE5NCwiZXhwIjoxNjQ0MzE4Nzk0fQ.q2ih8UiVs51Pa3UEc908O6tLt5Upl9NOlidEmQSksMQ
 
 ### User hozzáadása (regisztráció)
@@ -55,12 +55,12 @@ put http://localhost:3000/users/14
 Content-Type: application/json
 
 {
-    "firstName": "Géza",
-    "lastName": "Balog",
+    "firstName": "ULI",
+    "lastName": "Buli",
     "gender": "férfi",
-    "userName": "geza",
+    "userName": "asd",
     "email": "balog.geza@gmail.com",
-    "password": "test123",
+    "password": "123",
     "number": 123456
 }
 
@@ -287,3 +287,76 @@ Content-Type: application/json
     "name": "Mekk Elek meg egy",
     "gender": "férfi"
 }
+
+
+### ----------------------------- USEREK-------------------------------------
+
+### login
+post http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "userName": "mu",
+    "password": "222"
+}
+
+### token kérés
+post http://localhost:4000/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNkIiwiaWF0IjoxNjgxMTQ4OTE0fQ.cDecVERXm3NhonBZut-ymIQAaGPsV6sLyPn3XXI9s9Q"
+}
+
+### logout
+delete http://localhost:4000/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNkIiwiaWF0IjoxNjgxMTQ4OTE0fQ.cDecVERXm3NhonBZut-ymIQAaGPsV6sLyPn3XXI9s9Q"
+}
+
+### logout all
+delete http://localhost:4000/logoutall
+Content-Type: application/json
+
+
+### Userek
+get http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNkIiwiaWF0IjoxNjgxMTQ4OTE0fQ.cDecVERXm3NhonBZut-ymIQAaGPsV6sLyPn3XXI9s9Q
+
+### Egy user
+get http://localhost:3000/users/0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNkIiwiaWF0IjoxNjgxMTQ4OTE0fQ.cDecVERXm3NhonBZut-ymIQAaGPsV6sLyPn3XXI9s9Q
+
+### User hozzáadása (regisztráció)
+post http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstName": "nane",
+    "lastName": "nonoo",
+    "gender": "férfi",
+    "userName": "hat",
+    "email": "hat@gmail.com",
+    "password": "222",
+    "number": 118213768123
+}
+
+### User módosítása
+put http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+    "firstName": "AKD",
+    "lastName": "lkjasd",
+    "gender": "fiu",
+    "userName": "mu",
+    "email": "mu@gmail.com",
+    "password": "222",
+    "number": 1234562
+}
+
+### Delete user
+delete http://localhost:3000/users/17
+

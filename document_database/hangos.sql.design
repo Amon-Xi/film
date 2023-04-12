@@ -16,7 +16,7 @@
     </ConnectionModel>
     <Database>hangos</Database>
   </Connection>
-  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="True" MainViewAttribute="Code" MainViewScale="68">
+  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="True" MainViewAttribute="Code" MainViewScale="67">
     <View Name="Design" Visible="False" />
     <View Name="Code" Active="True" Visible="True">
       <Data>
@@ -31,11 +31,22 @@
           <Parameter Name="Param8" Direction="Input" DbType="VarChar" />
           <Parameter Name="Param9" Direction="Input" DbType="VarChar" />
           <Parameter Name="Param10" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param11" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param12" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param13" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param14" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param15" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param16" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param17" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param18" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param19" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param20" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param21" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param22" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param23" Direction="Input" DbType="VarChar" />
         </Parameters>
       </Data>
     </View>
     <View Name="Data" Visible="True" />
-    <View Name="Profiler" Visible="False" />
-    <View Name="PivotGrid" Visible="False" />
   </Views>
 </Document>

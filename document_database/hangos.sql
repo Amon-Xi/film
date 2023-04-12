@@ -47,6 +47,15 @@ AVG_ROW_LENGTH = 107,
 CHARACTER SET utf8,
 COLLATE utf8_hungarian_ci;
 
+
+
+ALTER TABLE users 
+  ADD UNIQUE INDEX UK_users_email(email);
+
+ALTER TABLE users 
+  ADD UNIQUE INDEX UK_users_userName(userName);
+
+
 # Beolvasom az adatokat a táblákba
 delete from films;
 LOAD DATA INFILE  './hangos/film.txt' INTO TABLE films;
@@ -56,16 +65,21 @@ delete from persons;
 LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE persons;
 
 
+
+
+
 SELECT * FROM films ;
 SELECT * FROM tasks ;
 SELECT * FROM persons ;
 select * from users;
 
 
-# kép válogatáshoz
-SELECT DISTINCT p.name NEVEK, t.denomination BEOSZTAS, p.gender NEME FROM tasks t
-INNER JOIN persons p ON p.id = t.personid
-WHERE p.id = t.personid;
+INSERT users 
+  (id, email, password)
+  VALUES
+  (1,'jozsi@gmail.com','jozsijelszo'),(2,'bela@gmail.com','belajelszo'),(3,'feri@gmail.com','ferijelszo');
+
+
 
 
 #  LEÍRÁS
@@ -157,6 +171,10 @@ WHERE p.id = t.personid;
     name = ?,
     gender = ?
     WHERE id = ?;
+
+
+
+### --------------------- USEREK -------------------------
 
 
 
