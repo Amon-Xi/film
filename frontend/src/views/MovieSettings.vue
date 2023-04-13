@@ -14,7 +14,7 @@
               class="btn btn-outline-success btn-sm"
               @click="onClickNew()"
             >
-              Új autó
+             New movie
             </button>
           </th>
           <th>Autó márka</th>
