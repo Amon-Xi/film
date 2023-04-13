@@ -2,13 +2,13 @@
   <div id="carouselExample" class="carousel slide position-relative" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src= "/frontend/kepek/oigen.jpg" class="d-block w-100" alt="..." />
+        <!-- <img src="../../kepek/oigen.jpg" class="d-block w-100"  alt=""> -->
       </div>
       <div class="carousel-item">
-        <img src="/frontend/kepek/among-us-sus.gif" class="d-block w-100" alt="..."  />
+        <!-- <img src="../../kepek/animan.gif" class="d-block w-100" alt="..."  /> -->
       </div>
       <div class="carousel-item">
-        <img src="/frontend/kepek/myreaction.jpg" class="d-block w-100" alt="..." />
+        <!-- <img src="../../kepek/among-us-sus.gif" class="d-block w-100" alt="..." /> -->
       </div>
     </div>
     <button

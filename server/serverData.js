@@ -18,6 +18,7 @@ const {
   sendingInfo,
 } = require("./config/sending.js");
 
+
 //#region Middleware
 //json-al kommunikáljon
 app.use(express.json());

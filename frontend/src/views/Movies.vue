@@ -15,13 +15,8 @@
 
     <div v-for="(movie, index) in movieIdk" :key="`movie${index}`">
       <h2>
-        {{ movie.title }} ({{ movie.production }}) {{ movie.youtube }} 
+        {{ movie.title }} {{ movie.production }} {{ movie.youtube }} 
       </h2>
-      <ul>
-        <li v-for="(valami, index) in movie.persons" :key="`valami${index}`">
-          {{ valami.name }}: {{ valami.gender }} 
-        </li>
-      </ul>
     </div>
   </div>
 </template>
