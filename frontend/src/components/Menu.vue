@@ -50,7 +50,7 @@
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <router-link class="dropdown-item" to="/movieSettings"
+                <router-link onchange="MovieSettingChange()" class="dropdown-item" to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
                   >Movie settings (registration needed)</router-link
                 >
@@ -108,11 +108,16 @@ function onClickMenu(number){
 //     }
 //   }
 // };
+
+
+function MovieSettingChange(loginSuccess){
+    
+}
 </script>
 
 <style>
 .router-link-active {
-  color: turquoise !important
+  color: rgb(224, 64, 64) !important
 }
 
 /* .navbar-nav > li > .dropdown-menu a:link,

@@ -1,6 +1,7 @@
 .my-container {
   max-width: 1200px;
   background-color: rgba(89, 248, 182, 0.4);
+  backdrop-filter: blur 10px;
 }
 
 .my-width-100 {
