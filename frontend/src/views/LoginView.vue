@@ -66,6 +66,7 @@ export default {
         },
         body: JSON.stringify(user),
       };
+      console.log(config);
       try {
         // this.errorMessage = null;
         const response = await fetch(url, config);

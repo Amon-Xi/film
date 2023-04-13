@@ -43,8 +43,8 @@ export const useUrlStore = defineStore({
     urlTrips(){
       return `${this.urlData}/trips`
     },
-    urlMovies(){
-      return `${this.urlData}/movieIdk`
+    urlFilms(){
+      return `${this.urlData}/films`
     }
   },
 });

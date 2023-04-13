@@ -57,13 +57,14 @@ ALTER TABLE users
 
 
 # Beolvasom az adatokat a táblákba
-delete from films;
+DELETE FROM films;
 LOAD DATA INFILE  './hangos/film.txt' INTO TABLE films;
-delete from tasks;
-LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE tasks;
-delete from persons;
+
+DELETE FROM persons;
 LOAD DATA INFILE  './hangos/szemely.txt' INTO TABLE persons;
 
+DELETE FROM tasks;
+LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE tasks;
 
 
 
@@ -174,7 +175,6 @@ INSERT users
 
 
 
-### --------------------- USEREK -------------------------
 
 
 

@@ -186,8 +186,8 @@ post http://localhost:4000/login
 Content-Type: application/json
 
 {
-    "userName": "hat",
-    "password": "222"
+    "userName": "et",
+    "password": "333"
 }
 
 ### token kérés
@@ -224,13 +224,13 @@ post http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "firstName": "nane",
-    "lastName": "nonoo",
-    "gender": "férfi",
-    "userName": "hat",
-    "email": "hat@gmail.com",
-    "password": "222",
-    "number": 118213768123
+    "firstName": "asd",
+    "lastName": "non22oo",
+    "gender": "tunyacsap",
+    "userName": "et",
+    "email": "et@gmail.com",
+    "password": "333",
+    "number": 324
 }
 
 ### User módosítása
