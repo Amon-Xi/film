@@ -1,10 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/"
+      <div class="my-homepic  ">
+
+        <router-link class="navbar-brand my-hometext " to="/"
         @click="onClickMenu(1)"
-      >Movies</router-link>
-      <button
+        >  RFilmek   </router-link>
+        <button
         class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
@@ -12,23 +14,24 @@
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      >
+        >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    </div>
+      <div class="collapse navbar-collapse my-navbar" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="nav-link active" aria-current="page" to="/"
             :class="{active: menuState === 2}"
             @click="onClickMenu(2)"
-              >Home</router-link
+              >Főoldal</router-link
             >
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link class="nav-link" to="/about"
             :class="{active: menuState === 3}"
             @click="onClickMenu(3)"
-            >About</router-link>
+            >Rólunk</router-link>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -40,29 +43,29 @@
               :class="{active: menuState === 4}"
               @click="onClickMenu(4)"
             >
-              Others
+              Egyebek
             </a>
             <ul class="dropdown-menu">
               <li>
                 <router-link class="dropdown-item" to="/movies"
-                  >Random movies</router-link
+                  >Random film</router-link
                 >
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <router-link onchange="MovieSettingChange()" class="dropdown-item" to="/movieSettings"
+                <router-link onchange="MovieSettingChange()" id="movieEdit" class="dropdown-item" to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
-                  >Movie settings (registration needed)</router-link
+                  >Film szerkeztés (regisztráció szükséges)</router-link
                 >
               </li>
             </ul>
           </li>
           <li class="nav-item" v-if="!storeLogin.loginSuccess">
-            <router-link class="nav-link" to="/login">Login</router-link>
+            <router-link class="nav-link" to="/login">Belépés</router-link>
           </li>
           <li class="nav-item" v-if="storeLogin.loginSuccess" @click="logout()">
             <router-link class="nav-link" to="/login"
-              >Logout ({{ storeLogin.userName }})</router-link
+              >Kilépés ({{ storeLogin.userName }})</router-link
             >
           </li>
         </ul>
@@ -110,8 +113,8 @@ function onClickMenu(number){
 // };
 
 
-function MovieSettingChange(loginSuccess){
-    
+function MovieSettingChange(){
+
 }
 </script>
 
@@ -120,6 +123,15 @@ function MovieSettingChange(loginSuccess){
   color: rgb(224, 64, 64) !important
 }
 
+.my-hometext{
+  text-shadow: 2px 4px 4px rgba(0, 89, 255, 0.6);
+
+}
+
+.my-homepic{
+  text-align: center ;
+  
+}
 /* .navbar-nav > li > .dropdown-menu a:link,
 .navbar-nav > li > .dropdown-menu a:hover { background-color: black} */
 </style>

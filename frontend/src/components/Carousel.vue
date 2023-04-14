@@ -2,13 +2,13 @@
   <div id="carouselExample" class="carousel slide position-relative" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <!-- <img src="../../kepek/oigen.jpg" class="d-block w-100"  alt=""> -->
+        <img src="../../kepek/oldmovie1.png" class="d-block w-100"  alt="">
       </div>
       <div class="carousel-item">
-        <!-- <img src="../../kepek/animan.gif" class="d-block w-100" alt="..."  /> -->
+        <img src="../../kepek/oldmovie2.png" class="d-block w-100" alt="..."  />
       </div>
       <div class="carousel-item">
-        <!-- <img src="../../kepek/among-us-sus.gif" class="d-block w-100" alt="..." /> -->
+        <img src="../../kepek/oldmovie3.png" class="d-block w-100" alt="..." />
       </div>
     </div>
     <button
@@ -31,7 +31,7 @@
     </button>
 
     <div class="position-absolute top-50 start-50 translate-middle">
-      <h1 class="my-fs-cim"><div class="p-2 ps-4 pe-4 my-bg-cim">Movies</div> </h1>
+      <h1 class="my-fs-cim"><div class="p-2 ps-4 pe-4 my-bg-cim">RFilmek</div> </h1>
     </div>
 
   </div>
@@ -42,12 +42,13 @@ export default {};
 </script>s
 <style>
 .my-bg-cim {
-  background-color: rgba(255,255,255,0.3);
-  border-radius: 10px;
+  background-color: rgba(255,255,255,0.1);
 }
 .my-fs-cim {
   font-size: 5rem;
   font-weight: normal;
+  text-shadow: 2px 4px 4px rgba(46,91,173,0.6);
+  font-family: 'Times New Roman', Times, serif;
 }
 
 </style>

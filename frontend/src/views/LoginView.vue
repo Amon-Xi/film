@@ -1,8 +1,8 @@
 <template>
   <div class="p-3 my-width-login">
     <!-- user name -->
-    <div class="mb-3">
-      <label for="userName" class="form-label">Username:</label>
+    <div class="mb-3 col-6">
+      <label for="userName" class="form-label">Felhasználónév:</label>
       <input
         type="text"
         class="form-control"
@@ -11,8 +11,8 @@
       />
     </div>
     <!-- password -->
-    <div class="mb-3">
-      <label for="password" class="form-label">Password:</label>
+    <div class="mb-3 col-6">
+      <label for="password" class="form-label">Jelszó:</label>
       <input
         type="password"
         class="form-control"
@@ -21,8 +21,8 @@
       />
     </div>
     <!-- Button login -->
-    <button type="button" class="btn btn-outline-info mb-3" @click="login()">
-      Login
+    <button type="button" class="btn btn-outline-danger mb-3" @click="login()">
+      Belépés
     </button>
 
     <div v-if="loginErrorMessage" class="alert alert-danger" role="alert">

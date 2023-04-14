@@ -1,7 +1,11 @@
 
 <template>
   <div>
-    <h1>About</h1>
+   <center><h1>Ok I pull up</h1></center> 
+
+  <center><img src="../../kepek/oigen.jpg" alt=""></center> 
+
+
   </div>
 
 

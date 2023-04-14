@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView,
       meta: {
         requiresAuth: false,
-        title: "Home / Movies",
+        title: "Főoldal / Filmek",
       },
     },
     {
@@ -22,7 +22,7 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
       meta: {
         requiresAuth: false,
-        title: "About / Movies",
+        title: "About / Filmek",
       },
     },
     {
@@ -31,7 +31,7 @@ const router = createRouter({
       component: () => import("../views/Movies.vue"),
       meta: {
         requiresAuth: false,
-        title: "Movie searcher / Movies",
+        title: "Random film / Filmek",
       },
     },
     {
@@ -40,7 +40,7 @@ const router = createRouter({
       component: () => import("../views/MovieSettings.vue"),
       meta: {
         requiresAuth: true,
-        title: "Movie settings / Movies",
+        title: "Film szerkeztése / Filmek",
       },
     },
     {
@@ -49,7 +49,7 @@ const router = createRouter({
       component: () => import("../views/LoginView.vue"),
       meta: {
         requiresAuth: false,
-        title: "Login / Movies",
+        title: "Belépés / Filmek",
       },
     },
     {
@@ -58,7 +58,7 @@ const router = createRouter({
       component: () => import("../views/404View.vue"),
       meta: {
         requiresAuth: false,
-        title: "404 / Movies",
+        title: "404 / Filmek",
       },
     },
   ],

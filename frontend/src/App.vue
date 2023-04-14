@@ -1,7 +1,7 @@
 
 <template>
   
-   <div class="container-fluid my-container p-0">
+   <div class="container-fluid box my-container p-0">
    
    
    <!-- Carousel -->
@@ -30,6 +30,7 @@ export default {
 body{
     background-image: url(../kepek/hatter.png);
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 </style>

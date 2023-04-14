@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <h1>Movie settings</h1>
+    <h1>Film szerkeztés</h1>
 
     <!--#region táblázat -->
     <table class="table table-bordered table-hover w-auto">
@@ -14,7 +14,7 @@
               class="btn btn-outline-success btn-sm"
               @click="onClickNew()"
             >
-             New movie
+             Film hozzáadása
             </button>
           </th>
           <th>Autó márka</th>

@@ -1,10 +1,26 @@
 .my-container {
-  max-width: 1200px;
-  background-color: rgba(89, 248, 182, 0.4);
-  backdrop-filter: blur 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+    
+  backdrop-filter: blur(5px);
+  max-width: 1400px;
+  min-height: 1080px;
+  border: 2.5px ridge  red;
+  
 }
 
 .my-width-100 {
   width: 100px;
 }
+
+h1{
+  text-shadow: 2px;
+  color: red;
+}
+
+
+label{
+  color: red;
+}
+
+
 
