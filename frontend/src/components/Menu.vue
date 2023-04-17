@@ -55,7 +55,7 @@
               <li>
                 <router-link onchange="MovieSettingChange()" id="movieEdit" class="dropdown-item" to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
-                  >Film szerkeztés (regisztráció szükséges)</router-link
+                  v-if="RegNeed"> ({{RegNeed}})</router-link
                 >
               </li>
             </ul>
@@ -65,7 +65,7 @@
           </li>
           <li class="nav-item" v-if="storeLogin.loginSuccess" @click="logout()">
             <router-link class="nav-link" to="/login"
-              >Kilépés ({{ storeLogin.userName }})</router-link
+            >Kilépés ({{ storeLogin.userName }})</router-link
             >
           </li>
         </ul>
@@ -74,11 +74,29 @@
   </nav>
 </template>
 
-<script setup>
+<script >
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
+
+export default {
+  data() {
+    return {
+      storeUrl,
+      storeLogin,
+      RegNeed: null  
+
+    }
+  },
+  methods: {
+    RegNeedHide(){
+      this.loginSuccess = !loginSuccess
+    }
+
+  }
+
+};
 
 const msg = "helo";
 let menuState = null;
@@ -103,19 +121,13 @@ async function logout() {
 function onClickMenu(number){
   this.menuState = number
 }
-// export default {
-//   data() {
-//     return {
-//       storeUrl,
-//       storeLogin
-//     }
-//   }
-// };
 
 
-function MovieSettingChange(){
+ 
 
-}
+
+
+
 </script>
 
 <style>
