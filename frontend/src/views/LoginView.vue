@@ -1,5 +1,5 @@
 <template>
-  <div class="p-3 my-width-login">
+  <div class="p-3 my-width-login my-login ">
     <!-- user name -->
     <div class="mb-3 col-6">
       <label for="userName" class="form-label">Felhasználónév:</label>
@@ -104,4 +104,5 @@ export default {
 .my-width-login {
   max-width: 500px;
 }
+
 </style>
