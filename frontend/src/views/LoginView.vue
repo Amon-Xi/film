@@ -33,9 +33,9 @@
 
 <script>
 import { useUrlStore } from "@/stores/url";
-const storeUrl = useUrlStore();
 import { useLoginStore } from "@/stores/login";
 import router from "../router";
+const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
 export default {
   data() {
@@ -103,6 +103,8 @@ export default {
 <style>
 .my-width-login {
   max-width: 500px;
+  border: 1px ridge red ;
+  
 }
 
 </style>

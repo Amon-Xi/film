@@ -2,8 +2,10 @@
 <template>
   <div>
    <center><h1>Ok I pull up</h1></center> 
+<div class="text-center">
 
-  <center><img src="../../kepek/oigen.jpg" alt=""></center> 
+  <img src="../../kepek/oigen.jpg" alt="">
+</div>
 
 
   </div>
@@ -16,4 +18,5 @@
 
 
 <style>
+
 </style>

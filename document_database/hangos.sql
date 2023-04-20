@@ -81,6 +81,13 @@ INSERT users
   (1,'jozsi@gmail.com','jozsijelszo'),(2,'bela@gmail.com','belajelszo'),(3,'feri@gmail.com','ferijelszo');
 
 
+# szinészek és filmeik
+
+select  p.name NEV, p.gender NEME, t.denomination BESOROLAS, f.title FILM  from tasks t
+  inner join persons p on t.personid = p.id
+  inner join films f on t.filmid = f.id
+where  t.personid = p.id && t.filmid = f.id
+  ;
 
 
 #  LEÍRÁS
