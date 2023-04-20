@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark my-navbar">
     <div class="container-fluid">
       <div class="my-homepic  ">
 
@@ -48,20 +48,21 @@
             <ul class="dropdown-menu">
               <li>
                 <router-link class="dropdown-item" to="/movies"
-                  >Random film</router-link
+                  >Filmek szerkeztése</router-link
                 >
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <router-link onchange="MovieSettingChange()" id="movieEdit" class="dropdown-item" to="/movieSettings"
+                <router-link id="movieEdit" class="dropdown-item" to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
-                  v-if="RegNeed"> ({{RegNeed}})</router-link
+                  v-if="RegNeed"> Személyek Szerkeztése</router-link
                 >
               </li>
+
             </ul>
           </li>
           <li class="nav-item" v-if="!storeLogin.loginSuccess">
-            <router-link class="nav-link" to="/login">Belépés</router-link>
+            <router-link class="nav-link" to="/login">Belépés  </router-link>
           </li>
           <li class="nav-item" v-if="storeLogin.loginSuccess" @click="logout()">
             <router-link class="nav-link" to="/login"
@@ -74,29 +75,11 @@
   </nav>
 </template>
 
-<script >
+<script setup>
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
-
-export default {
-  data() {
-    return {
-      storeUrl,
-      storeLogin,
-      RegNeed: null  
-
-    }
-  },
-  methods: {
-    RegNeedHide(){
-      this.loginSuccess = !loginSuccess
-    }
-
-  }
-
-};
 
 const msg = "helo";
 let menuState = null;
@@ -117,14 +100,25 @@ async function logout() {
   const response = await fetch(urlLogout, config);
   storeLogin.clearLogin();
 }
-
 function onClickMenu(number){
   this.menuState = number
 }
-
-
- 
-
+// export default {
+//   data() {
+//     return {
+//       storeUrl,
+//       storeLogin
+//     }
+//   }
+// };}
+// export default {
+//   data() {
+//     return {
+//       storeUrl,
+//       storeLogin
+//     }
+//   }
+// };
 
 
 
@@ -144,6 +138,7 @@ function onClickMenu(number){
   text-align: center ;
   
 }
+
 /* .navbar-nav > li > .dropdown-menu a:link,
 .navbar-nav > li > .dropdown-menu a:hover { background-color: black} */
 </style>
