@@ -2,13 +2,13 @@
   <div id="carouselExample" class="carousel slide position-relative" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../../kepek/oldmovie1.png" class="d-block w-100"  alt="">
+        <img src="../../images/oldmovie1.png" class="d-block w-100"  alt="">
       </div>
       <div class="carousel-item">
-        <img src="../../kepek/oldmovie2.png" class="d-block w-100" alt="..."  />
+        <img src="../../images/oldmovie2.png" class="d-block w-100" alt="..."  />
       </div>
       <div class="carousel-item">
-        <img src="../../kepek/oldmovie3.png" class="d-block w-100" alt="..." />
+        <img src="../../images/oldmovie3.png" class="d-block w-100" alt="..." />
       </div>
     </div>
     <button
@@ -31,7 +31,7 @@
     </button>
 
     <div class="position-absolute top-50 start-50 translate-middle">
-      <h1 class="my-fs-cim"><div class="p-2 ps-4 pe-4 my-bg-cim">RFilmek</div> </h1>
+      <h1 class="my-fs-cim"><div class="p-2 ps-4 pe-4 my-bg-cim">Régi magyar filmek</div> </h1>
     </div>
 
   </div>

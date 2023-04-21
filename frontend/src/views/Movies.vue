@@ -2,7 +2,7 @@
 <template>
   <div>
       <div class="container text-center">
-        <a class="rainbow rainbow-1">RANDOM FILM</a>>          
+        <a class="rainbow rainbow-1">RANDOM FILM</a>          
         
       </div>
   </div>

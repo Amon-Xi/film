@@ -5,7 +5,7 @@
 
         <router-link class="navbar-brand my-hometext " to="/"
         @click="onClickMenu(1)"
-        >  RFilmek   </router-link>
+        >  <span class="bi bi-house "></span>  </router-link>
         <button
         class="navbar-toggler"
         type="button"
@@ -47,16 +47,17 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/movies"
-                  >Filmek szerkeztése</router-link
-                >
+                <router-link id="movieEdit" class="dropdown-item" to="/movieSettings"
+                  :class="{ disabled: !storeLogin.loginSuccess }"
+                  > Filmek Szerkeztése</router-link>
+                
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
                 <router-link id="movieEdit" class="dropdown-item" to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
-                  v-if="RegNeed"> Személyek Szerkeztése</router-link
-                >
+                  > Személyek Szerkeztése</router-link>
+                
               </li>
 
             </ul>
@@ -138,6 +139,8 @@ function onClickMenu(number){
   text-align: center ;
   
 }
+
+
 
 /* .navbar-nav > li > .dropdown-menu a:link,
 .navbar-nav > li > .dropdown-menu a:hover { background-color: black} */
