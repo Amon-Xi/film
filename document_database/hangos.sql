@@ -83,7 +83,7 @@ INSERT users
 
 # szinészek és filmeik
 
-select  p.name NEV, p.gender NEME, t.denomination BESOROLAS, f.title FILM  from tasks t
+select  DISTINCT p.name NEV, p.gender NEME, t.denomination BESOROLAS, f.title FILM  from tasks t
   inner join persons p on t.personid = p.id
   inner join films f on t.filmid = f.id
 where  t.personid = p.id && t.filmid = f.id
