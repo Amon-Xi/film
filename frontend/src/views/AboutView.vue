@@ -1,22 +1,22 @@
 
 <template>
   <div>
-   <center><h1>Ok I pull up</h1></center> 
-<div class="text-center">
-
-  <img src="../../kepek/oigen.jpg" alt="">
-</div>
-
-
   </div>
-
-
 </template>
 
-<script setup>
+<script >
+export default {
+  methods: {
+    onClickClose() {
+      console.log("heló");
+    },
+  },
+};
 </script>
 
 
 <style>
-
+.modal-backdrop {
+  display: none;
+}
 </style>

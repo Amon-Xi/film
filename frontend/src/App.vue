@@ -3,10 +3,9 @@
   
    <div class="container-fluid box my-container p-0">
    
-   
-   <!-- Carousel -->
+   <!-- CArousel -->
    <Carousel />
-   <!-- Menü -->
+<!-- Men -->
    <Menu />
    
    <RouterView />
@@ -28,7 +27,7 @@ export default {
 
 <style>
 body{
-    background-image: url(../kepek/hatter.png);
+    background-image: url(../images/hatter.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
