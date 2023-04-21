@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- SEARCH -->
     <div class="p-3 d-flex col-4">
       <input
-        class="form-control me-2"
+        class="form-control ms-2 mt-3 me-3"
         type="search"
         placeholder="Keress egy filmre..."
         aria-label="Search"
@@ -13,27 +14,35 @@
     </div>
 
     <!-- CARD -->
-    <div class="card" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#moviesModal"
+    <div class="row m-0">
+      <div class="col-md-12 my-border">
+        <div
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4"
         >
-          <i class="bi bi-arrow-90deg-right"></i>
-        </button>
+        <div class="card">
+
+          <div class="card-body">
+            <h5 class="card-title">Film címe:</h5>
+            <p class="card-text">Elkészítettéke:</p>
+            <p class="card-text">Időtartam:</p>
+            <p class="card-text">Bemutatatták:</p>
+            
+            <!-- Button trigger modal -->
+            <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            >
+            <i class="bi bi-arrow-90deg-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
 
-      <!-- Modal -->
+    <!-- MODAL -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -41,10 +50,12 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+              Ide a film címe:
+            </h1>
             <button
               type="button"
               class="btn-close"
@@ -52,16 +63,36 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">            
+            <p>Videó ide: (Nincs videó akkor valami ikont)</p>
+            <p>Emberek akik részt vettek a forgatásban:</p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Név</th>
+                  <th scope="col">Neme</th>
+                  <th scope="col">Besorolás</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Neve:</td>
+                  <td>Neme:</td>
+                  <td>Besorolása:</td>
+                  <td>Színész képe:</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
           <div class="modal-footer">
             <button
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
-              Close
+              Bezárás
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -70,6 +101,19 @@
 </template>
 
 <script>
+class Film {
+  constructor(){
+  this.id = null
+  this.title = null
+  this.production = null
+  this.length = null
+  this.presentation = null
+  this.youtube = null
+
+  }
+}
+
+
 import * as bootstrap from "bootstrap";
 import Counter from "@/components/Counter.vue";
 import { useCounterStore } from "@/stores/counter";
@@ -78,42 +122,35 @@ const storeCounter = useCounterStore();
 export default {
   data() {
     return {
-      // storeUrl,
-      // storeLogin,
-      // films: [],
+      films: [],
+      urlFilmek: "http://localhost:3000/films",
+      film: new Films(),
+      keresoszo,
+
+      storeUrl,
+      storeLogin,
     };
   },
   mounted() {
-    // // this.getMovies();
-    // this.modal = new bootstrap.Modal(document.getElementById("moviesModal"), {
-    //   keyboard: false,
-    // });
-    // this.form = document.querySelector(".needs-validation");
+    this.getMovies();
   },
   methods: {
-    // async getMovies() {
-    //   let url = this.storeUrl.urlFilms;
-    //   console.log(url);
-    //   const config = {
-    //     method: "GET",
-    //     headers: {
-    //       Authorization: `Bearer ${this.storeLogin.accessToken}`,
-    //     },
-
-    //   };
-    //   const response = await fetch(url, config);
-    //   const data = await response.json();
-    //   this.films = data.data;
-    // ModalClick() {
-    //   this.modal.show();
-    // },
+    async getMovies() {
+      const response = await fetch(this.urlFilmek);
+      const data = await response.json();
+      this.films = data.data;
   },
-};
-// };
+}
+}
 </script>
 
 <style>
 .modal-backdrop {
   display: none;
+}
+
+.modal-body {
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
 }
 </style>
