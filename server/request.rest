@@ -69,6 +69,8 @@ delete http://localhost:3000/users/17
 ### #endregion users
 
 #--------------- get --------------- 
+get http://localhost:3000/filmsForModal
+
 
 ### get films
 get http://localhost:3000/films
@@ -177,6 +179,10 @@ Content-Type: application/json
     "name": "Mekk Elek meg egy",
     "gender": "férfi"
 }
+
+###-----------------------SZŰRÉS------------------------------------
+
+get http://localhost:3000/getFilmFilter/aranyember
 
 
 ### ----------------------------- USEREK-------------------------------------
