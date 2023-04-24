@@ -599,6 +599,35 @@ app.put("/trips/:id", (req, res) => {
 
 //#region get-ek ---
 
+//#region filmsForModal
+app.get("/filmsForModal", (req, res) => {
+  let sql = `select  DISTINCT p.name NEV, p.gender NEME, t.denomination BESOROLAS, f.title FILM  from tasks t
+  inner join persons p on t.personid = p.id
+  inner join films f on t.filmid = f.id
+where  t.personid = p.id && t.filmid = f.id
+  ;
+`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, async function (error, results, fields) {
+      if (error) {
+        message = "Films sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGet(res, null, results);
+    });
+    connection.release();
+  });
+});
+
+
+//#endregion filmsForModal
+
 //#region films --- 
 
 app.get("/films", (req, res) => {
@@ -1054,6 +1083,29 @@ app.put("/persons/:id", (req, res) => {
 
 //#endregion put
 
+
+//#region SZŰRÉS
+app.get("/getFilmFilter/:keres", (req, res) => {
+  const keres = `%${req.params.keres}%`;
+  let sql = `
+  SELECT id,title,production,length,presentation,youtube
+  FROM films
+  WHERE (title like ?)
+  ORDER BY title;
+   `;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [keres, keres], function (error, results, fields) {
+      sendingGetById(res, error, results, keres);
+    });
+    connection.release();
+  });
+});
+//#endregion SZŰRÉS
 
 
 

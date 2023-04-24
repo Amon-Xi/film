@@ -74,7 +74,6 @@ SELECT * FROM tasks ;
 SELECT * FROM persons ;
 select * from users;
 
-
 INSERT users 
   (id, email, password)
   VALUES
@@ -83,11 +82,18 @@ INSERT users
 
 # szinészek és filmeik
 
-select  DISTINCT p.name NEV, p.gender NEME, t.denomination BESOROLAS, f.title FILM  from tasks t
+# filmsForModal
+select  DISTINCT p.name Name, p.gender Gender, t.denomination Denomination, f.title Title  from tasks t
   inner join persons p on t.personid = p.id
   inner join films f on t.filmid = f.id
 where  t.personid = p.id && t.filmid = f.id
   ;
+
+#Szűrés
+   SELECT id,title,production,length,presentation,youtube
+FROM films
+WHERE (title like ?)
+ORDER BY title;
 
 
 #  LEÍRÁS
