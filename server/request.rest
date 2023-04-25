@@ -182,7 +182,7 @@ Content-Type: application/json
 
 ###-----------------------SZŰRÉS------------------------------------
 
-get http://localhost:3000/getFilmFilter/aranyember
+get http://localhost:3000/getFilmFilter/a
 
 
 ### ----------------------------- USEREK-------------------------------------
