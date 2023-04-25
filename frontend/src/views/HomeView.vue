@@ -28,7 +28,7 @@
 
       <div class="card ms-4 " style="width: 18rem">
         <div class="card-body " >
-          <h5 class="card-title"  > Film címe: {{film.title}}</h5>
+          <h5 class="card-title"  v-html="keresJelol(film.title)"> </h5>
           <p class="card-text">Elkészítették:{{film.production}}</p>
           <p class="card-text">Időtartam:{{film.length}} perc</p>
           <p class="card-text">Bemutatatták:{{film.presentation}}</p>
@@ -41,6 +41,8 @@
           class="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
+          @click="onClickReszletek(film.title)"
+
           >
           <i class="bi bi-arrow-90deg-right"></i>
         </button>
@@ -106,27 +108,27 @@
 </template>
 
 <script>
-class FilmTest {
+class FilmT {
   constructor() {
     this.title = null;
   }
 }
 
-
+import { storeToRefs } from "pinia";
 import { useKeresStore } from "@/stores/keres";
-const storeKeres = useKeresStore();
-const { keresoszo } = storeToRefs(storeKeres);
-
+import { useCounterStore } from "@/stores/counter";
 import * as bootstrap from "bootstrap";
 import Counter from "@/components/Counter.vue";
-import { useCounterStore } from "@/stores/counter";
-const storeCounter = useCounterStore();
-
-
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
+const storeKeres = useKeresStore();
+const { keresoszo } = storeToRefs(storeKeres);
+const storeCounter = useCounterStore();
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
+
+
+
 
 export default {
   data() {
@@ -135,7 +137,7 @@ export default {
       storeUrl,
       storeLogin,
       urlFilmFilter: "http://localhost:3000/getFilmFilter",
-      filmTest: new FilmTest(),
+      filmT: new FilmT(),
       keresoszo
     };
   },
@@ -148,7 +150,7 @@ export default {
       if (this.keresoszo.trim()) {
         this.getFilmFilter();
       } else {
-        this.getHalkartyak();
+        this.getFilms();
       }
     }
   },
@@ -179,6 +181,24 @@ export default {
       this.filmsForModal = data.data;
 
   },
+  async getFilmFilter() {
+      const urlFilm = `${this.urlFilmFilter}/${this.keresoszo}`;
+      const response = await fetch(urlFilm);
+      const data = await response.json();
+      this.films = data.data;
+    },
+    onClickReszletek(title) {
+      this.title = title;
+      this.getFilm();
+    },
+    async getFilm() {
+      const urlFilm = `${this.urlFilmFilter}/${this.title}`;
+      const response = await fetch(urlFilm);
+      const data = await response.json();
+      this.filmT = data.data[0];
+    },
+
+
   keresJelol(text) {
       if (this.keresoszo) {
         let what = new RegExp(this.keresoszo, "gi");
@@ -191,14 +211,7 @@ export default {
       } else {
         return text;
       }
-    },
-    async getFilmFilter() {
-      const urlHalkartya = `${this.urlHalkartyakSzur}/${this.keresoszo}`;
-      const response = await fetch(urlHalkartya);
-      const data = await response.json();
-      this.halak = data.data;
-    },
-
+    }
 
 }
 };
