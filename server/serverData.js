@@ -625,6 +625,63 @@ where  t.personid = p.id && t.filmid = f.id
   });
 });
 
+function getTasks(res, filmid) {
+  return new Promise((resolve, reject) => {
+    let sql = `
+    select   p.name Name, p.gender Gender, t.denomination Denomination  from tasks t
+      inner join persons p on t.personid = p.id
+      where t.filmid = ?`;
+
+    pool.getConnection(function (error, connection) {
+      if (error) {
+        sendingGetError(res, "Server connecting error!");
+        return;
+      }
+      connection.query(sql, [filmid], async function (error, results, fields) {
+        if (error) {
+          const message = "Trips sql error";
+          sendingGetError(res, message);
+        }
+        //Az await miatt a car.trips a results-ot kapja értékül
+        resolve(results);
+      });
+      connection.release();
+    });
+  });
+}
+
+
+
+
+app.get("/filmOfTaskForModal/:id", (req, res) => {
+  const id = req.params.id;
+  let sql = `
+    SELECT * FROM films
+    WHERE id = ?`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [id], async function (error, results, fields) {
+      if (error) {
+        const message = "Cars sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      if (results.length == 0) {
+        const message = `Not found id: ${id}`;
+        sendingGetError(res, message);
+        return;
+      }
+      results[0].tasks = await getTasks(res, id);
+      sendingGetById(res, null, results[0], id);
+    });
+    connection.release();
+  });
+});
+
 
 //#endregion filmsForModal
 
