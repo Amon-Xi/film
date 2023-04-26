@@ -89,6 +89,12 @@ select  DISTINCT p.name Name, p.gender Gender, t.denomination Denomination, f.ti
 where  t.personid = p.id && t.filmid = f.id
   ;
 
+  # filmOfTaskForModal
+select   p.name Name, p.gender Gender, t.denomination Denomination  from tasks t
+  inner join persons p on t.personid = p.id
+where t.filmid = 2
+  ;
+
 #Szűrés
    SELECT id,title,production,length,presentation,youtube
 FROM films
