@@ -49,13 +49,13 @@
     </div>
     <!-- MODAL -->
     <div
-      class="modal fade"
+      class="modal fade "
       id="exampleModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-xl">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
@@ -70,21 +70,34 @@
           </div>
           <div>
             <div class="row">
-              <div class="col-md-7">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="card" >
-                      <img src="..." class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      </div>
-                    </div>
-                  </div>
+              <div class="col-md-6 ">
                 <p>A film közreműködői:</p>
                 kártyák
+                
+                <div class="row row-cols-1 row-cols-md-3 g-4 my-persons-cards">
+                  <div class="card " v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+                    <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
+
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-5">
-                videó
+              <div class="col-md-6" >
+                <p>helo</p>
+                <p>
+                  <a :href="filmForModal.links">link</a>
+                </p>
+                <p>{{filmForModal.links}}</p>
+                <div>
+                  {{videoEmbedding(filmForModal.links)}}
+                </div>
+                <div v-html="videoEmbedding(filmForModal.links)">
+
+                </div>
+
+
               </div>
             </div>
             <!-- <table class="table">
@@ -129,7 +142,7 @@ class FilmT {
     this.presentation = null;
     this.youtube = null;
     this.links = null;
-    this.embeffing = null;
+    this.embedding = null;
     this.tasks = [];
     
   }
@@ -235,6 +248,19 @@ export default {
         return text;
       }
     },
+    videoEmbedding(links){
+      return `
+      <iframe 
+        width="560" height="315" 
+        src="${links}" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; 
+        encrypted-media; gyroscope; picture-in-picture; 
+        web-share" allowfullscreen>
+      </iframe>
+      
+      `
+    }
   },
 };
 </script>
@@ -245,5 +271,12 @@ export default {
 }
 .my-button {
   float: right;
+}
+.mark{
+  color: red;
+}
+.my-persons-cards{
+  overflow-y: scroll;
+  height: 500px;
 }
 </style>
