@@ -48,6 +48,9 @@ export const useUrlStore = defineStore({
     },
     urlFilmsForModal(){
       return `${this.urlData}/filmsForModal`
+    },
+    urlFilmOfTaskForModal(){
+      return `${this.urlData}/filmOfTaskForModal`
     }
   },
 });

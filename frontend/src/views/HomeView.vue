@@ -38,7 +38,7 @@
                 class="btn btn-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                @click="onClickReszletek(film.title)"
+                @click="onClickReszletek(film.id)"
               >
                 <i class="bi bi-arrow-90deg-right"></i>
               </button>
@@ -55,11 +55,11 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-              Ide a film címe:
+              {{filmForModal.title}}
             </h1>
             <button
               type="button"
@@ -69,9 +69,25 @@
             ></button>
           </div>
           <div>
-            <!-- v-for="(film, index) in filmsForModal" :key="`filmsForModal${index}`" -->
-            <p>Emberek akik részt vettek a forgatásban:</p>
-            <table class="table">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="card" >
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                <p>A film közreműködői:</p>
+                kártyák
+              </div>
+              <div class="col-md-5">
+                videó
+              </div>
+            </div>
+            <!-- <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Név</th>
@@ -80,14 +96,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Neve:</td>
-                  <td>Neme:</td>
-                  <td>Besorolása:</td>
+                <tr v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+                  <td>{{task.Name}}</td>
+                  <td>{{task.Gender}}</td>
+                  <td>{{task.Denomination}}</td>
                   <td>Színész képe:</td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
           </div>
           <div class="modal-footer">
             <button
@@ -111,6 +127,11 @@ class FilmT {
     this.production = null;
     this.length = null;
     this.presentation = null;
+    this.youtube = null;
+    this.links = null;
+    this.embeffing = null;
+    this.tasks = [];
+    
   }
 }
 
@@ -134,13 +155,14 @@ export default {
       storeUrl,
       storeLogin,
       urlFilmFilter: "http://localhost:3000/getFilmFilter",
-      filmT: new FilmT(),
       keresoszo: null,
+      filmForModal: new FilmT(),
+      selectedFilmId: null,
     };
   },
   mounted() {
     this.getFilms();
-    this.getFilmsForModal();
+    // this.getFilmsForModal();
   },
   watch: {
     // keresoszo(){
@@ -165,8 +187,8 @@ export default {
       const data = await response.json();
       this.films = data.data;
     },
-    async getFilmsForModal() {
-      let url = this.storeUrl.urlFilmsForModal;
+    async getFilmForModal(id) {
+      let url = `${this.storeUrl.urlFilmOfTaskForModal}/${id}`;
       const config = {
         method: "GET",
         headers: {
@@ -175,7 +197,7 @@ export default {
       };
       const response = await fetch(url, config);
       const data = await response.json();
-      this.filmsForModal = data.data;
+      this.filmForModal = data.data;
     },
     async getFilmFilter() {
       const urlFilm = `${this.urlFilmFilter}/${this.keresoszo}`;
@@ -183,9 +205,9 @@ export default {
       const data = await response.json();
       this.films = data.data;
     },
-    onClickReszletek(title) {
-      this.title = title;
-      this.getFilm();
+    onClickReszletek(id) {
+      // this.selectedFilmId = id;
+      this.getFilmForModal(id);
     },
     onClickSearchButton() {
       if (this.keresoszo.trim()) {
