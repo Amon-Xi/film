@@ -67,7 +67,7 @@
           </li>
           <li class="nav-item" v-if="storeLogin.loginSuccess" @click="logout()">
             <router-link class="nav-link" to="/login"
-            >Kilépés ({{ storeLogin.userName }})</router-link
+            >Kilépés TEST ({{ storeLogin.userName }})</router-link
             >
           </li>
         </ul>
