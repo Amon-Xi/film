@@ -192,8 +192,8 @@ post http://localhost:4000/login
 Content-Type: application/json
 
 {
-    "userName": "et",
-    "password": "333"
+    "userName": "mu",
+    "password": "222"
 }
 
 ### token kérés

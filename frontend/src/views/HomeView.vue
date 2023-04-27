@@ -49,7 +49,7 @@
     </div>
     <!-- MODAL -->
     <div
-      class="modal fade "
+      class="modal  fade"
       id="exampleModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
@@ -68,36 +68,39 @@
               aria-label="Close"
             ></button>
           </div>
-          <div>
-            <div class="row">
-              <div class="col-md-6 ">
-                <p>A film közreműködői:</p>
-                kártyák
-                
-                <div class="row row-cols-1 row-cols-md-3 g-4 my-persons-cards">
-                  <div class="card " v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
-                    <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
+          <div class="modal-body">
 
+            <div>
+              <div class="row">
+                <div class="col-md-6 ">
+                  <p>A film közreműködői:</p>
+                  kártyák
+                  
+                  <div class="row row-cols-1 row-cols-md-3 g-4 my-persons-cards">
+                    <div class="card " v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+                      <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6" >
-                <p>helo</p>
-                <p>
-                  <a :href="filmForModal.links">link</a>
-                </p>
-                <p>{{filmForModal.links}}</p>
-                <div>
-                  {{videoEmbedding(filmForModal.links)}}
+                <div class="col-md-6" >
+                  <p>helo</p>
+                  <p>
+                    <a :href="filmForModal.links">link</a>
+                  </p>
+                  <p>{{filmForModal.links}}</p>
+                  <div>
+                    {{videoEmbedding(filmForModal.links)}}
+                  </div>
+                  <div v-html="videoEmbedding(filmForModal.links)">
+                    
+                  </div>
+                  
+                  
                 </div>
-                <div v-html="videoEmbedding(filmForModal.links)">
-
-                </div>
-
-
               </div>
             </div>
             <!-- <table class="table">
@@ -118,6 +121,7 @@
               </tbody>
             </table> -->
           </div>
+          
           <div class="modal-footer">
             <button
               type="button"
@@ -279,4 +283,10 @@ export default {
   overflow-y: scroll;
   height: 500px;
 }
+
+
+
+
+
+
 </style>
