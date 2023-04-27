@@ -4,8 +4,8 @@
     <center>
     <h1>404</h1>
 
-      <h1>:/</h1>
-      <img src="../../images/myreaction.jpg" alt="">
+      <h1>Page not found  :/</h1>
+      <img  src="../../images/myreaction.jpg" alt="">
 
     </center>
   </div>
