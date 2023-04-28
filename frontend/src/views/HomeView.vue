@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- SEARCH -->
-    <div class="p-3 d-flex col-4">
+    <div class="p-2 d-flex col-4">
       <input
         class="form-control ms-2 mt-3 me-3"
         type="search"
@@ -22,11 +22,13 @@
 
     <!-- CARD -->
 
-    <div class="col-md-13 mt-3 my-border">
+    <div class=" col-md-13 mt-3 my-border">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div v-for="(film, index) in films" :key="`films${index}`">
+
           <div class="card " >
             <div class="card-body">
+
               <h5 class="card-title" v-html="keresJelol(film.title)"></h5>
               <p class="card-text">Elkészítették:{{ film.production }}</p>
               <p class="card-text">Időtartam:{{ film.length }} perc</p>
@@ -42,100 +44,112 @@
               >
                 <i class="bi bi-arrow-90deg-right"></i>
               </button>
+         
             </div>
           </div>
+
         </div>
       </div>
     </div>
-    <!-- MODAL -->
-    <div
-      class="modal  fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-              {{filmForModal.title}}
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
+    
+    
+    
+  <!-- MODAL -->
+  <div
+  class="modal fade "
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+          {{filmForModal.title}}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
 
-            <div>
-              <div class="row">
-                <div class="col-md-6 ">
-                  <p>A film közreműködői:</p>
-                  kártyák
-                  
-                  <div class="row row-cols-1 row-cols-md-3 g-4 my-persons-cards">
-                    <div class="card " v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
-                      <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6" >
-                  <p>helo</p>
-                  <p>
-                    <a :href="filmForModal.links" target="_blank">link</a>
-                  </p>
-                  <p>{{filmForModal.links}}</p>
-                  <div>
-                    {{videoEmbedding(filmForModal.links)}}
-                  </div>
-                  <div v-html="videoEmbedding(filmForModal.links)">
+        <div>
+          <div class="row">
+            <div class="col-md-6 ">
+              <p>A film közreműködői:</p>
+              kártyák
+              
+              <div class="row row-cols-1 row-cols-md-3 g-4 my-persons-cards">
+                <div class="card " v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+                  <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
                     
                   </div>
-                  
-                  
                 </div>
               </div>
             </div>
-            <!-- <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Név</th>
-                  <th scope="col">Neme</th>
-                  <th scope="col">Besorolás</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
-                  <td>{{task.Name}}</td>
-                  <td>{{task.Gender}}</td>
-                  <td>{{task.Denomination}}</td>
-                  <td>Színész képe:</td>
-                </tr>
-              </tbody>
-            </table> -->
-          </div>
-          
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Bezárás
-            </button>
+            <div class="col-md-6" >
+              <p>
+                <a :href="filmForModal.links" target="_blank">Videó</a>
+              </p>
+            
+              <div>
+                {{videoEmbedding(filmForModal.links)}}
+
+              </div>
+              <div v-html="videoEmbedding(filmForModal.links)">
+                
+              </div>
+              
+              
+            </div>
           </div>
         </div>
       </div>
+        <!-- <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Név</th>
+              <th scope="col">Neme</th>
+              <th scope="col">Besorolás</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+              <td>{{task.Name}}</td>
+              <td>{{task.Gender}}</td>
+              <td>{{task.Denomination}}</td>
+              <td>Színész képe:</td>
+            </tr>
+          </tbody>
+        </table> -->
+      
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Bezárás
+        </button>
+      </div>
     </div>
   </div>
+
+
+
+</div>
+
+  </div>
+  
+  
 </template>
+
 
 <script>
 class FilmT {
@@ -270,9 +284,9 @@ export default {
 </script>
 
 <style>
-.modal-backdrop {
+ .modal-backdrop {
   display: none;
-}
+} 
 .my-button {
   float: right;
 }
