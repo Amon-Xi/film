@@ -49,14 +49,26 @@
               <li>
                 <router-link id="movieEdit" class="dropdown-item" to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
-                  > Filmek Szerkeztése</router-link>
+                  > Filmek Szerkeztése
+                  <div v-if="!storeLogin.loginSuccess" >
+                    (Regisztráció szükséges)
+
+                  </div>
+                </router-link>
                 
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <router-link id="movieEdit" class="dropdown-item" to="/movieSettings"
+                <router-link id="movieEdit" class="dropdown-item" to="/personSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
-                  > Személyek Szerkeztése</router-link>
+                  > 
+                  Személyek Szerkeztése
+                  <div v-if="!storeLogin.loginSuccess" >
+                     (Regisztráció szükséges)
+  
+                </div>
+                
+                </router-link>
                 
               </li>
 
@@ -67,7 +79,7 @@
           </li>
           <li class="nav-item" v-if="storeLogin.loginSuccess" @click="logout()">
             <router-link class="nav-link" to="/login"
-            >Kilépés TEST ({{ storeLogin.userName }})</router-link
+            >Kilépés ({{ storeLogin.userName }})</router-link
             >
           </li>
         </ul>

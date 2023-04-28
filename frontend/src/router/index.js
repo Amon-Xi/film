@@ -23,16 +23,16 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
       meta: {
         requiresAuth: false,
-        title: "About / Filmek",
+        title: "Rólunk / Filmek",
       },
     },
     {
-      path: "/movies",
-      name: "movies",
-      component: () => import("../views/Movies.vue"),
+      path: "/personSettings",
+      name: "personSettings",
+      component: () => import("../views/PersonSettings.vue"),
       meta: {
         requiresAuth: false,
-        title: "Random film / Filmek",
+        title: "Személyek szerkeztése / Filmek",
       },
     },
     {

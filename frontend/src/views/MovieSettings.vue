@@ -1,29 +1,23 @@
 
 <template>
   <div>
-    <h1>Film szerkeztés</h1>
+    <div class="p-2 d-flex">
+      <h1>Filmek szerkeztése (Admin)</h1>
+    </div>
 
     <!--#region táblázat -->
     <table class="table table-bordered table-hover w-auto">
-      <thead>
-        <tr>
-          <th>
-            <!-- New car -->
-            <button
-              type="button"
-              class="btn btn-outline-success btn-sm"
-              @click="onClickNew()"
-            >
-             Film hozzáadása
-            </button>
-          </th>
-          <th>Autó márka</th>
-          <th>Rendszám</th>
-          <th>Tarifa (Ft/óra)</th>
-          <th>Vezető</th>
-          <th>Forgalmon kívül</th>
-        </tr>
-      </thead>
+      <!-- New car -->
+      <button
+        type="button"
+        class="btn btn-outline-success btn-sm ms-2"
+        @click="onClickNew()"
+      >
+        <i class="bi bi-bookmark-plus"> </i>
+      </button>
+
+      <!-- Cards -->
+
       <tbody>
         <tr
           v-for="(car, index) in cars"
@@ -153,14 +147,19 @@
               </div>
 
               <div class="col-md-6">
-                <select class="form-select" aria-label="Default select example"
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
                   v-model="editableCar.driverId"
                 >
-                <option :value="null">Nincs sofőr</option>
-                <option v-for="(driver, index) in driversAbc" :key="`op${index}`"
-                  :value="driver.id">
-                  {{ driver.driverName }}
-                </option>
+                  <option :value="null">Nincs sofőr</option>
+                  <option
+                    v-for="(driver, index) in driversAbc"
+                    :key="`op${index}`"
+                    :value="driver.id"
+                  >
+                    {{ driver.driverName }}
+                  </option>
                 </select>
               </div>
             </form>
@@ -179,7 +178,6 @@
             <button
               type="button"
               class="btn btn-primary"
-              
               @click="onClickSave()"
             >
               Save changes
@@ -362,7 +360,7 @@ export default {
         }
         this.modal.hide();
         //frissíti a taxisok listáját
-        this.getFreeDriversAbc()
+        this.getFreeDriversAbc();
       }
     },
     currentRowBackground(id) {
