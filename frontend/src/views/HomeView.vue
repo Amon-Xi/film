@@ -89,7 +89,7 @@
                 <div class="col-md-6" >
                   <p>helo</p>
                   <p>
-                    <a :href="filmForModal.links">link</a>
+                    <a :href="filmForModal.links" target="_blank">link</a>
                   </p>
                   <p>{{filmForModal.links}}</p>
                   <div>
@@ -283,7 +283,6 @@ export default {
   overflow-y: scroll;
   height: 500px;
 }
-
 
 
 

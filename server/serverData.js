@@ -688,7 +688,7 @@ app.get("/filmOfTaskForModal/:id", (req, res) => {
 //#region films --- 
 
 app.get("/films", (req, res) => {
-  let sql = `SELECT * FROM films`;
+  let sql = `select id, title,  production, length, DATE_FORMAT(presentation, '%Y.%m.%d') presentation from films;`;
 
   pool.getConnection(function (error, connection) {
     if (error) {

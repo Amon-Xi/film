@@ -67,6 +67,7 @@ DELETE FROM tasks;
 LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE tasks;
 
 
+select id, title,  production, length, DATE_FORMAT(presentation, '%Y.%m.%d') presentation from films;
 
 
 SELECT * FROM films ;
