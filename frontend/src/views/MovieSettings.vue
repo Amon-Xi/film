@@ -5,7 +5,7 @@
       <h1>Filmek szerkeztése (Admin)</h1>
     </div>
 
-    <!--#region táblázat -->
+ 
     <table class="table table-bordered table-hover w-auto">
       <!-- New car -->
       <button
@@ -13,7 +13,9 @@
         class="btn btn-outline-success btn-sm ms-2"
         @click="onClickNew()"
       >
-        <i class="bi bi-bookmark-plus"> </i>
+      Film hozzáadása
+
+        <!-- <i class="bi bi-bookmark-plus"> </i> -->
       </button>
 
       <!-- Cards -->

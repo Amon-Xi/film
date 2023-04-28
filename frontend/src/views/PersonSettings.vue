@@ -3,7 +3,7 @@
   <div>
     <h1>
 
-     <center><img src="../../images/among-us-sus.gif" alt=""></center> 
+     YES
     </h1>
   </div>
 </template>

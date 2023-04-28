@@ -87,7 +87,7 @@ get http://localhost:3000/persons
 #--------------- get by id --------------
 
 ### get by id films
-get http://localhost:3000/films/420
+get http://localhost:3000/films/2
 
 ### get by id tasks
 get http://localhost:3000/tasks/1339
@@ -257,6 +257,6 @@ Content-Type: application/json
 delete http://localhost:3000/users/17
 
 ### filmOfTaskForModal  
-get http://localhost:3000/filmOfTaskForModal/2
+get http://localhost:3000/filmOfTaskForModal/5
 
 

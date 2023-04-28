@@ -1,4 +1,6 @@
 <template>
+
+ 
   <div id="carouselExample" class="carousel slide position-relative" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
