@@ -1,0 +1,44 @@
+<template>
+  <div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit enim ab neque? Vitae, impedit nostrum eligendi obcaecati est rem autem, perferendis eos veniam, qui laboriosam voluptas expedita odit molestiae ipsum voluptate provident sunt cum quod officiis nihil natus labore laborum facere? Ea eius maxime nostrum temporibus facilis itaque commodi enim vero iure, numquam doloremque, distinctio blanditiis! Eaque earum veniam dignissimos sint rem. Eaque adipisci nostrum quaerat voluptates sapiente! Quia alias vero provident impedit sint, nisi autem nam iste asperiores et sunt aut quibusdam, corporis, eum quos tempore. Ab, corrupti soluta! Facere tempora excepturi exercitationem nostrum dolorem quaerat unde obcaecati debitis odio dolor. Ullam tempora incidunt culpa amet suscipit doloribus, tempore inventore expedita harum nemo dolorum voluptatibus hic deserunt enim mollitia reiciendis doloremque molestiae, cupiditate repudiandae atque at perspiciatis iusto porro. Libero consequatur incidunt obcaecati, corporis iusto reprehenderit molestias, eos autem repellendus sapiente, dolore repudiandae suscipit voluptatum tenetur. Ea impedit, illo sequi temporibus atque error eligendi voluptatem fugiat inventore, quibusdam mollitia quo id porro. Quam aut veniam reiciendis obcaecati eligendi. Hic totam voluptas, obcaecati ullam in quo reprehenderit sed neque blanditiis deleniti similique corporis aspernatur sequi. Atque, aliquid repellat ipsam fuga repudiandae nulla suscipit? Asperiores vero, consectetur voluptatem, quia repellendus nam minus veritatis corporis iusto dignissimos modi, eius distinctio? Adipisci autem in mollitia voluptate accusamus placeat doloribus! Repellat beatae perspiciatis, quis sit et cumque ipsa possimus expedita dolores tempora excepturi sint corporis nihil rerum labore ut necessitatibus vero cum, molestiae quisquam nisi quaerat atque quod! Debitis ea obcaecati ab, temporibus minus mollitia modi explicabo rerum nobis voluptas distinctio. Expedita explicabo animi soluta qui nostrum mollitia, delectus nesciunt sapiente quidem blanditiis ad voluptas assumenda debitis possimus distinctio cumque similique quae rerum minima officiis eaque tempora aliquam nihil vel. Atque incidunt veniam magnam mollitia voluptatem distinctio officia, dolore in blanditiis repudiandae. Nostrum harum est alias sint? Iure distinctio tenetur quisquam non molestiae sed deserunt doloribus incidunt repellat tempora asperiores, at animi pariatur impedit ipsa quae excepturi expedita vero ipsum corrupti suscipit! Adipisci est, incidunt quisquam omnis, delectus porro, rem sed asperiores at impedit molestias harum necessitatibus minima minus laborum reiciendis optio hic id ipsum assumenda. Ipsum eaque excepturi minima unde, quod ducimus. Ea atque fugit soluta harum veniam tempore itaque, fugiat tempora voluptates molestiae dicta eum autem vitae. Doloremque praesentium esse ullam eligendi repudiandae ad deleniti rem sunt, culpa quas quam qui commodi, excepturi neque labore dicta vitae explicabo quo libero ratione. Consequatur cupiditate magnam illum, eligendi quas sit ratione, sint eum culpa dolore voluptatum laborum aliquam repellendus illo molestias corporis dolorem sequi repudiandae? Animi, repellat. Voluptas minus nesciunt fugit aliquam repellat laudantium maxime iusto voluptatem sit, provident eligendi, animi unde eum distinctio fugiat aperiam perspiciatis explicabo ut. Exercitationem unde debitis quasi eum ipsam. Molestiae architecto veniam impedit nobis at molestias ratione. Voluptate, cumque expedita aliquam animi in iure pariatur. Quidem quos distinctio accusantium provident nam omnis suscipit aut harum repellat at maxime, possimus facere sequi ullam voluptatibus reiciendis itaque velit officiis beatae amet cumque corporis soluta optio ut! Nemo praesentium doloremque id? Itaque officiis, consequuntur necessitatibus alias sapiente impedit, nulla nobis maxime at debitis, aliquid voluptatem facere dolor iure libero! Optio explicabo reiciendis, rerum distinctio in consequatur nisi qui ipsa quae odio non quaerat, vel amet dolorem, excepturi id. Molestias asperiores eos quam ipsum, dolorum id? Veniam, praesentium quis voluptas aliquid iusto, nostrum ipsam corrupti ullam expedita nobis enim? Ea maxime assumenda magnam at unde dignissimos quidem animi minus ipsam non. Eaque et architecto animi accusamus! Deserunt sunt obcaecati odio commodi aspernatur sequi assumenda libero, consectetur voluptate iusto architecto illo saepe molestias tenetur vero. Itaque aliquid doloremque repudiandae id in nobis assumenda repellat dolore sequi asperiores, impedit, quis quidem nisi sint, at maxime esse ad unde aliquam voluptatum nesciunt labore quam obcaecati. Fugit aperiam consequatur et, nobis a quisquam? Autem voluptates qui optio ducimus quis repellendus dolorum. Voluptate ratione, odio adipisci sit id iure veritatis soluta rerum nihil consectetur earum voluptatibus porro repudiandae molestias facere nesciunt sint non optio maiores cum quibusdam repellat dolores. Maxime sapiente placeat quia reiciendis qui quas earum, tempora odio tempore dignissimos reprehenderit. Magni temporibus doloremque nobis, omnis quibusdam a. A quam commodi, quae dolores exercitationem rem doloribus explicabo quos blanditiis eveniet corporis? Illo unde consequatur, quidem assumenda minus odio necessitatibus rerum vitae repudiandae recusandae corrupti dolorum adipisci, quam repellendus. Dicta placeat fugit quaerat iure? Rerum aliquam ullam velit totam, nostrum eaque numquam mollitia laudantium maiores accusantium obcaecati aut odit animi laborum adipisci fugiat, saepe quod. Dolor natus pariatur laudantium quidem iste asperiores quia, maxime, magnam deleniti itaque assumenda laborum perferendis, ea nihil non numquam commodi similique. Tempore explicabo molestias consectetur quam sunt? Aspernatur minima dolorum dignissimos reprehenderit tempora dolorem, ipsam sapiente maxime animi quaerat tempore inventore quidem possimus nulla, cum nemo corporis odit non eveniet suscipit aliquam eligendi? Incidunt, id aperiam excepturi odio, sed distinctio magni itaque natus nobis facilis provident dolor aspernatur praesentium, corporis nulla fuga omnis saepe. Repellat omnis quisquam assumenda eaque iure facilis et. Aspernatur at, eligendi maxime dolor vel aperiam vitae similique, nobis cum, architecto pariatur dignissimos ex aut iure quia doloremque. Inventore alias recusandae temporibus atque enim suscipit aliquam et? Ipsa, deleniti ipsam nemo consectetur repellendus aut. Pariatur veritatis magni distinctio officia ipsam, vel voluptatum enim iure! Tempora nemo laboriosam blanditiis rem in voluptate, exercitationem asperiores labore, recusandae quam pariatur perspiciatis doloribus officia repudiandae hic ex debitis nesciunt sapiente accusamus maiores. Repudiandae, aliquam nobis odio placeat, et pariatur temporibus deserunt quasi dolor cupiditate mollitia magni dolorum quas! Maxime quaerat, nisi minus illo reprehenderit placeat quae voluptatum, adipisci libero tempore necessitatibus magni amet sint qui quasi temporibus expedita quam ad harum maiores nihil in debitis. Laborum rem doloribus pariatur saepe atque necessitatibus porro debitis, quo voluptatem neque incidunt at veritatis magnam? Totam numquam dolorem molestiae eligendi, quia odit temporibus magni et excepturi, praesentium, porro vel. Beatae aspernatur debitis eveniet obcaecati culpa non eligendi asperiores vitae libero, unde consequuntur recusandae! At facere, animi eum facilis repellendus numquam nulla vel illum voluptas aliquid exercitationem itaque veniam odio, autem blanditiis necessitatibus voluptatibus sit tempore reprehenderit repellat!
+    </p>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>

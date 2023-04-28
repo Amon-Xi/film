@@ -69,11 +69,17 @@ LOAD DATA INFILE  './hangos/feladat.txt' INTO TABLE tasks;
 
 select id, title,  production, length, DATE_FORMAT(presentation, '%Y.%m.%d') presentation from films;
 
+select* from tasks
+  where filmid = 3; 
 
 SELECT * FROM films ;
 SELECT * FROM tasks ;
 SELECT * FROM persons ;
 select * from users;
+
+
+  select * from tasks
+    where filmid = 2;
 
 INSERT users 
   (id, email, password)

@@ -26,10 +26,12 @@ export default {
 </script>
 
 <style>
+
 body{
     background-image: url(../images/hatter.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
+    
 }
 
 </style>

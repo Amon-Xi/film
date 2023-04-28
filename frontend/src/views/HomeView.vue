@@ -62,7 +62,7 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+  <div class="modal-dialog modal-xl modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
@@ -78,13 +78,18 @@
       <div class="modal-body">
 
         <div>
-          <div class="row">
-            <div class="col-md-6 ">
-              <p>A film közreműködői:</p>
-              kártyák
+          
+            
+              <p>
+                <a :href="filmForModal.links" target="_blank">Videó</a>
+              </p>
               
-              <div class="row row-cols-1 row-cols-md-3 g-4 my-persons-cards">
-                <div class="card " v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+              <p>A film közreműködői:</p>
+             
+              
+              <div class="row row-cols-1 row-cols-md-6 g-4 my-persons-cards">
+                <div class="col"  v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
+                <div class="card ">
                   <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
                   <div class="card-body">
                     <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
@@ -93,22 +98,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6" >
-              <p>
-                <a :href="filmForModal.links" target="_blank">Videó</a>
-              </p>
-            
-              <div>
-                {{videoEmbedding(filmForModal.links)}}
 
-              </div>
-              <div v-html="videoEmbedding(filmForModal.links)">
-                
-              </div>
-              
-              
-            </div>
-          </div>
+            
+            
         </div>
       </div>
         <!-- <table class="table">

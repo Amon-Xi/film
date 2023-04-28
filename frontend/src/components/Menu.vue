@@ -33,6 +33,12 @@
             @click="onClickMenu(3)"
             >Rólunk</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/proba"
+            :class="{active: menuState === 3}"
+            @click="onClickMenu(3)"
+            >Próba</router-link>
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
