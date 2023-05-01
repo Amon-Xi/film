@@ -11,24 +11,22 @@
       />
       <div class="mt-3">
         <button
-          class="btn btn-outline-danger d-flex"
+          class="btn d-flex"
           type="submit"
           @click="onClickSearchButton()"
         >
-          Keresés
+        <i class="  mr-2 my-btn "> Keresés</i>
         </button>
       </div>
     </div>
 
     <!-- CARD -->
 
-    <div class=" col-md-13 mt-3 my-border">
+    <div class="col-md-13 m-3 my-card">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div v-for="(film, index) in films" :key="`films${index}`">
-
-          <div class="card " >
+          <div class="card">
             <div class="card-body">
-
               <h5 class="card-title" v-html="keresJelol(film.title)"></h5>
               <p class="card-text">Elkészítették:{{ film.production }}</p>
               <p class="card-text">Időtartam:{{ film.length }} perc</p>
@@ -37,109 +35,84 @@
               <!-- Button trigger modal -->
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn "
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 @click="onClickReszletek(film.id)"
               >
-                <i class="bi bi-arrow-90deg-right"></i>
+              <i class="  mr-2 my-btn "> Részletek</i>
               </button>
-         
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    
-    
-    
-  <!-- MODAL -->
-  <div
-  class="modal fade "
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-xl modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-          {{filmForModal.title}}
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
 
-        <div>
-          
-            
-              <p>
-                <a :href="filmForModal.links" target="_blank">Videó</a>
-              </p>
-              
+    <!-- MODAL -->
+    <div
+      class="modal fade "
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header  my-modal">
+            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+              {{ filmForModal.title }}
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body  my-modal">
+            <div class="my-video">
+              <p>Videó részlet: <a href="filmForModal.links">LINK</a></p>
+            </div>
+
+            <div>
               <p>A film közreműködői:</p>
-             
-              
+
               <div class="row row-cols-1 row-cols-md-6 g-4 my-persons-cards">
-                <div class="col"  v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
-                <div class="card ">
-                  <img :src="`../../public/persons/${task.Name}.jpg`" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <p class="card-text">{{task.Name}}<br>{{task.Denomination}}</p>
-                    
+                <div
+                  class="col"
+                  v-for="(task, index) in filmForModal.tasks"
+                  :key="`film_${index}`"
+                >
+                  <div class="card">
+                    <img
+                      :src="`../../public/persons/${task.Name}.jpg`"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <p class="card-text">
+                        {{ task.Name }}<br />{{ task.Denomination }}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            
-            
+          <div class="modal-footer  my-modal">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Bezárás
+            </button>
+          </div>
         </div>
-      </div>
-        <!-- <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Név</th>
-              <th scope="col">Neme</th>
-              <th scope="col">Besorolás</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(task,index) in filmForModal.tasks" :key="`film_${index}`">
-              <td>{{task.Name}}</td>
-              <td>{{task.Gender}}</td>
-              <td>{{task.Denomination}}</td>
-              <td>Színész képe:</td>
-            </tr>
-          </tbody>
-        </table> -->
-      
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Bezárás
-        </button>
       </div>
     </div>
   </div>
-
-
-
-</div>
-
-  </div>
-  
-  
 </template>
 
 
@@ -154,7 +127,6 @@ class FilmT {
     this.links = null;
     this.embedding = null;
     this.tasks = [];
-    
   }
 }
 
@@ -258,7 +230,7 @@ export default {
         return text;
       }
     },
-    videoEmbedding(links){
+    videoEmbedding(links) {
       return `
       <iframe 
         width="560" height="315" 
@@ -269,27 +241,59 @@ export default {
         web-share" allowfullscreen>
       </iframe>
       
-      `
-    }
+      `;
+    },
   },
 };
 </script>
 
 <style>
- .modal-backdrop {
-  display: none;
-} 
+/* MODAL */
+
+
 .my-button {
   float: right;
 }
-.mark{
+.mark {
   color: red;
 }
-.my-persons-cards{
+.my-persons-cards {
   overflow-y: scroll;
   height: 500px;
 }
+.my-video {
+  float: right;
+}
 
+.my-modal{
+  background: #222;
+  color: rgba(250, 250, 250, 0.8);
+
+
+}
+
+
+/* CARD */
+
+:root {
+  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+}
+
+.card {
+  background: #222;
+  border: 1px solid #dd2476;
+  color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 2rem;
+}
+
+.my-btn {
+  border: 5px solid;
+  border-image-slice: 1;
+  background: var(--gradient) !important;
+  border-image-source:  var(--gradient) !important; 
+  text-decoration: none;
+  transition: all .4s ease;
+}
 
 
 
