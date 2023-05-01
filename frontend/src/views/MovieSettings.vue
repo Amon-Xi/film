@@ -2,10 +2,14 @@
 <template>
   <div>
     <div class="p-2 d-flex">
-      <h1>Filmek szerkeztése (Admin)</h1>
+      <h1>Filmek szerkeztése</h1>
     </div>
 
  
+
+
+
+
     <table class="table table-bordered table-hover w-auto">
       <!-- New car -->
       <button
@@ -13,7 +17,7 @@
         class="btn btn-outline-success btn-sm ms-2"
         @click="onClickNew()"
       >
-      Film hozzáadása
+        Film hozzáadása
 
         <!-- <i class="bi bi-bookmark-plus"> </i> -->
       </button>

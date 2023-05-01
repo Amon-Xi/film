@@ -1,38 +1,39 @@
 <template>
-  <div class="p-3 my-width-login my-login ">
-    <!-- user name -->
-    <div class="mb-3 col-6">
-      <label for="userName" class="form-label">Felhasználónév:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="userName"
-        v-model="storeLogin.userName"
-      />
-    </div>
-    <!-- password -->
-    <div class="mb-3 col-6">
-      <label for="password" class="form-label">Jelszó:</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        v-model="storeLogin.password"
-      />
-    </div>
-    <!-- Button login -->
-    <button type="button" class="btn btn-outline-danger mb-3" @click="login()">
-      Belépés
-    </button>
+  <div>
+    <div class="p-3 my-width-login">
+      <!-- user name -->
+      <div class="mb-3 col-6">
+        <label for="userName" class="form-label">Felhasználónév:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="userName"
+          v-model="storeLogin.userName"
+        />
+      </div>
+      <!-- password -->
+      <div class="mb-3 col-6">
+        <label for="password" class="form-label">Jelszó:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          v-model="storeLogin.password"
+        />
+      </div>
+      <!-- Button login -->
+      <button type="button" class="btn mb-3" @click="login()">
+        <i class="mr-2 my-btn"> Belépés</i>
+      </button>
 
-    <div v-if="loginErrorMessage" class="alert alert-danger" role="alert">
-      {{ loginErrorMessage }}
+      <div v-if="loginErrorMessage" class="alert alert-danger" role="alert">
+        {{ loginErrorMessage }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
 import router from "../router";
@@ -104,8 +105,13 @@ export default {
 <style>
 .my-width-login {
   max-width: 500px;
-  border: 1px ridge red ;
-  
+  border: 1px ridge red;
+  background: #222;
+  border: 1px solid #dd2476;
+  color: rgba(250, 250, 250, 0.8);
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 33%;
+  margin-right: 33%;
 }
-
 </style>

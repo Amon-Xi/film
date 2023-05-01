@@ -942,7 +942,7 @@ app.post("/films", (req, res) => {
   };
   let sql = `
   INSERT films 
-  (title, production, length, presentation, youtube)
+  (title, production, length,DATE_FORMAT(presentation, '%Y.%m.%d') presentation, youtube)
   VALUES
   (?, ?, ?, ?, ?);
     `;
@@ -1047,7 +1047,7 @@ app.put("/films/:id", (req, res) => {
   title = ?,
   production = ?,
   length = ?,
-  presentation = ?,
+  DATE_FORMAT(presentation, '%Y.%m.%d') presentation = ?,
   youtube = ?
   WHERE id = ?
       `;
@@ -1145,7 +1145,7 @@ app.put("/persons/:id", (req, res) => {
 app.get("/getFilmFilter/:keres", (req, res) => {
   const keres = `%${req.params.keres}%`;
   let sql = `
-  SELECT id,title,production,length,presentation,youtube
+  SELECT id,title,production,length,DATE_FORMAT(presentation, '%Y.%m.%d') presentation,youtube
   FROM films
   WHERE (title like ?)
   ORDER BY title;
