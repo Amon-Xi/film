@@ -87,7 +87,6 @@ app.post("/login", (req, res) => {
 });
 
 
-
 function getUserByUserEmail(userName, callBack) {
   let queryString = `select * from users where userName = ?`;
   let params = [userName];
