@@ -20,6 +20,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.22",
     "pinia": "^2.0.34",
-    "sanitize-html": "^2.8.1"
+    "sanitize-html": "^2.8.1",
+    "webkit": "^0.0.0"
   }
 }
