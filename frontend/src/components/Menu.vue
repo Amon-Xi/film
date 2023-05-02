@@ -35,7 +35,7 @@
           </li> -->
           <li class="nav-item">
             <router-link
-              class="nav-link"
+              class="nav-link my-font"
               to="/about"
               :class="{ active: menuState === 3 }"
               @click="onClickMenu(3)"
@@ -43,19 +43,9 @@
               Rólunk
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link
-              class="nav-link"
-              to="/proba"
-              :class="{ active: menuState === 3 }"
-              @click="onClickMenu(3)"
-            >
-              Próba
-            </router-link>
-          </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle my-font"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -69,7 +59,7 @@
               <li>
                 <router-link
                   id="movieEdit"
-                  class="dropdown-item"
+                  class="dropdown-item my-font"
                   to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
                 >
@@ -83,7 +73,7 @@
               <li>
                 <router-link
                   id="movieEdit"
-                  class="dropdown-item"
+                  class="dropdown-item my-font"
                   to="/personSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
                 >
@@ -97,10 +87,10 @@
           </li>
 
           <li class="nav-item" v-if="!storeLogin.loginSuccess">
-            <router-link class="nav-link" to="/login">Belépés </router-link>
+            <router-link class="nav-link my-font" to="/login">Belépés </router-link>
           </li>
           <li class="nav-item" v-if="storeLogin.loginSuccess" @click="logout()">
-            <router-link class="nav-link" to="/login">
+            <router-link class="nav-link my-font" to="/login">
               Kilépés ({{ storeLogin.userName }})
             </router-link>
           </li>
@@ -167,6 +157,10 @@ function onClickMenu(number) {
 
 .my-homepic {
   text-align: center;
+}
+
+.my-font{
+  font-family: 'Times New Roman', Times, serif;
 }
 
 /* .navbar-nav > li > .dropdown-menu a:link,
