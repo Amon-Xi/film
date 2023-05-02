@@ -5,53 +5,50 @@
       <h1>Filmek szerkeztése</h1>
     </div>
 
-      <!-- New car -->
-      <button
-        type="button"
-        class="btn btn-outline-info btn-sm ms-3"
-        @click="onClickNew()"
-      >
+    <!-- New car -->
+    <button
+      type="button"
+      class="btn btn-outline-info btn-sm ms-3"
+      @click="onClickNew()"
+    >
       <i class="bi bi-plus"></i>
 
-        <!-- <i class="bi bi-bookmark-plus"> </i> -->
-      </button>
+      <!-- <i class="bi bi-bookmark-plus"> </i> -->
+    </button>
 
     <div class="col-md-13 m-3 my-card">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div v-for="(film, index) in films" :key="`films${index}`">
-          <div class="card my-font">
-            <div class="card-body">
-                <h5 class="card-title" > {{film.title}}</h5>
-                <p class="card-text">Elkészítették:{{ film.production }}</p>
-                <p class="card-text">Időtartam:{{ film.length }} perc</p>
-                <p class="card-text">Bemutatatták:{{ film.presentation }}</p>
+          <div class="card my-font" >
+            <div class="card-body" >
+              <h5 class="card-title">{{ film.title }}</h5>
+              <p class="card-text">Elkészítették:{{ film.production }}</p>
+              <p class="card-text">Időtartam:{{ film.length }} perc</p>
+              <p class="card-text">Bemutatatták:{{ film.presentation }}</p>
 
-                <!-- törlés -->
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="onClickDelete(film.id)"
-                >
+              <!-- törlés -->
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="onClickDelete(film.id)"
+              >
                 <i class="bi bi-x"></i>
-                </button>
+              </button>
 
-                <!-- módosítás -->
-                <button
-                  type="button"
-                  class="btn btn-outline-success btn-sm ms-2"
-                  @click="onClickEdit(film.id)"
-                >
-                  <i class="bi bi-pencil-fill"></i>
-                </button>
+              <!-- módosítás -->
+              <button
+                type="button"
+                class="btn btn-outline-success btn-sm ms-2"
+                @click="onClickEdit(film.id)"
+              >
+                <i class="bi bi-pencil-fill"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    
-
- 
     <!--#region Modal -->
     <div
       class="modal fade"
@@ -79,33 +76,30 @@
             <!--#region Form -->
 
             <form class="row g-3 needs-validation" novalidate>
-              <!-- Autó név -->
               <div class="col-md-12">
                 <label for="name" class="form-label">Film címe</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="name"
+                  id="title"
                   required
                   v-model="editableFilms.title"
                 />
                 <div class="invalid-feedback">A cím kitöltése kötelező</div>
               </div>
 
-              <!-- Rendszám -->
               <div class="col-md-12">
                 <label for="name" class="form-label">Ekkor készítették</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="name"
+                  id="production"
                   required
                   v-model="editableFilms.production"
                 />
                 <div class="invalid-feedback">A dátum kitöltése kötelező</div>
               </div>
 
-              <!-- Rendszám -->
               <div class="col-md-12">
                 <label for="name" class="form-label"
                   >A film időtartama (percben)</label
@@ -113,7 +107,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="name"
+                  id="length"
                   required
                   v-model="editableFilms.length"
                 />
@@ -122,13 +116,12 @@
                 </div>
               </div>
 
-              <!-- out of traffic -->
               <div class="col-md-12">
                 <label for="name" class="form-label">Ekkor mutatták be</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="name"
+                  id="presentation"
                   required
                   v-model="editableFilms.presentation"
                 />
@@ -165,27 +158,33 @@
 <script>
 import * as bootstrap from "bootstrap";
 import { storeToRefs } from "pinia";
-// import { useKeresStore } from "@/stores/keres";
 import { useCounterStore } from "@/stores/counter";
 import Counter from "@/components/Counter.vue";
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
-// const storeKeres = useKeresStore();
-// const { keresoszo } = storeToRefs(storeKeres);
 const storeCounter = useCounterStore();
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
 
 class FilmT {
-  constructor() {
-    this.title = null;
-    this.production = null;
-    this.length = null;
-    this.presentation = null;
-    this.youtube = null;
-    this.links = null;
-    this.embedding = null;
-    this.tasks = [];
+  constructor(
+    title = null,
+    production = null,
+    length = null,
+    presentation = null,
+    youtube = null,
+    links = null,
+    embedding = null,
+    tasks = []
+  ) {
+    this.title = title;
+    this.production = production;
+    this.length = length;
+    this.presentation = presentation;
+    this.youtube = youtube;
+    this.links = links;
+    this.embedding = embedding;
+    this.tasks = tasks;
   }
 }
 
@@ -196,7 +195,6 @@ export default {
       storeLogin,
       films: [],
       editableFilms: new FilmT(),
-      modal: null,
       form: null,
       state: "view",
       currentId: null,
