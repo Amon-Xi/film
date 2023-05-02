@@ -11,7 +11,7 @@
         class="btn btn-outline-success btn-sm ms-3"
         @click="onClickNew()"
       >
-        Film hozzáadása
+      <i class="bi bi-plus"></i>
 
         <!-- <i class="bi bi-bookmark-plus"> </i> -->
       </button>
