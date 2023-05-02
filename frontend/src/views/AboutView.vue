@@ -16,7 +16,5 @@ export default {
 
 
 <style>
-.modal-backdrop {
-  display: none;
-}
+
 </style>

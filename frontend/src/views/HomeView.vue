@@ -15,33 +15,37 @@
           type="submit"
           @click="onClickSearchButton()"
         >
-        <i class="  mr-2 my-btn "> Keresés</i>
+        <i class="  mr-2 my-btn my-font "> Keresés</i>
         </button>
       </div>
     </div>
 
     <!-- CARD -->
-
-    <div class="col-md-13 m-3 my-card">
+                              
+    <div class="col-md-13 m-3 my-card ">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div v-for="(film, index) in films" :key="`films${index}`">
-          <div class="card">
+          <div class="card my-font" >
             <div class="card-body">
-              <h5 class="card-title" v-html="keresJelol(film.title)"></h5>
-              <p class="card-text">Elkészítették:{{ film.production }}</p>
-              <p class="card-text">Időtartam:{{ film.length }} perc</p>
-              <p class="card-text">Bemutatatták:{{ film.presentation }}</p>
+              <center>
+                <h5 class="card-title" v-html="keresJelol(film.title)"></h5>
+                <p class="card-text">Elkészítették:{{ film.production }}</p>
+                <p class="card-text">Időtartam:{{ film.length }} perc</p>
+                <p class="card-text">Bemutatatták:{{ film.presentation }}</p>
+  
+                <!-- Button trigger modal -->
+                <button
+                  type="button"
+                  class="btn "
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  @click="onClickReszletek(film.id)"
+                >
+                <i class="  mr-2 my-btn "> Részletek</i>
+                </button>
+                
+              </center>
 
-              <!-- Button trigger modal -->
-              <button
-                type="button"
-                class="btn "
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                @click="onClickReszletek(film.id)"
-              >
-              <i class="  mr-2 my-btn "> Részletek</i>
-              </button>
             </div>
           </div>
         </div>
@@ -59,7 +63,7 @@
       <div class="modal-dialog modal-xl modal-dialog">
         <div class="modal-content">
           <div class="modal-header  my-modal">
-            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+            <h1 class="modal-title fs-5 text-center my-font " id="exampleModalLabel">
               {{ filmForModal.title }}
             </h1>
             <button
@@ -70,20 +74,21 @@
             ></button>
           </div>
           <div class="modal-body  my-modal">
-            <div class="my-video">
-              <p>Videó részlet: <a href="filmForModal.links">LINK</a></p>
+            <div class="my-video my-font">
+              
+              <p>Videó részlet: <a href="filmForModal.links">asd</a></p>
             </div>
 
-            <div>
+            <div class="my-font">
               <p>A film közreműködői:</p>
 
               <div class="row row-cols-1 row-cols-md-6 g-4 my-persons-cards">
                 <div
-                  class="col"
+                  class="c"
                   v-for="(task, index) in filmForModal.tasks"
                   :key="`film_${index}`"
                 >
-                  <div class="card">
+                  <div class="card my-persons">
                     <img
                       :src="`../../public/persons/${task.Name}.jpg`"
                       class="card-img-top"
@@ -129,6 +134,7 @@ class FilmT {
     this.tasks = [];
   }
 }
+
 
 import { storeToRefs } from "pinia";
 // import { useKeresStore } from "@/stores/keres";
@@ -248,7 +254,14 @@ export default {
 </script>
 
 <style>
+
 /* MODAL */
+
+.card-title{
+  background-color: rgba(255,255,255,0.1);
+  color: red;
+  text-shadow: 2px 4px 4px rgba(46,91,173,0.6);
+}
 
 
 .my-button {
@@ -276,12 +289,12 @@ export default {
 /* CARD */
 
 :root {
-  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+  --gradient: linear-gradient(to left top, rgb(255, 0, 85) 10%, #FF512F 90%) !important;
 }
 
 .card {
   background: #222;
-  border: 1px solid #dd2476;
+  border: 1px solid red;
   color: rgba(250, 250, 250, 0.8);
   margin-bottom: 2rem;
 }

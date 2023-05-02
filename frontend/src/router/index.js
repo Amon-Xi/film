@@ -54,15 +54,6 @@ const router = createRouter({
       },
     },
     {
-      path: "/proba",
-      name: "proba",
-      component: () => import("../views/probaView.vue"),
-      meta: {
-        requiresAuth: false,
-        title: "Próba / Filmek",
-      },
-    },
-    {
       path: "/:pathMatch(.*)*",
       name: "PageNotFound",
       component: () => import("../views/404View.vue"),

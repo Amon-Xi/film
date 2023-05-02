@@ -3,7 +3,7 @@
     <div class="p-3 my-width-login">
       <!-- user name -->
       <div class="mb-3 col-6">
-        <label for="userName" class="form-label">Felhasználónév:</label>
+        <label for="userName" class="form-label my-font">Felhasználónév:</label>
         <input
           type="text"
           class="form-control"
@@ -13,7 +13,7 @@
       </div>
       <!-- password -->
       <div class="mb-3 col-6">
-        <label for="password" class="form-label">Jelszó:</label>
+        <label for="password" class="form-label my-font">Jelszó:</label>
         <input
           type="password"
           class="form-control"
@@ -22,7 +22,7 @@
         />
       </div>
       <!-- Button login -->
-      <button type="button" class="btn mb-3" @click="login()">
+      <button type="button" class="btn mb-3 my-font" @click="login()">
         <i class="mr-2 my-btn"> Belépés</i>
       </button>
 
@@ -103,11 +103,13 @@ export default {
 </script>
 
 <style>
+
+
 .my-width-login {
   max-width: 500px;
   border: 1px ridge red;
   background: #222;
-  border: 1px solid #dd2476;
+  border: 1px solid red;
   color: rgba(250, 250, 250, 0.8);
   margin-top: 5%;
   margin-bottom: 5%;
