@@ -8,7 +8,7 @@
       <!-- New car -->
       <button
         type="button"
-        class="btn btn-outline-success btn-sm ms-3"
+        class="btn btn-outline-info btn-sm ms-3"
         @click="onClickNew()"
       >
       <i class="bi bi-plus"></i>
@@ -38,7 +38,7 @@
                 <!-- módosítás -->
                 <button
                   type="button"
-                  class="btn btn-outline-info btn-sm ms-2"
+                  class="btn btn-outline-success btn-sm ms-2"
                   @click="onClickEdit(film.id)"
                 >
                   <i class="bi bi-pencil-fill"></i>
