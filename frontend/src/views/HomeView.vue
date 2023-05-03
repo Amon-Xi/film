@@ -10,42 +10,41 @@
         v-model="keresoszo"
       />
       <div class="mt-3">
-        <button
-          class="btn d-flex"
-          type="submit"
-          @click="onClickSearchButton()"
-        >
-        <i class="  mr-2 my-btn my-font "> Keresés</i>
+        <button class="btn d-flex" type="submit" @click="onClickSearchButton()">
+          <i class="mr-2 my-btn my-font"> Keresés</i>
         </button>
       </div>
     </div>
 
     <!-- CARD -->
-                              
-    <div class="col-md-13 m-3 my-card ">
+
+    <div class="col-md-13 m-3 my-card">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div v-for="(film, index) in films" :key="`films${index}`">
-          <div class="card my-font" >
+          <div class="card my-font">
             <div class="card-body">
               <center>
                 <h5 class="card-title" v-html="keresJelol(film.title)"></h5>
-                <p class="card-text">Elkészítették:{{ film.production }}</p>
-                <p class="card-text">Időtartam:{{ film.length }} perc</p>
-                <p class="card-text">Bemutatatták:{{ film.presentation }}</p>
-  
+
+                <p class="card-text">Elkészítették: {{ film.production }}</p>
+                <p class="card-text">Időtartam: {{ film.length }} perc</p>
+                <p class="card-text">Bemutatatták: {{ film.presentation }}</p>
+                <p class="card-text">
+                  Film részlet: <a :href="film.links" target="_blank">
+                    <i class="bi bi-box-arrow-up-right"></i
+                  ></a>
+                </p>
                 <!-- Button trigger modal -->
                 <button
                   type="button"
-                  class="btn "
+                  class="btn"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                   @click="onClickReszletek(film.id)"
                 >
-                <i class="  mr-2 my-btn "> Részletek</i>
+                  <i class="mr-2 my-btn"> Közreműködők</i>
                 </button>
-                
               </center>
-
             </div>
           </div>
         </div>
@@ -54,7 +53,7 @@
 
     <!-- MODAL -->
     <div
-      class="modal fade "
+      class="modal fade"
       id="exampleModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
@@ -62,25 +61,23 @@
     >
       <div class="modal-dialog modal-xl modal-dialog">
         <div class="modal-content">
-          <div class="modal-header  my-modal">
-            <h1 class="modal-title fs-5 text-center my-font " id="exampleModalLabel">
+          <div class="modal-header my-modal">
+            <h1
+              class="modal-title fs-5 text-center my-font"
+              id="exampleModalLabel"
+            >
+            
               {{ filmForModal.title }}
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body  my-modal">
-            <div class="my-video my-font">
-              
-              <p>Videó részlet: <a href="filmForModal.links">asd</a></p>
-            </div>
 
+            
+            </h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body my-modal">
             <div class="my-font">
-              <p>A film közreműködői:</p>
+              <center>
+                <p>A film közreműködői:</p>
+              </center>
 
               <div class="row row-cols-1 row-cols-md-6 g-4 my-persons-cards">
                 <div
@@ -105,7 +102,7 @@
             </div>
           </div>
 
-          <div class="modal-footer  my-modal">
+          <div class="modal-footer my-modal">
             <button
               type="button"
               class="btn btn-secondary"
@@ -134,7 +131,6 @@ class FilmT {
     this.tasks = [];
   }
 }
-
 
 import { storeToRefs } from "pinia";
 // import { useKeresStore } from "@/stores/keres";
@@ -198,7 +194,7 @@ export default {
       };
       const response = await fetch(url, config);
       const data = await response.json();
-      this.filmForModal = data.data;
+      this.filmForModal = data.data[0];
     },
     async getFilmFilter() {
       const urlFilm = `${this.urlFilmFilter}/${this.keresoszo}`;
@@ -254,15 +250,13 @@ export default {
 </script>
 
 <style>
-
 /* MODAL */
 
-.card-title{
-  background-color: rgba(255,255,255,0.1);
+.card-title {
+  background-color: rgba(255, 255, 255, 0.1);
   color: red;
-  text-shadow: 2px 4px 4px rgba(46,91,173,0.6);
+  text-shadow: 2px 4px 4px rgba(46, 91, 173, 0.6);
 }
-
 
 .my-button {
   float: right;
@@ -278,18 +272,19 @@ export default {
   float: right;
 }
 
-.my-modal{
+.my-modal {
   background: #222;
   color: rgba(250, 250, 250, 0.8);
-
-
 }
 
 
-/* CARD */
 
 :root {
-  --gradient: linear-gradient(to left top, rgb(255, 0, 85) 10%, #FF512F 90%) !important;
+  --gradient: linear-gradient(
+    to left top,
+    rgb(255, 0, 85) 10%,
+    #ff512f 90%
+  ) !important;
 }
 
 .card {
@@ -303,12 +298,10 @@ export default {
   border: 5px solid;
   border-image-slice: 1;
   background: var(--gradient) !important;
-  border-image-source:  var(--gradient) !important; 
+  border-image-source: var(--gradient) !important;
   text-decoration: none;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
-
-
 
 
 </style>
