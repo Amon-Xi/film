@@ -63,21 +63,7 @@
                   to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
                 >
-                  Filmek Szerkeztése
-                  <div v-if="!storeLogin.loginSuccess">
-                    (Regisztráció szükséges)
-                  </div>
-                </router-link>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <router-link
-                  id="movieEdit"
-                  class="dropdown-item my-font"
-                  to="/personSettings"
-                  :class="{ disabled: !storeLogin.loginSuccess }"
-                >
-                  Személyek Szerkeztése
+                  Filmek/Személyek Szerkeztése
                   <div v-if="!storeLogin.loginSuccess">
                     (Regisztráció szükséges)
                   </div>

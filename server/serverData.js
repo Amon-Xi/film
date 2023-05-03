@@ -671,12 +671,12 @@ app.get("/filmOfTaskForModal/:id", (req, res) => {
         return;
       }
       if (results.length == 0) {
-        const message = `Not found id: ${id}`;
+        const message = `xxxNot found id: ${id}`;
         sendingGetError(res, message);
         return;
       }
       results[0].tasks = await getTasks(res, id);
-      sendingGetById(res, null, results[0], id);
+      sendingGetById(res, null, results, id);
     });
     connection.release();
   });
@@ -688,7 +688,7 @@ app.get("/filmOfTaskForModal/:id", (req, res) => {
 //#region films --- 
 
 app.get("/films", (req, res) => {
-  let sql = `select id, title,  production, length, DATE_FORMAT(presentation, '%Y.%m.%d') presentation from films;`;
+  let sql = `select id, title,  production, length, DATE_FORMAT(presentation, '%Y.%m.%d') presentation, links from films;`;
 
   pool.getConnection(function (error, connection) {
     if (error) {

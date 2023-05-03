@@ -79,7 +79,7 @@ select * from users;
 
 
   select * from tasks
-    where filmid = 2;
+    where filmid = 5;
 
 INSERT users 
   (id, email, password)
@@ -97,9 +97,9 @@ where  t.personid = p.id && t.filmid = f.id
   ;
 
   # filmOfTaskForModal
-select   p.name Name, p.gender Gender, t.denomination Denomination,from tasks t
+select   p.name Name, p.gender Gender, t.denomination Denomination from tasks t
   inner join persons p on t.personid = p.id
-where t.filmid = 2
+where t.filmid = 6
   ;
 
 #Szűrés
@@ -202,9 +202,12 @@ ORDER BY title;
 
 
 
+ select   p.name Name, p.gender Gender, t.denomination Denomination  from tasks t
+      inner join persons p on t.personid = p.id
+      where t.filmid = 4;
 
-
-
+SELECT * FROM films
+    WHERE id = 3;
 
 
 
