@@ -87,7 +87,7 @@ get http://localhost:3000/persons
 #--------------- get by id --------------
 
 ### get by id films
-get http://localhost:3000/films/3
+get http://localhost:3000/films/620
 
 ### get by id tasks
 get http://localhost:3000/tasks/1339
@@ -98,7 +98,7 @@ get http://localhost:3000/persons/0
 #----------- delete ---------------
 
 ### delete by id films
-delete http://localhost:3000/films/17
+delete http://localhost:3000/films/610
 
 ### delete by id tasks
 delete http://localhost:3000/tasks/17
@@ -117,7 +117,9 @@ Content-Type: application/json
     "production": 1555,
     "length": 50,
     "presentation": "1555.02.02.",
-    "youtube": 0
+    "youtube": 0,
+    "links": "aosidoasd",
+    "embedding": "asdoiasd"
 
 }
 
@@ -146,17 +148,17 @@ Content-Type: application/json
 #------------- put ------------------
 
 ### put films by id
-put http://localhost:3000/films/4
+put http://localhost:3000/films/620
 Content-Type: application/json
 
 {
-    "title": "Abalaba",
+   "title": "ANYÁD",
     "production": 123123,
-    "length": 20,
-    "presentation": "1351.03.10.",
-    "youtube": 1
-
-
+    "length": 34,
+    "presentation": "1113.04.03.",
+    "youtube": 0,
+    "links": "LALALLA",
+    "embedding": "LALALLAAALLA"
 }
 
 ### put tasks by id

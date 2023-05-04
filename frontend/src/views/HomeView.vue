@@ -261,9 +261,8 @@ export default {
 .my-button {
   float: right;
 }
-.mark {
-  color: red;
-}
+
+
 .my-persons-cards {
   overflow-y: scroll;
   height: 500px;

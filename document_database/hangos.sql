@@ -158,9 +158,9 @@ ORDER BY title;
 
 ### post films
     INSERT films 
-    (title, production, length, presentation, youtube)
+    (title, production, length, presentation, youtube, links, embedding)
     VALUES
-    (?, ?, ?, ?, ?);
+    ('Elmentem a vásárba', 1555, 50, '1555.02.02', 0, 'links', 'embedding');
 
 ### post tasks
     INSERT tasks 
@@ -177,15 +177,17 @@ ORDER BY title;
 
 
 #------ put --------
-
+select * from films;
 ### put films
     UPDATE films SET
-    title = ?,
-    production = ?,
-    length = ?,
-    presentation = ?,
-    youtube = ?
-    WHERE id = ?;
+    title= 'ANYÁD',
+  production= 123123,
+  length= 34,
+  presentation= '1113.04.03.',
+  youtube= 0,
+  links= 'LALALLA',
+  embedding= 'LALALLAAALLA'
+    WHERE id = 620;
 
 ### put tasks
     UPDATE tasks SET

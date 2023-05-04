@@ -42,7 +42,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-danger btn-sm"
-                  @click="onClickDelete(film.id)"
+                  @click.stop="onClickDelete(film.id)"
                 >
                   <i class="bi bi-x"></i>
                 </button>
@@ -65,6 +65,7 @@
           </tbody>
         </table>
       </div>
+
 
       <div class="col-6" v-if="filmPerson.tasks.length">
         <div class="sticky-top">
@@ -165,7 +166,7 @@
               <div class="col-md-12">
                 <label for="name" class="form-label">Ekkor készítették</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="production"
                   required
@@ -179,7 +180,7 @@
                   >A film időtartama (percben)</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="length"
                   required
@@ -414,7 +415,7 @@ export default {
     // onClikRow(id) {
     //   this.currentId = id;
     // },
-    onClickNew() {
+    onClickNew(id) {
       this.state = "new";
       this.currentId = null;
       this.editableFilms = new FilmT();
