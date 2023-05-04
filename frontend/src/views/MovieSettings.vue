@@ -11,7 +11,7 @@
       <div class="col-6">
         <h2 class="ms-3">Filmek</h2>
 
-        <table class="table table-bordered table-hover w-auto ms-3 my-table">
+        <table class="table table-bordered w-auto ms-3 my-table">
           <thead>
             <tr>
               <th>
@@ -73,7 +73,7 @@
           <div class="my-scroll">
 
           
-          <table class="table table-bordered table-hover w-auto ms-3 my-table  ">
+          <table class="table table-bordered  w-auto ms-3 my-table  ">
             <thead>
               <tr>
                 <th>
@@ -81,7 +81,7 @@
                   <button
                     type="button"
                     class="btn btn-outline-info btn-sm ms-3"
-                    @click="onClickNew()"
+                    @click="onClickNewPerson()"
                   >
                     <i class="bi bi-plus"></i>
                   </button>
@@ -421,6 +421,12 @@ export default {
       this.editableFilms = new FilmT();
       this.modal.show();
     },
+    onClickNewPerson(id){
+      this.state = "new2"
+      this.currentId = null;
+      this.modal.show();
+
+    },
     onClickDelete(id) {
       this.state = "delete";
       this.deleteFilm(id);
@@ -480,19 +486,23 @@ export default {
 
 <style>
 .my-bg-current-row {
-  background-color: lightgrey;
+  background-color: rgba(182, 5, 14, 0.2);
 }
 .my-table {
   background: #222;
   border: 2px ridge red;
-  color: rgba(250, 250, 250, 0.8);
+  color: white;
 }
 h2 {
   color: red;
 }
 .my-scroll {
   overflow-y: scroll;
-  height: 95vh;
+  height: 90vh;
   width: 450px !important;
 }
+.table-hover{
+  color: white !important;
+}
+
 </style>

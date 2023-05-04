@@ -1153,7 +1153,7 @@ app.put("/persons/:id", (req, res) => {
 app.get("/getFilmFilter/:keres", (req, res) => {
   const keres = `%${req.params.keres}%`;
   let sql = `
-  SELECT id,title,production,length,DATE_FORMAT(presentation, '%Y.%m.%d') presentation,youtube
+  SELECT id,title,production,length,DATE_FORMAT(presentation, '%Y.%m.%d') presentation,youtube,links
   FROM films
   WHERE (title like ?)
   ORDER BY title;

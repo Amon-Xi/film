@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- SEARCH -->
-    <div class="p-2 d-flex col-4">
+    <div class="p-2 d-flex col-12 col-md-6">
       <input
         class="form-control ms-2 mt-3 me-3"
         type="search"
@@ -19,7 +19,7 @@
     <!-- CARD -->
 
     <div class="col-md-13 m-3 my-card">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
         <div v-for="(film, index) in films" :key="`films${index}`">
           <div class="card my-font">
             <div class="card-body">
