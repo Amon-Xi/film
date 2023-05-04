@@ -766,7 +766,7 @@ app.get("/persons", (req, res) => {
 app.get("/films/:id", (req, res) => {
   const id = req.params.id;
   let sql = `
-    SELECT * FROM films
+    SELECT id, title,  production, length, DATE_FORMAT(presentation, '%Y.%m.%d') presentation, links FROM films
     WHERE id = ?`;
 
   pool.getConnection(function (error, connection) {
@@ -935,16 +935,19 @@ app.delete("/persons/:id", (req, res) => {
 app.post("/films", (req, res) => {
   const newR = {
     title: sanitizeHtml(req.body.title),
-    production: sanitizeHtml(req.body.production),
-    length: +sanitizeHtml(req.body.length),
-    presentation: +sanitizeHtml(req.body.presentation),
-    youtube: +sanitizeHtml(req.body.youtube)
+    production: req.body.production,
+    length: req.body.length,
+    presentation: req.body.presentation,
+    youtube: req.body.youtube,
+    links: req.body.links,
+    embedding: req.body.embedding
   };
   let sql = `
   INSERT films 
-  (title, production, length,DATE_FORMAT(presentation, '%Y.%m.%d') presentation, youtube)
+  (title, production, length, presentation, youtube, links, embedding)
   VALUES
-  (?, ?, ?, ?, ?);
+  (?, ?, ?, ?,? , ?, ?)
+
     `;
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -953,7 +956,7 @@ app.post("/films", (req, res) => {
     }
     connection.query(
       sql,
-      [newR.title, newR.production, newR.length, newR.presentation, newR.youtube],
+      [newR.title, newR.production, newR.length, newR.presentation, newR.youtube, newR.links, newR.embedding],
       function (error, result, fields) {
         sendingPost(res, error, result, newR);
       }
@@ -1037,19 +1040,24 @@ app.put("/films/:id", (req, res) => {
   const id = req.params.id;
   const newR = {
     title: sanitizeHtml(req.body.title),
-    production: sanitizeHtml(req.body.production),
-    length: +sanitizeHtml(req.body.length),
-    presentation: +sanitizeHtml(req.body.presentation),
-    youtube: +sanitizeHtml(req.body.youtube)
+    production: req.body.production,
+    length: req.body.length,
+    presentation: req.body.presentation,
+    youtube: req.body.youtube,
+    links: req.body.links,
+    embedding: req.body.embedding
   };
+  console.log(newR);
   let sql = `
   UPDATE films SET
-  title = ?,
-  production = ?,
-  length = ?,
-  DATE_FORMAT(presentation, '%Y.%m.%d') presentation = ?,
-  youtube = ?
-  WHERE id = ?
+  title= ?,
+  production= ?,
+  length= ?,
+  presentation= ?,
+  youtube= ?,
+  links= ?,
+  embedding= ?
+    WHERE id = ?;
       `;
 
   pool.getConnection(function (error, connection) {
@@ -1059,7 +1067,7 @@ app.put("/films/:id", (req, res) => {
     }
     connection.query(
       sql,
-      [newR.title, newR.production, newR.length, newR.presentation, newR.youtube, id],
+      [newR.title, newR.production, newR.length, newR.presentation, newR.youtube, newR.links, newR.embedding, id],
       function (error, result, fields) {
         sendingPut(res, error, result, id, newR);
       }
@@ -1125,7 +1133,7 @@ app.put("/persons/:id", (req, res) => {
     }
     connection.query(
       sql,
-      [newR.name, newR.gender,  id],
+      [newR.name, newR.gender, id],
       function (error, result, fields) {
         sendingPut(res, error, result, id, newR);
       }
@@ -1175,8 +1183,7 @@ function mySanitizeHtml(data) {
 
 app.listen(process.env.APP_PORT, () => {
   console.log(
-    `Data server, listen port: ${process.env.APP_PORT} (Auth: ${
-      process.env.AUTH_ON == 1 ? "on" : "off"
+    `Data server, listen port: ${process.env.APP_PORT} (Auth: ${process.env.AUTH_ON == 1 ? "on" : "off"
     })`
   );
 });

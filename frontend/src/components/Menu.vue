@@ -50,8 +50,6 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              :class="{ active: menuState === 4 }"
-              @click="onClickMenu(4)"
             >
               Egyebek
             </a>
@@ -62,8 +60,9 @@
                   class="dropdown-item my-font"
                   to="/movieSettings"
                   :class="{ disabled: !storeLogin.loginSuccess }"
+                  
                 >
-                  Filmek/Személyek Szerkeztése
+                  Filmek/Közreműködők Szerkeztése
                   <div v-if="!storeLogin.loginSuccess">
                     (Regisztráció szükséges)
                   </div>
