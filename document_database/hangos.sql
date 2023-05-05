@@ -102,6 +102,13 @@ select   p.name Name, p.gender Gender, t.denomination Denomination from tasks t
 where t.filmid = 6
   ;
 
+#personsForTable
+  select name Name, t.denomination Denomination from tasks t
+  inner join persons p on t.personid = p.id
+  inner join films f on t.filmid = f.id
+  where  t.personid = p.id && t.filmid = f.id
+
+;
 #Szűrés
    SELECT id,title,production,length,presentation,youtube
 FROM films
