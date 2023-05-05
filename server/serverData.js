@@ -685,6 +685,34 @@ app.get("/filmOfTaskForModal/:id", (req, res) => {
 
 //#endregion filmsForModal
 
+//#region personsForTable
+
+app.get("/personsForTable", (req, res) => {
+  let sql = `select name Name, t.denomination Denomination from tasks t
+  inner join persons p on t.personid = p.id
+  inner join films f on t.filmid = f.id
+  where  t.personid = p.id && t.filmid = f.id
+  ;
+`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, async function (error, results, fields) {
+      if (error) {
+        message = "Films sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGet(res, null, results);
+    });
+    connection.release();
+  });
+});
+//#endregion personsForTable
+
 //#region films --- 
 
 app.get("/films", (req, res) => {

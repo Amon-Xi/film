@@ -51,6 +51,12 @@ export const useUrlStore = defineStore({
     },
     urlFilmOfTaskForModal(){
       return `${this.urlData}/filmOfTaskForModal`
+    },
+    urlPersonsForTable(){
+      return `${this.urlData}/personsForTable`
+    },
+    urlPersons(){
+      return `${this.urlData}/persons`
     }
   },
 });

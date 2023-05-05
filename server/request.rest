@@ -261,4 +261,9 @@ delete http://localhost:3000/users/17
 ### filmOfTaskForModal  
 get http://localhost:3000/filmOfTaskForModal/4
 
+### personsForTable
+get http://localhost:3000/personsForTable/2
+
+
+
 

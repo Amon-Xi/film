@@ -2,14 +2,15 @@
 <template>
   <div>
     <div class="m-3 my-font">
-      <h1>Filmek szerkeztése</h1>
+      <h1>Filmek/Közreműködők szerkeztése</h1>
     </div>
 
     <!-- TABLE -->
 
+    <!-- FILMS -->
     <div class="row">
       <div class="col-6">
-        <h2 class="ms-3">Filmek</h2>
+        <h2 class="ms-3 my-font">Filmek</h2>
 
         <table class="table table-bordered w-auto ms-3 my-table">
           <thead>
@@ -66,65 +67,67 @@
         </table>
       </div>
 
-
+      <!-- PERSONS -->
       <div class="col-6" v-if="filmPerson.tasks.length">
         <div class="sticky-top">
-          <h2 class="ms-3">{{ filmPerson.title }} közreműködői</h2>
+          <h2 class="ms-3 my-font">{{ filmPerson.title }} közreműködői</h2>
           <div class="my-scroll">
+            <table class="table table-bordered w-auto ms-3 my-table">
+              <thead>
+                <tr>
+                  <th>
+                    <!-- New Film -->
+                    <button
+                      type="button"
+                      class="btn btn-outline-info btn-sm ms-3"
+                      @click="onClickNewPerson()"
+                    >
+                      <i class="bi bi-plus"></i>
+                    </button>
+                  </th>
+                  <th>Név</th>
+                  <th>Besoroloása</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(task, index) in filmPerson.tasks"
+                  :key="`task${index}`"
+                  :class="currentRowBackgroundPerson(task.id)"
+                  @click="onClickFilmRowPerson(task.id)"
+    
+                >
+                  <td class="text-nowrap">
+                    <!-- törlés -->
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger btn-sm"
+                      @click="onClickDeletePerson(task.id)"
+                    >
+                      <i class="bi bi-x"></i>
+                    </button>
 
-          
-          <table class="table table-bordered  w-auto ms-3 my-table  ">
-            <thead>
-              <tr>
-                <th>
-                  <!-- New Film -->
-                  <button
-                    type="button"
-                    class="btn btn-outline-info btn-sm ms-3"
-                    @click="onClickNewPerson()"
-                  >
-                    <i class="bi bi-plus"></i>
-                  </button>
-                </th>
-                <th>Név</th>
-                <th>Besoroloása</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(task, index) in filmPerson.tasks"
-                :key="`task${index}`"
-              >
-                <td class="text-nowrap">
-                  <!-- törlés -->
-                  <button
-                    type="button"
-                    class="btn btn-outline-danger btn-sm"
-                    @click="onClickDelete(task.id)"
-                  >
-                    <i class="bi bi-x"></i>
-                  </button>
+                    <!-- módosítás -->
+                    <button
+                      type="button"
+                      class="btn btn-outline-success btn-sm ms-2"
+                      @click="onClickEditPerson(task.id)"
+                    >
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                  </td>
 
-                  <!-- módosítás -->
-                  <button
-                    type="button"
-                    class="btn btn-outline-success btn-sm ms-2"
-                    @click="onClickEdit(task.id)"
-                  >
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-                </td>
-
-                <td class="text-nowrap">{{ task.Name }}</td>
-                <td>{{ task.Denomination }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                  <td class="text-nowrap">{{ task.Name }}</td>
+                  <td>{{ task.Denomination }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-    <!--#region Modal -->
+
+    <!--#region Modal for Films -->
     <div
       class="modal fade"
       id="filmModal"
@@ -226,6 +229,81 @@
         </div>
       </div>
     </div>
+
+    <!--#region Modal for Persons -->
+    <div
+      class="modal fade"
+      id="personModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header my-modal">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Személy hozzáadása
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              @click="onClickCancelPerson()"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!--#region Modal body -->
+          <div class="modal-body my-modal">
+            <!--#region Form -->
+
+            <form class="row g-3 needs-validation" novalidate>
+              <div class="col-md-12">
+                <label for="name" class="form-label">Személy neve</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                  v-model="filmPerson.name"
+                />
+                <div class="invalid-feedback">A név kitöltése kötelező</div>
+              </div>
+
+              <div class="col-md-12">
+                <label for="name" class="form-label">Besorolása</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="denomination"
+                  required
+                  v-model="filmPerson.denomination"
+                />
+                <div class="invalid-feedback">A besorolás kitöltése kötelező</div>
+              </div>
+            </form>
+            <!--#endregion Form -->
+          </div>
+          <!--#endregion Modal body -->
+
+          <div class="modal-footer my-modal">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              @click="onClickCancelPerson()"
+            >
+              Mégse
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="onClickSavePerson()"
+            >
+              Mentés
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!--#endregion Modal -->
@@ -303,6 +381,7 @@ export default {
       storeUrl,
       storeLogin,
       films: [],
+      persons: [],
       editableFilms: new FilmT(),
       form: null,
       state: "view",
@@ -313,8 +392,12 @@ export default {
   },
   mounted() {
     this.getFilms();
+    this.getPersons();
     // this.getFreeDriversAbc();
     this.modal = new bootstrap.Modal(document.getElementById("filmModal"), {
+      keyboard: false,
+    });
+    this.modal = new bootstrap.Modal(document.getElementById("personModal"), {
       keyboard: false,
     });
 
@@ -333,6 +416,18 @@ export default {
       const data = await response.json();
       this.films = data.data;
     },
+    async getPersons() {
+      let url = this.storeUrl.urlPersons;
+      const config = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+      };
+      const response = await fetch(url, config);
+      const data = await response.json();
+      this.persons = data.data;
+    },
     async getFilmById(id) {
       let url = `${this.storeUrl.urlFilms}/${id}`;
       const config = {
@@ -344,6 +439,18 @@ export default {
       const response = await fetch(url, config);
       const data = await response.json();
       this.editableFilms = data.data;
+    },
+    async getPersonById(id) {
+      let url = `${this.storeUrl.urlPersons}/${id}`;
+      const config = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+      };
+      const response = await fetch(url, config);
+      const data = await response.json();
+      this.filmPerson = data.data;
     },
     async getFilmPersons(id) {
       let url = `${this.storeUrl.urlFilmOfTaskForModal}/${id}`;
@@ -385,6 +492,20 @@ export default {
       const response = await fetch(url, config);
       this.getFilms();
     },
+    async postPerson() {
+      let url = this.storeUrl.urlPersons;
+      const body = JSON.stringify(this.filmPerson);
+      const config = {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+        body: body,
+      };
+      const response = await fetch(url, config);
+      this.getPersons();
+    },
     async putFilm() {
       const id = this.editableFilms.id;
       let url = `${this.storeUrl.urlFilms}/${id}`;
@@ -400,6 +521,21 @@ export default {
       const response = await fetch(url, config);
       this.getFilms();
     },
+    async putPerson() {
+      const id = this.filmPerson.id;
+      let url = `${this.storeUrl.urlPersons}/${id}`;
+      const body = JSON.stringify(this.filmPerson);
+      const config = {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+        body: body,
+      };
+      const response = await fetch(url, config);
+      this.getPersons();
+    },
     async deleteFilm(id) {
       let url = `${this.storeUrl.urlFilms}/${id}`;
       const config = {
@@ -412,6 +548,18 @@ export default {
       const response = await fetch(url, config);
       this.getFilms();
     },
+    async deletePerson(id) {
+      let url = `${this.storeUrl.urlPersons}/${id}`;
+      const config = {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+      };
+      const response = await fetch(url, config);
+      this.getPersons();
+    },
     // onClikRow(id) {
     //   this.currentId = id;
     // },
@@ -421,15 +569,20 @@ export default {
       this.editableFilms = new FilmT();
       this.modal.show();
     },
-    onClickNewPerson(id){
-      this.state = "new2"
+    onClickNewPerson(id) {
+      this.state = "new";
       this.currentId = null;
+      this.filmPerson = new filmPerson();
       this.modal.show();
-
     },
     onClickDelete(id) {
       this.state = "delete";
       this.deleteFilm(id);
+      this.currentId = null;
+    },
+    onClickDeletePerson(id) {
+      this.state = "delete";
+      this.deletePerson(id);
       this.currentId = null;
     },
     onClickEdit(id) {
@@ -437,8 +590,27 @@ export default {
       this.getFilmById(id);
       this.modal.show();
     },
+    onClickEditPerson(id) {
+      this.state = "edit";
+      this.getPersonById(id);
+      this.modal.show();
+    },
+    getFilmById(id) {
+      this.state = "edit";
+      this.getFilmById(id);
+      this.modal.show();
+    },
+    getPersonById(id) {
+      this.state = "edit";
+      this.getPersonById(id);
+      this.modal.show();
+    },
     onClickCancel() {
       this.editableFilms = new FilmT();
+      this.modal.hide();
+    },
+    onClickCancelPerson() {
+      this.filmPerson = new filmPerson();
       this.modal.hide();
     },
     onClickSave() {
@@ -455,16 +627,42 @@ export default {
         }
         this.modal.hide();
         //frissíti a taxisok listáját
-        this.getFilms();
+        this.getPersons();
+      }
+    },
+    onClickSavePerson() {
+      this.form.classList.add("was-validated");
+      if (this.form.checkValidity()) {
+        if (this.state == "edit") {
+          //put
+          this.putPerson();
+          this.modal.hide();
+        } else if (this.state == "new") {
+          //post
+          this.postPerson();
+          this.modal.hide();
+        }
+        this.modal.hide();
+        //frissíti a taxisok listáját
+        this.getPersons();
       }
     },
     onClickFilmRow(id) {
       console.log(id);
       this.currentDataId = null;
       this.currentId = id;
-      this.getFilmPersons(id);
+      this.getFilms(id);
+    },
+    onClickFilmRowPerson(id) {
+      console.log(id);
+      this.currentDataId = null;
+      this.currentId = id;
+      this.getPersons(id);
     },
     currentRowBackground(id) {
+      return this.currentId == id ? "my-bg-current-row" : "";
+    },
+    currentRowBackgroundPerson(id) {
       return this.currentId == id ? "my-bg-current-row" : "";
     },
     outOfTrafficName(outOfTraffic) {
@@ -501,8 +699,7 @@ h2 {
   height: 90vh;
   width: 450px !important;
 }
-.table-hover{
+.table-hover {
   color: white !important;
 }
-
 </style>
