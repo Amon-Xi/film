@@ -397,9 +397,6 @@ export default {
     this.modal = new bootstrap.Modal(document.getElementById("filmModal"), {
       keyboard: false,
     });
-    this.modal = new bootstrap.Modal(document.getElementById("personModal"), {
-      keyboard: false,
-    });
 
     this.form = document.querySelector(".needs-validation");
   },
