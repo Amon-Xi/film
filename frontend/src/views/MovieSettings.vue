@@ -52,7 +52,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-success btn-sm ms-2"
-                  @click="onClickEdit(film.id)"
+                  @click.stop="onClickEdit(film.id)"
                 >
                   <i class="bi bi-pencil-fill"></i>
                 </button>
@@ -76,7 +76,7 @@
               <thead>
                 <tr>
                   <th>
-                    <!-- New Film -->
+                    <!-- New Person -->
                     <button
                       type="button"
                       class="btn btn-outline-info btn-sm ms-3"
@@ -93,16 +93,13 @@
                 <tr
                   v-for="(task, index) in filmPerson.tasks"
                   :key="`task${index}`"
-                  :class="currentRowBackgroundPerson(task.id)"
-                  @click="onClickFilmRowPerson(task.id)"
-    
                 >
                   <td class="text-nowrap">
                     <!-- törlés -->
                     <button
                       type="button"
                       class="btn btn-outline-danger btn-sm"
-                      @click="onClickDeletePerson(task.id)"
+                      @click.stop="onClickDeletePerson(task.id)"
                     >
                       <i class="bi bi-x"></i>
                     </button>
@@ -111,7 +108,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-success btn-sm ms-2"
-                      @click="onClickEditPerson(task.id)"
+                      @click.stop="onClickEditPerson(task.id)"
                     >
                       <i class="bi bi-pencil-fill"></i>
                     </button>
@@ -264,7 +261,7 @@
                   class="form-control"
                   id="name"
                   required
-                  v-model="filmPerson.name"
+                  v-model="editablePersons.name"
                 />
                 <div class="invalid-feedback">A név kitöltése kötelező</div>
               </div>
@@ -276,9 +273,11 @@
                   class="form-control"
                   id="denomination"
                   required
-                  v-model="filmPerson.denomination"
+                  v-model="editablePersons.denomination"
                 />
-                <div class="invalid-feedback">A besorolás kitöltése kötelező</div>
+                <div class="invalid-feedback">
+                  A besorolás kitöltése kötelező
+                </div>
               </div>
             </form>
             <!--#endregion Form -->
@@ -374,6 +373,11 @@ class filmPerson {
     this.name = name;
   }
 }
+class Person {
+  constructor(name = null, denomination = null) {
+    this.name, this.denomination;
+  }
+}
 
 export default {
   data() {
@@ -383,6 +387,7 @@ export default {
       films: [],
       persons: [],
       editableFilms: new FilmT(),
+      editablePersons: new Person(),
       form: null,
       state: "view",
       currentId: null,
@@ -397,6 +402,12 @@ export default {
     this.modal = new bootstrap.Modal(document.getElementById("filmModal"), {
       keyboard: false,
     });
+    this.modalPerson = new bootstrap.Modal(
+      document.getElementById("personModal"),
+      {
+        keyboard: false,
+      }
+    );
 
     this.form = document.querySelector(".needs-validation");
   },
@@ -447,7 +458,7 @@ export default {
       };
       const response = await fetch(url, config);
       const data = await response.json();
-      this.filmPerson = data.data;
+      this.editablePersons = data.data;
     },
     async getFilmPersons(id) {
       let url = `${this.storeUrl.urlFilmOfTaskForModal}/${id}`;
@@ -491,7 +502,7 @@ export default {
     },
     async postPerson() {
       let url = this.storeUrl.urlPersons;
-      const body = JSON.stringify(this.filmPerson);
+      const body = JSON.stringify(this.editablePersons);
       const config = {
         method: "POST",
         headers: {
@@ -519,9 +530,9 @@ export default {
       this.getFilms();
     },
     async putPerson() {
-      const id = this.filmPerson.id;
+      const id = this.editablePersons.id;
       let url = `${this.storeUrl.urlPersons}/${id}`;
-      const body = JSON.stringify(this.filmPerson);
+      const body = JSON.stringify(this.editablePersons);
       const config = {
         method: "PUT",
         headers: {
@@ -569,8 +580,8 @@ export default {
     onClickNewPerson(id) {
       this.state = "new";
       this.currentId = null;
-      this.filmPerson = new filmPerson();
-      this.modal.show();
+      this.editablePersons = new Person();
+      this.modalPerson.show();
     },
     onClickDelete(id) {
       this.state = "delete";
@@ -589,26 +600,16 @@ export default {
     },
     onClickEditPerson(id) {
       this.state = "edit";
-      this.getPersonById(id);
-      this.modal.show();
+      this.modalPerson.show();
     },
-    getFilmById(id) {
-      this.state = "edit";
-      this.getFilmById(id);
-      this.modal.show();
-    },
-    getPersonById(id) {
-      this.state = "edit";
-      this.getPersonById(id);
-      this.modal.show();
-    },
+
     onClickCancel() {
       this.editableFilms = new FilmT();
       this.modal.hide();
     },
     onClickCancelPerson() {
-      this.filmPerson = new filmPerson();
-      this.modal.hide();
+      this.editablePersons = new Person();
+      this.modalPerson.hide();
     },
     onClickSave() {
       this.form.classList.add("was-validated");
@@ -624,7 +625,7 @@ export default {
         }
         this.modal.hide();
         //frissíti a taxisok listáját
-        this.getPersons();
+        this.getFilms();
       }
     },
     onClickSavePerson() {
@@ -633,13 +634,13 @@ export default {
         if (this.state == "edit") {
           //put
           this.putPerson();
-          this.modal.hide();
+          this.modalPerson.hide();
         } else if (this.state == "new") {
           //post
           this.postPerson();
-          this.modal.hide();
+          this.modalPerson.hide();
         }
-        this.modal.hide();
+        this.modalPerson.hide();
         //frissíti a taxisok listáját
         this.getPersons();
       }
@@ -648,7 +649,7 @@ export default {
       console.log(id);
       this.currentDataId = null;
       this.currentId = id;
-      this.getFilms(id);
+      this.getFilmPersons(id);
     },
     onClickFilmRowPerson(id) {
       console.log(id);
@@ -662,9 +663,9 @@ export default {
     currentRowBackgroundPerson(id) {
       return this.currentId == id ? "my-bg-current-row" : "";
     },
-    outOfTrafficName(outOfTraffic) {
-      return outOfTraffic ? "igen" : "nem";
-    },
+    // outOfTrafficName(outOfTraffic) {
+    //   return outOfTraffic ? "igen" : "nem";
+    // },
   },
   computed: {
     stateTitle() {
