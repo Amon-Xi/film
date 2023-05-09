@@ -1,8 +1,27 @@
 
 <template>
   <div>
-    <div class="m-3 my-font">
+    <div class="m-3 my-font d-flex">
       <h1>Filmek/Közreműködők szerkeztése</h1>
+
+      <div class="p-2 d-flex col-12 col-md-6">
+        <input
+          class="form-control ms-2 mt-3 me-3"
+          type="search"
+          placeholder="Keress egy filmre..."
+          aria-label="Search"
+          v-model="keresoszo"
+        />
+        <div class="mt-3">
+          <button
+            class="btn d-flex"
+            type="submit"
+            @click="onClickSearchButton()"
+          >
+            <i class="mr-2 my-btn my-font"> Keresés</i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- TABLE -->
@@ -41,6 +60,7 @@
               <td class="text-nowrap">
                 <!-- törlés -->
                 <button
+                  id="deleteModal"
                   type="button"
                   class="btn btn-outline-danger btn-sm"
                   @click.stop="onClickDelete(film.id)"
@@ -58,7 +78,7 @@
                 </button>
               </td>
 
-              <td>{{ film.title }}</td>
+              <td v-html="keresJelol(film.title)"></td>
               <td>{{ film.production }}</td>
               <td>{{ film.length }}</td>
               <td>{{ film.presentation }}</td>
@@ -70,9 +90,9 @@
       <!-- PERSONS -->
       <div class="col-6" v-if="filmPerson.tasks.length">
         <div class="sticky-top">
-          <h2 class="ms-3 my-font">{{ filmPerson.title }} közreműködői</h2>
+          <h2 class="ms-3 my-font">{{ filmPerson.title }} film közreműködői</h2>
           <div class="my-scroll">
-            <table class="table table-bordered w-auto ms-3 my-table">
+            <table class="table table-bordered w-auto ms-3 my-table mt-3">
               <thead>
                 <tr>
                   <th>
@@ -97,6 +117,7 @@
                   <td class="text-nowrap">
                     <!-- törlés -->
                     <button
+                      id="deleteModal"
                       type="button"
                       class="btn btn-outline-danger btn-sm"
                       @click.stop="onClickDeletePerson(task.id)"
@@ -124,6 +145,49 @@
       </div>
     </div>
 
+    <!-- DELETE MODAL -->
+
+    <div
+      class="modal fade"
+    
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content my-modal">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Biztosan törölni akarja?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Mégse
+            </button>
+            <button
+            v-for="(film, index) in films"
+              :key="`film${index}`"
+            id="deleteModal"
+              type="button"
+              class="btn btn-primary"
+              @click="onClickDeleteModal(film.id)"
+            >
+              Igen
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--#region Modal for Films -->
     <div
       class="modal fade"
@@ -136,7 +200,7 @@
         <div class="modal-content">
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Film hozzáadása
+              {{ this.state }}
             </h1>
             <button
               type="button"
@@ -393,6 +457,7 @@ export default {
       currentId: null,
       currentDataId: null,
       filmPerson: new filmPerson(),
+      keresoszo: null,
     };
   },
   mounted() {
@@ -404,6 +469,12 @@ export default {
     });
     this.modalPerson = new bootstrap.Modal(
       document.getElementById("personModal"),
+      {
+        keyboard: false,
+      }
+    );
+    this.modalDelete = new bootstrap.Modal(
+      document.getElementById("deleteModal"),
       {
         keyboard: false,
       }
@@ -471,6 +542,35 @@ export default {
       const response = await fetch(url, config);
       const data = await response.json();
       this.filmPerson = data.data[0];
+    },
+
+    async getFilmFilter() {
+      const urlFilm = `${this.urlFilmFilter}/${this.keresoszo}`;
+      const response = await fetch(urlFilm);
+      const data = await response.json();
+      this.films = data.data;
+    },
+
+    onClickSearchButton() {
+      if (this.keresoszo.trim()) {
+        this.getFilmFilter();
+      } else {
+        this.getFilms();
+      }
+    },
+
+    keresJelol(text) {
+      if (this.keresoszo) {
+        let what = new RegExp(this.keresoszo, "gi");
+        if (text) {
+          text = text.replace(what, (match) => {
+            return `<span class="mark">${match}</span>`;
+          });
+        }
+        return text;
+      } else {
+        return text;
+      }
     },
 
     // async getFreeDriversAbc() {
@@ -584,9 +684,22 @@ export default {
       this.modalPerson.show();
     },
     onClickDelete(id) {
+      if (this.state = "delete") {
+        this.modalDelete.show()
+      }
+
+      if (condition) {  
+        
+      }
+      this.deleteFilm(id);
+      this.currentId = null;
+      
+    },
+    onClickDeleteModal(id) {
       this.state = "delete";
       this.deleteFilm(id);
       this.currentId = null;
+      
     },
     onClickDeletePerson(id) {
       this.state = "delete";
@@ -696,6 +809,8 @@ h2 {
   overflow-y: scroll;
   height: 90vh;
   width: 450px !important;
+
+  border: 2px ridge red;
 }
 .table-hover {
   color: white !important;

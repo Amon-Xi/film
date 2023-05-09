@@ -33,16 +33,6 @@
               >Főoldal</router-link
             >
           </li> -->
-          <li class="nav-item">
-            <router-link
-              class="nav-link my-font"
-              to="/about"
-              :class="{ active: menuState === 3 }"
-              @click="onClickMenu(3)"
-            >
-              Rólunk
-            </router-link>
-          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle my-font"
@@ -54,7 +44,7 @@
               Egyebek
             </a>
             <ul class="dropdown-menu">
-              <li>
+              <li >
                 <router-link
                   id="movieEdit"
                   class="dropdown-item my-font"
