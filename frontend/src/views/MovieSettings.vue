@@ -100,7 +100,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-info btn-sm ms-3"
-                      @click="onClickNewPerson()"
+                      @click="onClickNewPerson(filmPerson.id)"
                     >
                       <i class="bi bi-plus"></i>
                     </button>
@@ -291,7 +291,7 @@
       </div>
     </div>
 
-    <!--#region Modal for Persons -->
+    <!-- MODAL PERSONS-->
     <div
       class="modal fade"
       id="personModal"
@@ -303,7 +303,7 @@
         <div class="modal-content">
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Személy hozzáadása
+              {{ statePersonsTitle }}
             </h1>
             <button
               type="button"
@@ -756,6 +756,7 @@ export default {
         this.getPersons();
       }
     },
+
     onClickFilmRow(id) {
       console.log(id);
       this.currentDataId = null;
@@ -784,6 +785,13 @@ export default {
         return "Új film hozzáadása";
       } else if (this.state === "edit") {
         return "Film módosítása";
+      }
+    },
+    statePersonsTitle() {
+      if (this.state === "new" && this.modalPerson.show()) {
+        return "Új személy hozzáadása";
+      } else if (this.state === "edit") {
+        return "Személy módosítása";
       }
     },
   },
