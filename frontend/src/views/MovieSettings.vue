@@ -60,10 +60,10 @@
               <td class="text-nowrap">
                 <!-- törlés -->
                 <button
-                  id="deleteModal"
+                  
                   type="button"
                   class="btn btn-outline-danger btn-sm"
-                  @click.stop="onClickDelete(film.id)"
+                  @click="onClickDelete(film.id)"
                 >
                   <i class="bi bi-x"></i>
                 </button>
@@ -72,7 +72,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-success btn-sm ms-2"
-                  @click.stop="onClickEdit(film.id)"
+                  @click="onClickEdit(film.id)"
                 >
                   <i class="bi bi-pencil-fill"></i>
                 </button>
@@ -117,7 +117,7 @@
                   <td class="text-nowrap">
                     <!-- törlés -->
                     <button
-                      id="deleteModal"
+                    
                       type="button"
                       class="btn btn-outline-danger btn-sm"
                       @click.stop="onClickDeletePerson(task.id)"
@@ -149,7 +149,7 @@
 
     <div
       class="modal fade"
-    
+      id="deleteModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -173,16 +173,16 @@
             >
               Mégse
             </button>
+            
             <button
-            v-for="(film, index) in films"
-              :key="`film${index}`"
-            id="deleteModal"
-              type="button"
-              class="btn btn-primary"
-              @click="onClickDeleteModal(film.id)"
+            
+            type="button"
+            class="btn btn-primary"
+            @click="onClickDeleteModal()"
             >
-              Igen
-            </button>
+            Igen
+          </button>
+      
           </div>
         </div>
       </div>
@@ -200,7 +200,7 @@
         <div class="modal-content">
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              {{ this.state }}
+              {{ this.stateTitle }}
             </h1>
             <button
               type="button"
@@ -684,21 +684,19 @@ export default {
       this.modalPerson.show();
     },
     onClickDelete(id) {
-      if (this.state = "delete") {
+      if ( this.state = "delete") {
         this.modalDelete.show()
-      }
+        this.currentId = null;
+      }else if(this.modalDelete.show()){
+        this.onClickDeleteModal(this.currentId)
 
-      if (condition) {  
-        
       }
-      this.deleteFilm(id);
-      this.currentId = null;
-      
     },
-    onClickDeleteModal(id) {
+    onClickDeleteModal(currentId) {
       this.state = "delete";
-      this.deleteFilm(id);
+      this.deleteFilm(this.currentId);
       this.currentId = null;
+      this.modalDelete.hide();
       
     },
     onClickDeletePerson(id) {
