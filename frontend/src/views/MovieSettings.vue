@@ -4,9 +4,9 @@
     <div class="m-3 my-font d-flex">
       <h1>Filmek/Közreműködők szerkeztése</h1>
 
-      <div class="p-2 d-flex col-12 col-md-6">
+      <div class="p-2 d-flex col-12 col-sm-6">
         <input
-          class="form-control ms-2 mt-3 me-3"
+          class="form-control ms-2 mt-3 "
           type="search"
           placeholder="Keress egy filmre..."
           aria-label="Search"
@@ -292,6 +292,7 @@
     </div>
 
     <!--#region Modal for Persons -->
+    <!-- MODAL PERSONS-->
     <div
       class="modal fade"
       id="personModal"
@@ -303,7 +304,8 @@
         <div class="modal-content">
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Személy hozzáadása
+              {{ statePersonsTitle }}
+            
             </h1>
             <button
               type="button"
@@ -379,6 +381,7 @@ import { useCounterStore } from "@/stores/counter";
 import Counter from "@/components/Counter.vue";
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
+import { defaultModifiers } from "@popperjs/core/lib/popper-lite";
 const storeCounter = useCounterStore();
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
@@ -388,7 +391,7 @@ class FilmT {
     id = 0,
     title = null,
     production = null,
-    length = null,
+    lengthh = null,
     presentation = null,
     youtube = null,
     links = null,
@@ -398,7 +401,7 @@ class FilmT {
     this.id = id;
     this.title = title;
     this.production = production;
-    this.length = length;
+    this.lengthh = lengthh;
     this.presentation = presentation;
     this.youtube = youtube;
     this.links = links;
@@ -411,7 +414,7 @@ class filmPerson {
     id = 0,
     title = null,
     production = null,
-    length = null,
+    lengthh = null,
     presentation = null,
     youtube = null,
     links = null,
@@ -425,7 +428,7 @@ class filmPerson {
     this.id = id;
     this.title = title;
     this.production = production;
-    this.length = length;
+    this.lengthh = lengthh;
     this.presentation = presentation;
     this.youtube = youtube;
     this.links = links;
@@ -439,7 +442,8 @@ class filmPerson {
 }
 class Person {
   constructor(name = null, denomination = null) {
-    this.name, this.denomination;
+    this.name = name; 
+    this.denomination = denomination;
   }
 }
 
@@ -458,6 +462,8 @@ export default {
       currentDataId: null,
       filmPerson: new filmPerson(),
       keresoszo: null,
+      urlFilmFilter: "http://localhost:3000/getFilmFilter",
+
     };
   },
   mounted() {
@@ -678,6 +684,7 @@ export default {
       this.modal.show();
     },
     onClickNewPerson(id) {
+      console.log("Faz");
       this.state = "new";
       this.currentId = null;
       this.editablePersons = new Person();
@@ -689,7 +696,6 @@ export default {
         this.currentId = null;
       }else if(this.modalDelete.show()){
         this.onClickDeleteModal(this.currentId)
-
       }
     },
     onClickDeleteModal(currentId) {
@@ -711,6 +717,7 @@ export default {
     },
     onClickEditPerson(id) {
       this.state = "edit";
+      this.getPersonById(id)
       this.modalPerson.show();
     },
 
@@ -740,6 +747,7 @@ export default {
       }
     },
     onClickSavePerson() {
+      console.log("savefasz");
       this.form.classList.add("was-validated");
       if (this.form.checkValidity()) {
         if (this.state == "edit") {
@@ -756,22 +764,14 @@ export default {
         this.getPersons();
       }
     },
+
     onClickFilmRow(id) {
       console.log(id);
       this.currentDataId = null;
       this.currentId = id;
       this.getFilmPersons(id);
     },
-    onClickFilmRowPerson(id) {
-      console.log(id);
-      this.currentDataId = null;
-      this.currentId = id;
-      this.getPersons(id);
-    },
     currentRowBackground(id) {
-      return this.currentId == id ? "my-bg-current-row" : "";
-    },
-    currentRowBackgroundPerson(id) {
       return this.currentId == id ? "my-bg-current-row" : "";
     },
     // outOfTrafficName(outOfTraffic) {
@@ -784,6 +784,13 @@ export default {
         return "Új film hozzáadása";
       } else if (this.state === "edit") {
         return "Film módosítása";
+      }
+    },
+    statePersonsTitle() {
+      if (this.state === "new" && this.modalPerson.show()) {
+        return "Új személy hozzáadása";
+      } else if (this.state === "edit" ) {
+        return "Személy módosítása";      
       }
     },
   },

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### login
 post http://localhost:4000/login
 Content-Type: application/json
@@ -63,6 +64,8 @@ Content-Type: application/json
     "password": "123",
     "number": 123456
 }
+=======
+>>>>>>> 58ec4d1bcab4f1bc9bb480f2cacbc7f7d23c3c08
 
 ### Delete user
 delete http://localhost:3000/users/17
