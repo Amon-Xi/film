@@ -57,6 +57,13 @@ export const useUrlStore = defineStore({
     },
     urlPersons(){
       return `${this.urlData}/persons`
+    },
+    urlPersonsABC(){
+      return `${this.urlData}/personsABC`
+    },
+    urlTasks(){
+      return `${this.urlData}/tasks`
+
     }
   },
 });

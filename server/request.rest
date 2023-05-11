@@ -86,6 +86,9 @@ get http://localhost:3000/tasks
 ### get person
 get http://localhost:3000/persons
 
+### get person
+get http://localhost:3000/personsABC
+
 
 #--------------- get by id --------------
 
@@ -131,9 +134,9 @@ post http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-    "filmid": "9999",
-    "personid": "9292",
-    "denomination": "rendező"
+    "filmid": 2,
+    "personid": 7,
+    "denomination": "asd"
 
 }
 

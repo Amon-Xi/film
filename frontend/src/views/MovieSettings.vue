@@ -319,18 +319,21 @@
           <div class="modal-body my-modal">
             <!--#region Form -->
 
+            <!-- PERSON DROPDOWN -->
             <form class="row g-3 needs-validation" novalidate>
-              <div class="col-md-12">
-                <label for="name" class="form-label">Személy neve</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  required
-                  v-model="editablePersons.name"
-                />
-                <div class="invalid-feedback">A név kitöltése kötelező</div>
-              </div>
+              
+
+
+
+              <select class="form-select" aria-label="Default select example" v-model="editablePerson.personid">
+                
+                <option v-for="(person, index) in personsABC " :key="`person${index}`"
+                
+                 :value="person.id">{{person.name}}</option>
+               
+              </select>
+
+
 
               <div class="col-md-12">
                 <label for="name" class="form-label">Besorolása</label>
@@ -339,12 +342,12 @@
                   class="form-control"
                   id="denomination"
                   required
-                  v-model="editablePersons.denomination"
+                  v-model="editablePerson.denomination"
                 />
                 <div class="invalid-feedback">
                   A besorolás kitöltése kötelező
                 </div>
-              </div>
+            </div>
             </form>
             <!--#endregion Form -->
           </div>
@@ -382,6 +385,7 @@ import Counter from "@/components/Counter.vue";
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
 import { defaultModifiers } from "@popperjs/core/lib/popper-lite";
+import LoginViewVue from './LoginView.vue';
 const storeCounter = useCounterStore();
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
@@ -440,12 +444,22 @@ class filmPerson {
     this.name = name;
   }
 }
-class Person {
-  constructor(name = null, denomination = null) {
-    this.name = name; 
+class PersonTask {
+  constructor(filmid = null, personid = null, denomination = null) {
+    this.filmid = filmid; 
+    this.personid = personid;
     this.denomination = denomination;
   }
+
+ 
 }
+class Task {
+    constructor(name = null, denomination = null){
+      this.name = name; 
+    this.denomination = denomination;
+
+    }
+  }
 
 export default {
   data() {
@@ -455,7 +469,7 @@ export default {
       films: [],
       persons: [],
       editableFilms: new FilmT(),
-      editablePersons: new Person(),
+      editablePerson: new PersonTask(),
       form: null,
       state: "view",
       currentId: null,
@@ -463,7 +477,7 @@ export default {
       filmPerson: new filmPerson(),
       keresoszo: null,
       urlFilmFilter: "http://localhost:3000/getFilmFilter",
-
+      personsABC: [],
     };
   },
   mounted() {
@@ -513,6 +527,18 @@ export default {
       const data = await response.json();
       this.persons = data.data;
     },
+    async getPersonsABC() {
+      let url = this.storeUrl.urlPersonsABC;
+      const config = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+      };
+      const response = await fetch(url, config);
+      const data = await response.json();
+      this.personsABC = data.data;
+    },
     async getFilmById(id) {
       let url = `${this.storeUrl.urlFilms}/${id}`;
       const config = {
@@ -535,7 +561,7 @@ export default {
       };
       const response = await fetch(url, config);
       const data = await response.json();
-      this.editablePersons = data.data;
+      this.editablePerson = data.data;
     },
     async getFilmPersons(id) {
       let url = `${this.storeUrl.urlFilmOfTaskForModal}/${id}`;
@@ -607,8 +633,8 @@ export default {
       this.getFilms();
     },
     async postPerson() {
-      let url = this.storeUrl.urlPersons;
-      const body = JSON.stringify(this.editablePersons);
+      let url = this.storeUrl.urlTasks;
+      const body = JSON.stringify(this.editablePerson);
       const config = {
         method: "POST",
         headers: {
@@ -618,7 +644,9 @@ export default {
         body: body,
       };
       const response = await fetch(url, config);
-      this.getPersons();
+      const data = await response.json()
+      console.log("post",data);
+      this.getPersonById(this.currentId);
     },
     async putFilm() {
       const id = this.editableFilms.id;
@@ -636,9 +664,9 @@ export default {
       this.getFilms();
     },
     async putPerson() {
-      const id = this.editablePersons.id;
+      const id = this.editablePerson.id;
       let url = `${this.storeUrl.urlPersons}/${id}`;
-      const body = JSON.stringify(this.editablePersons);
+      const body = JSON.stringify(this.editablePerson);
       const config = {
         method: "PUT",
         headers: {
@@ -683,11 +711,13 @@ export default {
       this.editableFilms = new FilmT();
       this.modal.show();
     },
-    onClickNewPerson(id) {
-      console.log("Faz");
+    onClickNewPerson() {
+      console.log("New");
       this.state = "new";
-      this.currentId = null;
-      this.editablePersons = new Person();
+      this.getPersonsABC();
+      this.editablePerson = new PersonTask();
+      console.log(this.currentId);
+      this.editablePerson.filmid = this.currentId;
       this.modalPerson.show();
     },
     onClickDelete(id) {
@@ -714,7 +744,7 @@ export default {
       this.state = "edit";
       this.getFilmById(id);
       this.modal.show();
-    },
+    }, 
     onClickEditPerson(id) {
       this.state = "edit";
       this.getPersonById(id)
@@ -726,7 +756,7 @@ export default {
       this.modal.hide();
     },
     onClickCancelPerson() {
-      this.editablePersons = new Person();
+      this.editablePerson = new PersonTask();
       this.modalPerson.hide();
     },
     onClickSave() {
@@ -747,22 +777,28 @@ export default {
       }
     },
     onClickSavePerson() {
-      console.log("savefasz");
-      this.form.classList.add("was-validated");
-      if (this.form.checkValidity()) {
-        if (this.state == "edit") {
-          //put
-          this.putPerson();
-          this.modalPerson.hide();
-        } else if (this.state == "new") {
-          //post
-          this.postPerson();
-          this.modalPerson.hide();
-        }
+      if (this.state == "new" ) {
+        //post
+        this.postPerson()
         this.modalPerson.hide();
-        //frissíti a taxisok listáját
-        this.getPersons();
       }
+
+      // console.log("SAVE");
+      // this.form.classList.add("was-validated");
+      // if (this.form.checkValidity()) {
+      //   if (this.state == "edit") {
+      //     //put
+      //     this.putPerson();
+      //     this.modalPerson.hide();
+      //   } else if (this.state == "new") {
+      //     //post
+      //     this.postPerson();
+      //     this.modalPerson.hide();
+      //   }
+      //   this.modalPerson.hide();
+      //   //frissíti a taxisok listáját
+      //   this.getPersons();
+      // }
     },
 
     onClickFilmRow(id) {

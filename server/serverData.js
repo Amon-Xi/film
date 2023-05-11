@@ -783,6 +783,27 @@ app.get("/persons", (req, res) => {
   });
 });
 
+app.get("/personsABC", (req, res) => {
+  let sql = `SELECT id,name FROM persons order by name`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, async function (error, results, fields) {
+      if (error) {
+        message = "Persons sql error";
+        sendingGetError(res, message);
+        return;
+      }
+      sendingGet(res, null, results);
+    });
+    connection.release();
+  });
+});
+
+
 //#endregion persons
 
 //#endregion getek
@@ -999,9 +1020,9 @@ app.post("/films", (req, res) => {
 //#region post tasks
 app.post("/tasks", (req, res) => {
   const newR = {
-    filmid: sanitizeHtml(req.body.filmid),
-    personid: sanitizeHtml(req.body.personid),
-    denomination: +sanitizeHtml(req.body.denomination)
+    filmid: req.body.filmid,
+    personid: req.body.personid,
+    denomination: sanitizeHtml(req.body.denomination)
   };
   let sql = `
   INSERT tasks 

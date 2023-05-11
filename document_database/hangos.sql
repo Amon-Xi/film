@@ -220,7 +220,8 @@ SELECT * FROM films
 
 
 
-
+delete from persons
+  where name = '';
 
 
 
