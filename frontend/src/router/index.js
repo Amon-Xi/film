@@ -24,6 +24,15 @@ const router = createRouter({
       },
     },
     {
+      path: "/moviePersonsSettings",
+      name: "moviePersonsSettings",
+      component: () => import("../views/MoviePersonsSettings.vue"),
+      meta: {
+        requiresAuth: true,
+        title: "Közreműködők szerkeztése / Filmek",
+      },
+      },
+    {
       path: "/login",
       name: "login",
       component: () => import("../views/LoginView.vue"),

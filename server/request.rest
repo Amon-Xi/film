@@ -192,6 +192,10 @@ Content-Type: application/json
 
 get http://localhost:3000/getFilmFilter/arany
 
+### PERSON FILTER
+
+get http://localhost:3000/getPersonFilter/A
+
 
 ### ----------------------------- USEREK-------------------------------------
 

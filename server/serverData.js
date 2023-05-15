@@ -1219,6 +1219,26 @@ app.get("/getFilmFilter/:keres", (req, res) => {
     connection.release();
   });
 });
+app.get("/getPersonFilter/:keres", (req, res) => {
+  const keres = `%${req.params.keres}%`;
+  let sql = `
+  SELECT id, name, gender
+  FROM persons
+  WHERE (name like ? )
+  ORDER BY name;
+`;
+
+  pool.getConnection(function (error, connection) {
+    if (error) {
+      sendingGetError(res, "Server connecting error!");
+      return;
+    }
+    connection.query(sql, [keres, keres], function (error, results, fields) {
+      sendingGetById(res, error, results, keres);
+    });
+    connection.release();
+  });
+});
 //#endregion SZŰRÉS
 
 

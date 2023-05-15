@@ -115,6 +115,13 @@ FROM films
 WHERE (title like ? )
 ORDER BY title;
 
+
+#Szűrés personok
+   SELECT id, name, gender
+FROM persons
+WHERE (name like ? )
+ORDER BY name;
+
   
 
 #  LEÍRÁS

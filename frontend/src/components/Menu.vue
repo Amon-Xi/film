@@ -52,7 +52,25 @@
                   :class="{ disabled: !storeLogin.loginSuccess }"
                   
                 >
-                  Filmek/Közreműködők Szerkeztése
+                  Filmek szerkeztése
+                  <div v-if="!storeLogin.loginSuccess">
+                    (Regisztráció szükséges)
+                  </div>
+                </router-link>
+              </li>
+
+
+
+
+              <li >
+                <router-link
+                  id="movieEdit"
+                  class="dropdown-item my-font"
+                  to="/moviePersonsSettings"
+                  :class="{ disabled: !storeLogin.loginSuccess }"
+                  
+                >
+                Közreműködők Szerkeztése
                   <div v-if="!storeLogin.loginSuccess">
                     (Regisztráció szükséges)
                   </div>

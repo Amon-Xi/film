@@ -1,29 +1,29 @@
 
 <template>
   <div>
-    <div class="m-3 my-font d-flex">
-      <h1>Filmek/Közreműködők szerkeztése</h1>
-
-      <div class="p-2 d-flex col-12 col-sm-6">
-        <input
-          class="form-control ms-2 mt-3 "
-          type="search"
-          placeholder="Keress egy filmre..."
-          aria-label="Search"
-          v-model="keresoszo"
-        />
-        <div class="mt-3">
-          <button
-            class="btn d-flex"
-            type="submit"
-            @click="onClickSearchButton()"
-          >
-            <i class="mr-2 my-btn my-font"> Keresés</i>
-          </button>
+    <div class="row">
+      <div class="col-6">
+        <div class="m-3 my-font d-flex">
+          <h1>Filmek szerkeztése</h1>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="p-2 d-flex col-12 col-sm-6 my-search">
+          <input
+            class="form-control ms-2 mt-3"
+            type="search"
+            placeholder="Keress egy filmre..."
+            aria-label="Search"
+            v-model="keresoszo"
+          />
+          <div class="mt-3">
+            <button class="btn" type="submit" @click="onClickSearchButton()">
+              <i class="mr-2 my-btn my-font"> Keresés</i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-
     <!-- TABLE -->
 
     <!-- FILMS -->
@@ -60,7 +60,6 @@
               <td class="text-nowrap">
                 <!-- törlés -->
                 <button
-                  
                   type="button"
                   class="btn btn-outline-danger btn-sm"
                   @click="onClickDelete(film.id)"
@@ -117,7 +116,6 @@
                   <td class="text-nowrap">
                     <!-- törlés -->
                     <button
-                    
                       type="button"
                       class="btn btn-outline-danger btn-sm"
                       @click.stop="onClickDeletePerson(task.id)"
@@ -173,16 +171,14 @@
             >
               Mégse
             </button>
-            
+
             <button
-            
-            type="button"
-            class="btn btn-primary"
-            @click="onClickDeleteModal()"
+              type="button"
+              class="btn btn-primary"
+              @click="onClickDeleteModal()"
             >
-            Igen
-          </button>
-      
+              Igen
+            </button>
           </div>
         </div>
       </div>
@@ -305,7 +301,6 @@
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
               {{ statePersonsTitle }}
-            
             </h1>
             <button
               type="button"
@@ -321,19 +316,19 @@
 
             <!-- PERSON DROPDOWN -->
             <form class="row g-3 needs-validation" novalidate>
-              
-
-
-
-              <select class="form-select" aria-label="Default select example" v-model="editablePerson.personid">
-                
-                <option v-for="(person, index) in personsABC " :key="`person${index}`"
-                
-                 :value="person.id">{{person.name}}</option>
-               
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="editablePerson.personid"
+              >
+                <option
+                  v-for="(person, index) in personsABC"
+                  :key="`person${index}`"
+                  :value="person.id"
+                >
+                  {{ person.name }}
+                </option>
               </select>
-
-
 
               <div class="col-md-12">
                 <label for="name" class="form-label">Besorolása</label>
@@ -347,7 +342,7 @@
                 <div class="invalid-feedback">
                   A besorolás kitöltése kötelező
                 </div>
-            </div>
+              </div>
             </form>
             <!--#endregion Form -->
           </div>
@@ -385,7 +380,7 @@ import Counter from "@/components/Counter.vue";
 import { useUrlStore } from "@/stores/url";
 import { useLoginStore } from "@/stores/login";
 import { defaultModifiers } from "@popperjs/core/lib/popper-lite";
-import LoginViewVue from './LoginView.vue';
+import LoginViewVue from "./LoginView.vue";
 const storeCounter = useCounterStore();
 const storeUrl = useUrlStore();
 const storeLogin = useLoginStore();
@@ -446,20 +441,17 @@ class filmPerson {
 }
 class PersonTask {
   constructor(filmid = null, personid = null, denomination = null) {
-    this.filmid = filmid; 
+    this.filmid = filmid;
     this.personid = personid;
     this.denomination = denomination;
   }
-
- 
 }
 class Task {
-    constructor(name = null, denomination = null){
-      this.name = name; 
+  constructor(name = null, denomination = null) {
+    this.name = name;
     this.denomination = denomination;
-
-    }
   }
+}
 
 export default {
   data() {
@@ -644,8 +636,8 @@ export default {
         body: body,
       };
       const response = await fetch(url, config);
-      const data = await response.json()
-      console.log("post",data);
+      const data = await response.json();
+      console.log("post", data);
       this.getPersonById(this.currentId);
     },
     async putFilm() {
@@ -721,11 +713,11 @@ export default {
       this.modalPerson.show();
     },
     onClickDelete(id) {
-      if ( this.state = "delete") {
-        this.modalDelete.show()
+      if ((this.state = "delete")) {
+        this.modalDelete.show();
         this.currentId = null;
-      }else if(this.modalDelete.show()){
-        this.onClickDeleteModal(this.currentId)
+      } else if (this.modalDelete.show()) {
+        this.onClickDeleteModal(this.currentId);
       }
     },
     onClickDeleteModal(currentId) {
@@ -733,21 +725,28 @@ export default {
       this.deleteFilm(this.currentId);
       this.currentId = null;
       this.modalDelete.hide();
-      
     },
     onClickDeletePerson(id) {
       this.state = "delete";
-      this.deletePerson(id);
       this.currentId = null;
+      this.deletePerson(this.currentId);
     },
+
+    // onClickPersonDeleteModal(currentId){
+    //   this.state = "delete";
+    //   this.deletePerson(this.currentId);
+    //   this.currentId = null;
+    //   this.modalDelete.hide();
+
+    // },
     onClickEdit(id) {
       this.state = "edit";
       this.getFilmById(id);
       this.modal.show();
-    }, 
+    },
     onClickEditPerson(id) {
       this.state = "edit";
-      this.getPersonById(id)
+      this.getPersonById(id);
       this.modalPerson.show();
     },
 
@@ -776,10 +775,10 @@ export default {
         this.getFilms();
       }
     },
-    onClickSavePerson() {
-      if (this.state == "new" ) {
+   onClickSavePerson() {
+      if (this.state == "new") {
         //post
-        this.postPerson()
+        this.postPerson();
         this.modalPerson.hide();
       }
 
@@ -825,8 +824,8 @@ export default {
     statePersonsTitle() {
       if (this.state === "new" && this.modalPerson.show()) {
         return "Új személy hozzáadása";
-      } else if (this.state === "edit" ) {
-        return "Személy módosítása";      
+      } else if (this.state === "edit") {
+        return "Személy módosítása";
       }
     },
   },
