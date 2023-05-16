@@ -10,7 +10,7 @@
           <input
             class="form-control ms-2 mt-3"
             type="search"
-            placeholder="Keress egy filmre..."
+            placeholder="Keress egy közreműködőre..."
             aria-label="Search"
             v-model="keresoszo"
           />
@@ -119,7 +119,7 @@
                 <select
                 class="form-select"
                 aria-label="Default select example"
-                v-model="editablePerson.personid"
+                v-model="editablePerson.denomination"
               >
                 <option
                   v-for="(person, index) in persons"
