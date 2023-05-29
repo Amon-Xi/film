@@ -1,31 +1,34 @@
 <template>
   <div>
-    <div class="p-3 my-width-login">
+    <div class="p-3 my-width-login  ">
       <!-- user name -->
-      <div class="mb-3 col-6">
-        <label for="userName" class="form-label my-font">Felhasználónév:</label>
-        <input
+      <div class="my-login-center">
+
+        <div class="mb-3 col-6">
+          <label for="userName" class="form-label my-font">Felhasználónév:</label>
+          <input
           type="text"
           class="form-control"
           id="userName"
           v-model="storeLogin.userName"
-        />
-      </div>
-      <!-- password -->
-      <div class="mb-3 col-6">
-        <label for="password" class="form-label my-font">Jelszó:</label>
-        <input
+          />
+        </div>
+        <!-- password -->
+        <div class="mb-3 col-6">
+          <label for="password" class="form-label my-font">Jelszó:</label>
+          <input
           type="password"
           class="form-control"
           id="password"
           v-model="storeLogin.password"
-        />
+          />
+        </div>
+        <!-- Button login -->
+        <button type="button" class="btn mb-3 my-font" @click="login()">
+          <i class="mr-2 my-btn"> Belépés</i>
+        </button>
       </div>
-      <!-- Button login -->
-      <button type="button" class="btn mb-3 my-font" @click="login()">
-        <i class="mr-2 my-btn"> Belépés</i>
-      </button>
-
+        
       <div v-if="loginErrorMessage" class="alert alert-danger" role="alert">
         {{ loginErrorMessage }}
       </div>
@@ -115,5 +118,8 @@ export default {
   margin-bottom: 5%;
   margin-left: 33%;
   margin-right: 33%;
+
 }
+
+
 </style>

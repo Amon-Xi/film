@@ -16,7 +16,7 @@
     </ConnectionModel>
     <Database>hangos</Database>
   </Connection>
-  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="True" MainViewAttribute="Code" MainViewScale="50">
+  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="True" MainViewAttribute="Code" MainViewScale="69">
     <View Name="Design" Visible="False" />
     <View Name="Code" Active="True" Visible="True">
       <Data>
@@ -34,6 +34,7 @@
           <Parameter Name="Param11" Direction="Input" DbType="VarChar" />
           <Parameter Name="Param12" Direction="Input" DbType="VarChar" />
           <Parameter Name="Param13" Direction="Input" DbType="VarChar" />
+          <Parameter Name="Param14" Direction="Input" DbType="VarChar" />
         </Parameters>
       </Data>
     </View>

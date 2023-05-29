@@ -118,7 +118,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-danger btn-sm"
-                      @click.stop="onClickDeletePerson(task.id)"
+                      @click="onClickDeletePerson(task.id)"
                     >
                       <i class="bi bi-x"></i>
                     </button>
@@ -682,6 +682,7 @@ export default {
       const response = await fetch(url, config);
       this.getFilms();
     },
+
     async deletePerson(id) {
       let url = `${this.storeUrl.urlPersons}/${id}`;
       const config = {
@@ -691,8 +692,21 @@ export default {
           Authorization: `Bearer ${this.storeLogin.accessToken}`,
         },
       };
-      const response = await fetch(url, config);
-      this.getPersons();
+
+      try {
+        const response = await fetch(url, config);
+        if (response.ok) {
+          // A törlés sikeres volt, frissítsd az állapotot
+          this.getPersons();
+        } else {
+          // Hiba történt a törlés során, kezeld a hibát
+          throw new Error("A közreműködő törlése nem sikerült.");
+        }
+      } catch (error) {
+        // Hiba történt a hálózati kérés során, kezeld a hibát
+        console.error(error);
+        throw new Error("Hálózati hiba történt.");
+      }
     },
     // onClikRow(id) {
     //   this.currentId = id;
@@ -727,8 +741,9 @@ export default {
       this.modalDelete.hide();
     },
     onClickDeletePerson(id) {
+      console.log(id);
       this.state = "delete";
-      this.currentId = null;
+      this.currentId = id; // Beállítjuk a currentId-t az id értékére
       this.deletePerson(this.currentId);
     },
 
@@ -775,7 +790,7 @@ export default {
         this.getFilms();
       }
     },
-   onClickSavePerson() {
+    onClickSavePerson() {
       if (this.state == "new") {
         //post
         this.postPerson();

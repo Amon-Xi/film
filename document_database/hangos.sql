@@ -97,7 +97,7 @@ where  t.personid = p.id && t.filmid = f.id
   ;
 
   # filmOfTaskForModal
-select   p.name Name, p.gender Gender, t.denomination Denomination from tasks t
+select p.id,  p.name Name, p.gender Gender, t.denomination Denomination from tasks t
   inner join persons p on t.personid = p.id
 where t.filmid = 6
   ;
