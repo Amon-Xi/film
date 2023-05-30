@@ -71,8 +71,8 @@
       </table>
     </center>
 
-<!-- MODAL PERSON -->
-<div
+    <!-- MODAL PERSON -->
+    <div
       class="modal fade"
       id="personModal"
       tabindex="-1"
@@ -83,7 +83,7 @@
         <div class="modal-content">
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-             Személyek szerkeztése
+              Személyek szerkeztése
             </h1>
             <button
               type="button"
@@ -99,7 +99,7 @@
 
             <!-- PERSON DROPDOWN -->
             <form class="row g-3 needs-validation" novalidate>
-                <div class="col-md-12">
+              <div class="col-md-12">
                 <label for="name" class="form-label">Neve</label>
                 <input
                   type="text"
@@ -108,27 +108,21 @@
                   required
                   v-model="editablePerson.name"
                 />
-                <div class="invalid-feedback">
-                  A név kitöltése kötelező
-                </div>
+                <div class="invalid-feedback">A név kitöltése kötelező</div>
               </div>
-
 
               <div class="col-md-12">
                 <label for="name" class="form-label">Besorolása</label>
-                <select
-                class="form-select"
-                aria-label="Default select example"
-                v-model="editablePerson.denomination"
-              >
-                <option
+                <input
+                  type="text"
+                  class="form-control"
+                  id="denomination"
+                  required
+                  v-model="editablePerson.denomination"
                   v-for="(person, index) in persons"
                   :key="`person${index}`"
-                >
-                  {{ person.denomination}}
-                </option>
-              </select>
-
+                />
+                {{ person.denomination }}
 
                 <div class="invalid-feedback">
                   A besorolás kitöltése kötelező
@@ -148,7 +142,7 @@
               Mégse
             </button>
             <button
-              type="button" 
+              type="button"
               class="btn btn-primary"
               @click="onClickSavePerson()"
             >
@@ -158,8 +152,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -220,20 +212,18 @@ export default {
     this.form = document.querySelector(".needs-validation");
   },
   methods: {
-
-      async getPersonsABC() {
-        let url = this.storeUrl.urlPersonsABC;
-        const config = {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${this.storeLogin.accessToken}`,
-          },
-        };
-        const response = await fetch(url, config);
-        const data = await response.json();
-        this.personsABC = data.data;
-      },
-
+    async getPersonsABC() {
+      let url = this.storeUrl.urlPersonsABC;
+      const config = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+      };
+      const response = await fetch(url, config);
+      const data = await response.json();
+      this.personsABC = data.data;
+    },
 
     async getPersons() {
       let url = this.storeUrl.urlPersons;
@@ -247,7 +237,6 @@ export default {
       const data = await response.json();
       this.persons = data.data;
     },
-
 
     async getPersonById(id) {
       let url = `${this.storeUrl.urlPersons}/${id}`;
@@ -307,7 +296,6 @@ export default {
       this.getPersonById(this.currentId);
     },
 
-
     async putPerson() {
       const id = this.editablePerson.id;
       let url = `${this.storeUrl.urlPersons}/${id}`;
@@ -323,7 +311,7 @@ export default {
       const response = await fetch(url, config);
       this.getPersons();
     },
-    
+
     async deletePerson(id) {
       let url = `${this.storeUrl.urlPersons}/${id}`;
       const config = {
@@ -350,7 +338,6 @@ export default {
       this.deletePerson(this.currentId);
     },
 
-
     onClickEditPerson(id) {
       this.state = "edit";
       this.getPersonById(id);
@@ -361,17 +348,13 @@ export default {
       this.modalPerson.hide();
     },
 
-
-     onClickSavePerson() {
+    onClickSavePerson() {
       if (this.state == "new") {
         //post
         this.postPerson();
         this.modalPerson.hide();
       }
-
     },
-
-
   },
 };
 </script>

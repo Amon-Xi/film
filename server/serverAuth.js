@@ -30,6 +30,7 @@ app.post("/login", (req, res) => {
   const userName = req.body.userName;
   const password = req.body.password;
 
+
   //Megvan-e a user
   getUserByUserEmail(userName, (err, results) => {
     if (err) {
@@ -48,6 +49,7 @@ app.post("/login", (req, res) => {
     }
 
     //jó-e a megadott jelszó?
+  
     const passwordOk = compareSync(password, results.password);
     if (passwordOk) {
       const user = { name: userName };
@@ -61,7 +63,7 @@ app.post("/login", (req, res) => {
       refreshTokens.push(refreshToken);
 
       //mindkét tokent odaadjuk a bejelentkezőnek
-      sendingInfo(res, 1, "login successfully", { 
+      sendingInfo(res, 0, "login successfully", { 
         accessToken: accessToken, 
         refreshToken: refreshToken,
         userId: results.id, 
@@ -127,7 +129,7 @@ app.post("/token", (req, res) => {
   console.log("refreshTokens /token:", refreshTokens);
 });
 
-//Kijelentkezés a refresh tokennel
+//Kijelentkezés a refresh 
 app.delete("/logout", (req, res) => {
   //eltüntetjük a refreshTokes-ből a küldött refreshToken-t
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
