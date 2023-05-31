@@ -118,7 +118,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-danger btn-sm"
-                      @click="onClickDeletePerson(task.id)"
+                      @click="onClickDeletePerson(task.taskId)"
                     >
                       <i class="bi bi-x"></i>
                     </button>
@@ -127,7 +127,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-success btn-sm ms-2"
-                      @click.stop="onClickEditPerson(task.id)"
+                      @click.stop="onClickEditPerson(task.taskId)"
                     >
                       <i class="bi bi-pencil-fill"></i>
                     </button>
@@ -554,6 +554,7 @@ export default {
       const response = await fetch(url, config);
       const data = await response.json();
       this.editablePerson = data.data;
+      console.log(this.editablePerson);
     },
     async getFilmPersons(id) {
       let url = `${this.storeUrl.urlFilmOfTaskForModal}/${id}`;
@@ -684,30 +685,36 @@ export default {
     },
 
     async deletePerson(id) {
-      let url = `${this.storeUrl.urlPersons}/${id}`;
+      let url = `${this.storeUrl.urlTasks}/${id}`;
       const config = {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${this.storeLogin.accessToken}`,
         },
-      };
 
-      try {
-        const response = await fetch(url, config);
-        if (response.ok) {
-          // A törlés sikeres volt, frissítsd az állapotot
-          this.getPersons();
-        } else {
-          // Hiba történt a törlés során, kezeld a hibát
-          throw new Error("A közreműködő törlése nem sikerült.");
-        }
-      } catch (error) {
-        // Hiba történt a hálózati kérés során, kezeld a hibát
-        console.error(error);
-        throw new Error("Hálózati hiba történt.");
-      }
+      };
+      const response = await fetch(url, config);
+      const data = await response.json();
+      console.log(data);
+      console.log(this.currentId);
+      this.getFilmPersons(this.currentId);
     },
+
+      // try {
+      //   const response = await fetch(url, config);
+      //   if (response.ok) {
+      //     // A törlés sikeres volt, frissítsd az állapotot
+      //     this.getPersons();
+      //   } else {
+      //     // Hiba történt a törlés során, kezeld a hibát
+      //     throw new Error("A közreműködő törlése nem sikerült.");
+      //   }
+      // } catch (error) {
+      //   // Hiba történt a hálózati kérés során, kezeld a hibát
+      //   console.error(error);
+      //   throw new Error("Hálózati hiba történt.");
+      // }
     // onClikRow(id) {
     //   this.currentId = id;
     // },
@@ -743,8 +750,7 @@ export default {
     onClickDeletePerson(id) {
       console.log(id);
       this.state = "delete";
-      this.currentId = id; // Beállítjuk a currentId-t az id értékére
-      this.deletePerson(this.currentId);
+      this.deletePerson(id);
     },
 
     // onClickPersonDeleteModal(currentId){

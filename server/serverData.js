@@ -628,7 +628,7 @@ where  t.personid = p.id && t.filmid = f.id
 function getTasks(res, filmid) {
   return new Promise((resolve, reject) => {
     let sql = `
-    select p.id,  p.name Name, p.gender Gender, t.denomination Denomination  from tasks t
+    select t.id taskId, p.id personId,  p.name Name, p.gender Gender, t.denomination Denomination  from tasks t
       inner join persons p on t.personid = p.id
       where t.filmid = ?`;
 
@@ -956,7 +956,7 @@ app.delete("/tasks/:id", (req, res) => {
 
 app.delete("/persons/:id", (req, res) => {
   const id = req.params.id;
-
+  console.log(id);
   let sql = `
     DELETE FROM persons
     WHERE id = ?`;

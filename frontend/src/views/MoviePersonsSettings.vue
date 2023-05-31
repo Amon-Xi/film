@@ -120,7 +120,7 @@
                   required
                   v-model="editablePerson.denomination"
                   v-for="(person, index) in persons"
-                  :key="`person${index}`"
+                  :key="`task${index}`"
                 />
                 {{ person.denomination }}
 

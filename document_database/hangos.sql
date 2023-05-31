@@ -230,6 +230,13 @@ SELECT * FROM films
 delete from persons
   where name = '';
 
+DELETE FROM tasks
+    WHERE id = 1552;
 
 
+select * from tasks
+where id = 1552;
 
+
+select * from persons
+  where id = 1552;

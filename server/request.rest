@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ### login
 post http://localhost:4000/login
 Content-Type: application/json
@@ -107,7 +107,7 @@ get http://localhost:3000/persons/0
 delete http://localhost:3000/films/610
 
 ### delete by id tasks
-delete http://localhost:3000/tasks/17
+delete http://localhost:3000/tasks/1552
 
 ### delete by id persons
 delete http://localhost:3000/persons/0
@@ -139,6 +139,9 @@ Content-Type: application/json
     "denomination": "asd"
 
 }
+
+### delete tasks
+
 
 ### post persons 
 post http://localhost:3000/persons
@@ -269,7 +272,7 @@ Content-Type: application/json
 delete http://localhost:3000/users/17
 
 ### filmOfTaskForModal  
-get http://localhost:3000/filmOfTaskForModal/4
+get http://localhost:3000/filmOfTaskForModal/2
 
 ### personsForTable
 get http://localhost:3000/personsForTable/2
