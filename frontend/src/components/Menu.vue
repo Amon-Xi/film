@@ -54,7 +54,7 @@
                 >
                   Filmek szerkeztése
                   <div v-if="!storeLogin.loginSuccess">
-                    (Regisztráció szükséges)
+                    (Belépés szükséges)
                   </div>
                 </router-link>
               </li>
@@ -72,7 +72,7 @@
                 >
                 Közreműködők Szerkeztése
                   <div v-if="!storeLogin.loginSuccess">
-                    (Regisztráció szükséges)
+                    (Belépés szükséges)
                   </div>
                 </router-link>
               </li>

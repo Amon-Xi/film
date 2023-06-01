@@ -49,7 +49,7 @@
               <button
                 type="button"
                 class="btn btn-outline-danger btn-sm"
-                @click.stop="onClickDeletePerson(person.id)"
+                @click="onClickDeletePerson(person.id)"
               >
                 <i class="bi bi-x"></i>
               </button>
@@ -70,6 +70,45 @@
         </tbody>
       </table>
     </center>
+    <!-- Delete MODAL PERSON -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content my-modal">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Biztosan törölni akarja?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Mégse
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="onClickDeleteModal()"
+            >
+              Igen
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- MODAL PERSON -->
     <div
@@ -83,7 +122,7 @@
         <div class="modal-content">
           <div class="modal-header my-modal">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Személyek szerkeztése
+              {{ stateTitle }}
             </h1>
             <button
               type="button"
@@ -119,10 +158,9 @@
                   id="denomination"
                   required
                   v-model="editablePerson.denomination"
-                  v-for="(person, index) in persons"
-                  :key="`task${index}`"
                 />
-                {{ person.denomination }}
+
+                <!-- {{ person.denomination }} -->
 
                 <div class="invalid-feedback">
                   A besorolás kitöltése kötelező
@@ -202,6 +240,13 @@ export default {
         keyboard: false,
       }
     );
+    this.modalDelete = new bootstrap.Modal(
+      document.getElementById("deleteModal"),
+      {
+        keyboard: false,
+      }
+    );
+
     // this.modalDelete = new bootstrap.Modal(
     //   document.getElementById("deleteModal"),
     //   {
@@ -322,7 +367,7 @@ export default {
         },
       };
       const response = await fetch(url, config);
-      this.getPersons();
+      this.getPersons(this.currentId);
     },
 
     onClickNewPerson() {
@@ -333,9 +378,12 @@ export default {
     },
 
     onClickDeletePerson(id) {
-      this.state = "delete";
-      this.currentId = null;
-      this.deletePerson(this.currentId);
+      if ((this.state = "delete")) {
+        this.modalDelete.show();
+        this.currentId = null;
+      } else if (this.modalDelete.show()) {
+        this.onClickDeleteModal(this.currentId);
+      }
     },
 
     onClickEditPerson(id) {
@@ -355,7 +403,25 @@ export default {
         this.modalPerson.hide();
       }
     },
+
+    onClickDeleteModal(currentId) {
+      this.state = "delete";
+      this.deletePerson(this.currentId);
+      this.currentId = null;
+      this.modalDelete.hide();
+    },
   },
+  computed: {
+    stateTitle() {
+      if (this.state === "new") {
+        return "Új személy hozzáadása";
+      } else if (this.state === "edit") {
+        return "Személy módosítása";
+      }
+    },
+  }
+
+
 };
 </script>
 

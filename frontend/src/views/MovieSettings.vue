@@ -316,6 +316,8 @@
 
             <!-- PERSON DROPDOWN -->
             <form class="row g-3 needs-validation" novalidate>
+              <label for="name" class="form-label">Személy</label>
+
               <select
                 class="form-select"
                 aria-label="Default select example"
@@ -751,6 +753,7 @@ export default {
       console.log(id);
       this.state = "delete";
       this.deletePerson(id);
+      
     },
 
     // onClickPersonDeleteModal(currentId){
@@ -767,7 +770,7 @@ export default {
     },
     onClickEditPerson(id) {
       this.state = "edit";
-      this.getPersonById(id);
+      this.getFilmPersons(id);
       this.modalPerson.show();
     },
 
