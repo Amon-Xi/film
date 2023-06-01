@@ -43,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(person, index) in persons" :key="`task${index}`">
+          <tr v-for="(person, index) in persons" :key="`tasks${index}`">
             <td class="text-nowrap">
               <!-- törlés -->
               <button
@@ -65,6 +65,7 @@
             </td>
 
             <td class="text-nowrap">{{ person.name }}</td>
+            
             <td>{{ person.denomination }}</td>
           </tr>
         </tbody>
