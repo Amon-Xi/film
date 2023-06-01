@@ -63,7 +63,7 @@ app.post("/login", (req, res) => {
       refreshTokens.push(refreshToken);
 
       //mindkét tokent odaadjuk a bejelentkezőnek
-      sendingInfo(res, 0, "login successfully", { 
+      sendingInfo(res, 1, "login successfully", { 
         accessToken: accessToken, 
         refreshToken: refreshToken,
         userId: results.id, 
@@ -76,7 +76,7 @@ app.post("/login", (req, res) => {
       console.log("refreshTokens /login:", refreshTokens);
       return;
     } else {
-      sendingInfo(res, 1, "Invalid username or password", { 
+      sendingInfo(res, 0, "Invalid username or password", { 
         accessToken: "", 
         refreshToken: "",
         userId: 0, 
