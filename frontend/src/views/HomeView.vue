@@ -19,7 +19,9 @@
     <!-- CARD -->
 
     <div class="col-md-13 m-3 my-card">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4"
+      >
         <div v-for="(film, index) in films" :key="`films${index}`">
           <div class="card my-font">
             <div class="card-body">
@@ -30,9 +32,13 @@
                 <p class="card-text">Időtartam: {{ film.length }} perc</p>
                 <p class="card-text">Bemutatatták: {{ film.presentation }}</p>
                 <p class="card-text">
-                  Film részlet: <a :href="film.links" target="_blank">
-                    <i class="bi bi-box-arrow-up-right"></i
-                  ></a>
+                  Film részlet:
+                  <a :href="film.links" target="_blank" v-if="film.links">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+                  <o v-if="!film.links">
+                    <i class="bi bi-slash-circle"></i>
+                  </o>
                 </p>
                 <!-- Button trigger modal -->
                 <button
@@ -66,12 +72,13 @@
               class="modal-title fs-5 text-center my-font"
               id="exampleModalLabel"
             >
-            
               {{ filmForModal.title }}
-
-            
             </h1>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
           </div>
           <div class="modal-body my-modal">
             <div class="my-font">
@@ -90,7 +97,15 @@
                       :src="`../../public/persons/${task.Name}.jpg`"
                       class="card-img-top"
                       alt="..."
+                      v-if="task.Name"
                     />
+                    <img
+                      v-if="!task.Name"
+                      src=""
+                      class="card-img-top"
+                      alt="..."
+                    />
+
                     <div class="card-body">
                       <p class="card-text">
                         {{ task.Name }}<br />{{ task.Denomination }}
@@ -262,7 +277,6 @@ export default {
   float: right;
 }
 
-
 .my-persons-cards {
   overflow-y: scroll;
   height: 500px;
@@ -275,8 +289,6 @@ export default {
   background: #222;
   color: rgba(250, 250, 250, 0.8);
 }
-
-
 
 :root {
   --gradient: linear-gradient(
@@ -301,6 +313,4 @@ export default {
   text-decoration: none;
   transition: all 0.4s ease;
 }
-
-
 </style>

@@ -25,6 +25,7 @@
       </div>
     </div>
     <!-- TABLE -->
+  
 
     <!-- FILMS -->
     <div class="row">
@@ -157,7 +158,7 @@
           <div class="modal-header">
             <button
               type="button"
-              class="btn-close"
+              class="btn-close-white"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -200,7 +201,7 @@
             </h1>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close-white"
               @click="onClickCancel()"
               aria-label="Close"
             ></button>
@@ -304,7 +305,7 @@
             </h1>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close-white"
               @click="onClickCancelPerson()"
               aria-label="Close"
             ></button>

@@ -43,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(person, index) in persons" :key="`tasks${index}`">
+          <tr v-for="(person, index) in Person.tasks" :key="`tasks${index}`">
             <td class="text-nowrap">
               <!-- törlés -->
               <button
@@ -84,7 +84,7 @@
           <div class="modal-header">
             <button
               type="button"
-              class="btn-close"
+              class="btn-close-white"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -127,7 +127,7 @@
             </h1>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close-white"
               @click="onClickCancelPerson()"
               aria-label="Close"
             ></button>
@@ -380,6 +380,7 @@ export default {
 
     onClickDeletePerson(id) {
       if ((this.state = "delete")) {
+        console.log(id);
         this.modalDelete.show();
         this.currentId = null;
       } else if (this.modalDelete.show()) {
@@ -405,9 +406,10 @@ export default {
       }
     },
 
-    onClickDeleteModal(currentId) {
+    onClickDeleteModal(id) {
+      console.log(id);
       this.state = "delete";
-      this.deletePerson(this.currentId);
+      this.deletePerson(id);
       this.currentId = null;
       this.modalDelete.hide();
     },
