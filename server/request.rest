@@ -207,8 +207,8 @@ post http://localhost:4000/login
 Content-Type: application/json
 
 {
-    "userName": "mu",
-    "password": "222"
+    "userName": "admin",
+    "password": "333"
 }
 
 ### token kérés
@@ -259,12 +259,12 @@ put http://localhost:3000/users/1
 Content-Type: application/json
 
 {
-    "firstName": "AKD",
-    "lastName": "lkjasd",
+    "firstName": "asd",
+    "lastName": "asd",
     "gender": "fiu",
-    "userName": "mu",
-    "email": "mu@gmail.com",
-    "password": "222",
+    "userName": "admin",
+    "email": "admin@gmail.com",
+    "password": "333",
     "number": 1234562
 }
 
