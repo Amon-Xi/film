@@ -88,7 +88,6 @@
 
               <div class="row row-cols-1 row-cols-md-6 g-4 my-persons-cards">
                 <div
-                  class="c"
                   v-for="(task, index) in filmForModal.tasks"
                   :key="`film_${index}`"
                 >
@@ -99,13 +98,6 @@
                       alt="..."
                       v-if="task.Name"
                     />
-                    <img
-                      v-if="!task.Name"
-                      src=""
-                      class="card-img-top"
-                      alt="..."
-                    />
-
                     <div class="card-body">
                       <p class="card-text">
                         {{ task.Name }}<br />{{ task.Denomination }}

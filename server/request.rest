@@ -93,13 +93,13 @@ get http://localhost:3000/personsABC
 #--------------- get by id --------------
 
 ### get by id films
-get http://localhost:3000/films/620
+get http://localhost:3000/films/4
 
 ### get by id tasks
 get http://localhost:3000/tasks/1339
 
 ### get by id persons
-get http://localhost:3000/persons/0
+get http://localhost:3000/persons/3
 
 #----------- delete ---------------
 
