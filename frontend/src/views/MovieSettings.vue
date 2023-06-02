@@ -158,7 +158,7 @@
           <div class="modal-header">
             <button
               type="button"
-              class="btn-close-white"
+              class="btn-close btn-close-white"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -201,7 +201,7 @@
             </h1>
             <button
               type="button"
-              class="btn-close-white"
+              class="btn-close btn-close-white"
               @click="onClickCancel()"
               aria-label="Close"
             ></button>
@@ -305,7 +305,7 @@
             </h1>
             <button
               type="button"
-              class="btn-close-white"
+              class="btn-close btn-close-white"
               @click="onClickCancelPerson()"
               aria-label="Close"
             ></button>
@@ -703,6 +703,19 @@ export default {
       console.log(this.currentId);
       this.getFilmPersons(this.currentId);
     },
+    
+    async deleteFilmPerson(id) {
+      let url = `${this.storeUrl.urlFilmOfTaskForModal}/${id}`;
+      const config = {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${this.storeLogin.accessToken}`,
+        },
+      };
+      const response = await fetch(url, config);
+      const data = await response.json();
+      this.filmPerson = data.data[0];
+    },
 
       // try {
       //   const response = await fetch(url, config);
@@ -751,11 +764,21 @@ export default {
       this.modalDelete.hide();
     },
     onClickDeletePerson(id) {
-      console.log(id);
-      this.state = "delete";
-      this.deletePerson(id);
-      
+      if ((this.state = "delete")) {
+        console.log(id);
+        this.modalDelete.show();
+        this.currentId = null;
+      } else if (this.modalDelete.show()) {
+        this.onClickDeleteModalPerson(this.currentId);
+      }
     },
+    onClickDeleteModalPerson(currentId){
+      console.log();
+      this.getFilmPersons(this.currentId);
+      this.currentId = null;
+      this.modalDelete.hide();
+    },
+    
 
     // onClickPersonDeleteModal(currentId){
     //   this.state = "delete";

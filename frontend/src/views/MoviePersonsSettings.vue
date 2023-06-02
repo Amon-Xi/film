@@ -43,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(person, index) in Person.tasks" :key="`tasks${index}`">
+          <tr v-for="(person, index) in persons" :key="`tasks${index}`">
             <td class="text-nowrap">
               <!-- törlés -->
               <button
@@ -84,7 +84,7 @@
           <div class="modal-header">
             <button
               type="button"
-              class="btn-close-white"
+              class="btn-close btn-close-white"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -127,7 +127,7 @@
             </h1>
             <button
               type="button"
-              class="btn-close-white"
+              class="btn-close btn-close-white"
               @click="onClickCancelPerson()"
               aria-label="Close"
             ></button>
